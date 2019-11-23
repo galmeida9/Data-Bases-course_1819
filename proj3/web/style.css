@@ -1,0 +1,81 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    font-size: 11pt;
+    font-family: sans-serif;
+}
+
+main {
+    --home-button-height: 30px;
+}
+
+.main {
+	margin-left: 160px;
+}
+
+#title {
+    padding: 20px;
+    margin-top: 0px;
+    background-color: #B0C4DE;
+}
+
+.sidenav {
+	height: 100%; /* Full-height: remove this if you want "auto" height */
+	width: 160px; /* Set the width of the sidebar */
+	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+	z-index: 1; /* Stay on top */
+	top: 0; /* Stay at the top */
+	left: 0;
+	background-color: #111; /* Black */
+	overflow-x: hidden; /* Disable horizontal scroll */
+	padding-top: 20px;
+}
+
+.sidenav a {
+	padding: 6px 8px 16px 16px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+}
+
+.sidenav a:hover {
+	color: #f1f1f1;
+}
+
+a {
+	padding: 5px 10px;
+}
+
+a:hover {
+	color: black;
+}
+
+.page {
+	padding-left: 20px;
+}
+
+li {
+	padding-bottom: 30px;
+	padding-left: 20px;
+	font-size: 17px;
+}
+
+#new {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.view-btn {
+	padding-left: 20px;
+	padding-bottom: 20px;
+}
+
+.back-btn {
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
+.table {
+	padding-left: 20px;
+}
