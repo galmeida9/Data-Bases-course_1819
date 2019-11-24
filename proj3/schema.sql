@@ -37,7 +37,7 @@ create table anomalia (
     zona varchar(50) not null,
     imagem varchar(50) not null,
     lingua varchar(20) not null,
-    ts timestamp not null,
+    ts timestamp(0) not null,
     descricao varchar(200) not null,
     tem_anomalia_redacao boolean,
     constraint pk_anomalia_id primary key(id)
@@ -93,12 +93,17 @@ create table proposta_de_correcao (
     data_hora timestamp not null,
     texto varchar(200) not null,
     constraint pk_email_nro primary key(email, nro),
-    constraint fk_proposta_de_correcao_email foreign key(email) references utilizador_qualificado(email)
+    constraint fk_proposta_de_correcao_email foreign key(email) references utilizador_qualificado(email),
+    unique(nro),
+    unique(email)
 );
 
 create table correcao (
     email varchar(40) not null,
     nro decimal(5) not null,
     anomalia_id decimal(5) not null,
-    constraint pk_email_nro_anomalia_id primary key(email, nro, anomalia_id)
+    constraint pk_email_nro_anomalia_id primary key(email, nro, anomalia_id),
+    constraint pk_correcao_email foreign key(email) references proposta_de_correcao(email),
+    constraint pk_correcao_nro foreign key(nro) references proposta_de_correcao(nro),
+    constraint pk_correcao_anomalia_id foreign key(anomalia_id) references incidencia(anomalia_id)
 );
