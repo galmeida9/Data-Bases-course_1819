@@ -79,3 +79,14 @@ li {
 .table {
 	padding-left: 20px;
 }
+
+.row
+{
+    display: table;
+    width: 100%; /*Optional*/
+}
+
+.column
+{
+    display: table-cell;
+}
