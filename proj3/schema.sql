@@ -34,7 +34,7 @@ create table item (
 
 create table anomalia (
     id decimal(5) not null check(id > 0),
-    zona varchar(50) not null,
+    zona box not null,
     imagem varchar(50) not null,
     lingua varchar(20) not null,
     ts timestamp(0) not null,
@@ -45,7 +45,7 @@ create table anomalia (
 
 create table anomalia_traducao (
     id decimal(5) not null check(id > 0),
-    zona2 varchar(50) not null,
+    zona2 box not null,
     lingua2 varchar(20) not null,
     constraint pk_anomalia_traducao_id primary key(id),
     constraint fk_anomalia_traducao_id foreign key(id) references anomalia(id)

@@ -9,11 +9,11 @@ insert into item values (2, 'letreiro', 'Lisboa', 38.737003, -9.138694);
 insert into item values (3, 'letreiro', 'Lisboa', 38.737003, -9.138694);
 
 -- Anomalia TODO: VER COMO SE INSERE A ZONA E A IMAGEM
-insert into anomalia values (1, 'zona1', 'imagem1.jpg', 'portugues', now(), 'Letreiro mal escrito', true);
-insert into anomalia values (2, 'zona1', 'imagem2.jpg', 'ingles', now(), 'menu com erro ortografico', false);
+insert into anomalia values (1, '((1,1), (2,2))', 'imagem1.jpg', 'portugues', now(), 'Letreiro mal escrito', true);
+insert into anomalia values (2, '((1,2), (4,5))', 'imagem2.jpg', 'ingles', now(), 'menu com erro ortografico', false);
 
 -- Anomalia de traducao
-insert into anomalia_traducao values (2, 'zona2', 'portugues');
+insert into anomalia_traducao values (2, '((10,10), (20,20))', 'portugues');
 
 -- Duplicado
 insert into duplicado values (2, 3);
