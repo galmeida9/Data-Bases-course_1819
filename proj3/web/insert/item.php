@@ -26,6 +26,8 @@
 					$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
 					$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 					
+					$db->beginTransaction();
+
 					$sql = "SELECT latitude, longitude FROM local_publico WHERE nome='$local' LIMIT 1;";
 					$result = $db->prepare($sql);
 					$result->execute();
@@ -39,14 +41,17 @@
 					$result = $db->prepare($sql);
 					$result->execute();
 					
+					$db->commit();
+
 					// Cleaning Up
 					$result = null;
 					$db = null;
 
-					echo("<p>Item adicionado com sucesso.</p>");
+					echo("<p>Item inserido com sucesso.</p>");
 				}
 				catch (PDOException $e)
 				{
+					$db->rollBack();
 					echo("<p>ERROR: {$e->getMessage()}</p>");
 				}
 			?>
