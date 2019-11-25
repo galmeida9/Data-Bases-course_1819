@@ -21,12 +21,14 @@ insert into duplicado values (2, 3);
 -- Utilizador
 insert into utilizador values ('gabriel.almeida@tecnico.ulisboa.pt', '12345');
 insert into utilizador values ('marcelo.rebelo.sousa@gmail.com', 'fdksjhfj');
+insert into utilizador values ('pgalhardo@me.com', '123');
 
 -- Utilizador Qualificado
 insert into utilizador_qualificado values ('marcelo.rebelo.sousa@gmail.com');
 
 -- Utilizador Regular
 insert into utilizador_regular values ('gabriel.almeida@tecnico.ulisboa.pt');
+insert into utilizador_regular values ('pgalhardo@me.com');
 
 -- Incidencia
 insert into incidencia values (1, 2, 'gabriel.almeida@tecnico.ulisboa.pt');
