@@ -22,7 +22,7 @@ create table local_publico (
 );
 
 create table item (
-    id decimal(5) not null check(id > 0),
+    id serial,
     descricao varchar(200) not null,
     localizacao varchar(50) not null,
     latitude float(6) not null,
@@ -33,27 +33,27 @@ create table item (
 );
 
 create table anomalia (
-    id decimal(5) not null check(id > 0),
-    zona varchar(50) not null,
+    id serial,
+    zona box not null,
     imagem varchar(50) not null,
     lingua varchar(20) not null,
-    ts timestamp not null,
+    ts timestamp(0) not null,
     descricao varchar(200) not null,
     tem_anomalia_redacao boolean,
     constraint pk_anomalia_id primary key(id)
 );
 
 create table anomalia_traducao (
-    id decimal(5) not null check(id > 0),
-    zona2 varchar(50) not null,
+    id serial,
+    zona2 box not null,
     lingua2 varchar(20) not null,
     constraint pk_anomalia_traducao_id primary key(id),
     constraint fk_anomalia_traducao_id foreign key(id) references anomalia(id)
 );
 
 create table duplicado (
-    item1 decimal(5) not null,
-    item2 decimal(5) not null check(item1 < item2),
+    item1 serial,
+    item2 serial check(item1 < item2),
     constraint pk_item_ids primary key(item1, item2),
     constraint fk_item1 foreign key(item1) references item(id),
     constraint fk_item2 foreign key(item2) references item(id)
@@ -78,8 +78,8 @@ create table utilizador_regular (
 );
 
 create table incidencia (
-    anomalia_id decimal(5) not null,
-    item_id decimal(5) not null,
+    anomalia_id serial,
+    item_id serial,
     email varchar(40) not null,
     constraint pk_incidenecia primary key(anomalia_id),
     constraint fk_anomalia_id foreign key(anomalia_id) references anomalia(id),
@@ -89,16 +89,21 @@ create table incidencia (
 
 create table proposta_de_correcao (
     email varchar(40) not null,
-    nro decimal(5) not null,
+    nro serial,
     data_hora timestamp not null,
     texto varchar(200) not null,
     constraint pk_email_nro primary key(email, nro),
-    constraint fk_proposta_de_correcao_email foreign key(email) references utilizador_qualificado(email)
+    constraint fk_proposta_de_correcao_email foreign key(email) references utilizador_qualificado(email),
+    unique(nro),
+    unique(email)
 );
 
 create table correcao (
     email varchar(40) not null,
-    nro decimal(5) not null,
-    anomalia_id decimal(5) not null,
-    constraint pk_email_nro_anomalia_id primary key(email, nro, anomalia_id)
+    nro serial,
+    anomalia_id serial,
+    constraint pk_email_nro_anomalia_id primary key(email, nro, anomalia_id),
+    constraint pk_correcao_email foreign key(email) references proposta_de_correcao(email),
+    constraint pk_correcao_nro foreign key(nro) references proposta_de_correcao(nro),
+    constraint pk_correcao_anomalia_id foreign key(anomalia_id) references incidencia(anomalia_id)
 );
