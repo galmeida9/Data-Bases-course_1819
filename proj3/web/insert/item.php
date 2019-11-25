@@ -15,7 +15,7 @@
 		<div>
 			<h1 id="title">Inserir Item</h1>
 			<form class="back-btn" action="../insert.php">
-			    <input type="submit" value="Sair" />
+			    <input type="submit" value="Voltar" />
 			</form>
 		</div>
 
