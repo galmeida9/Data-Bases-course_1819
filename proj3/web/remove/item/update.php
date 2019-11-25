@@ -23,13 +23,13 @@
 					$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
 					$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-					$sql = "DELETE FROM item
-					WHERE id='$id'";
+					$sql = "DELETE FROM item WHERE id='$id'";
 
-					echo("<p>$sql</p>");
 					$result = $db->prepare($sql);
 					$result->execute();
 					$db = null;
+
+					echo("<p>Item removido com sucesso.</p>");
 				}
 				catch (PDOException $e)
 				{

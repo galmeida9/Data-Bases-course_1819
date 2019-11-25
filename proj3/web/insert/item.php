@@ -7,7 +7,7 @@
 	<body>
 		<div>
 			<h1 id="title">Inserir Item</h1>
-			<form class="back-btn" action="../insert.html">
+			<form class="back-btn" action="../insert.php">
 			    <input type="submit" value="Sair" />
 			</form>
 		</div>
@@ -16,24 +16,34 @@
 			<?php
 				$descricao = $_REQUEST['descricao'];
 				$localizacao = $_REQUEST['localizacao'];
-				$latitude = $_REQUEST['latitude'];
-				$longitude = $_REQUEST['longitude'];
-				try{
+				$local = $_REQUEST['local'];
+
+				try {
 					$host = "ec2-54-246-98-119.eu-west-1.compute.amazonaws.com";
 					$user ="gurfrjwmuedfot";
 					$password = "06e304a9e8b6c7b590df483952c65689eb12d16e4ea7443c44c688b8496f0639";
 					$dbname = "d4f2uther4d3uk";
 					$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
 					$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-					// id is AUTO_INCREMENT
-					$sql = "INSERT INTO item (descricao, localizacao, latitude, longitude)
-					VALUES ('$descricao', '$localizacao', '$latitude', '$longitude')";
-
-					echo("<p>$sql</p>");
+					
+					$sql = "SELECT latitude, longitude FROM local_publico WHERE nome='$local' LIMIT 1;";
 					$result = $db->prepare($sql);
 					$result->execute();
+
+					$row = $result->fetch();
+					$latitude = $row['latitude'];
+					$longitude = $row['longitude'];
+					
+					$sql = "INSERT INTO item (descricao, localizacao, latitude, longitude)
+					VALUES ('$descricao', '$localizacao', '$latitude', '$longitude')";
+					$result = $db->prepare($sql);
+					$result->execute();
+					
+					// Cleaning Up
+					$result = null;
 					$db = null;
+
+					echo("<p>Item adicionado com sucesso.</p>");
 				}
 				catch (PDOException $e)
 				{

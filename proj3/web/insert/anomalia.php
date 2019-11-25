@@ -7,7 +7,7 @@
 	<body>
 		<div>
 			<h1 id="title">Inserir Anomalia</h1>
-			<form class="back-btn" action="../insert.html">
+			<form class="back-btn" action="../insert.php">
 			    <input type="submit" value="Sair" />
 			</form>
 		</div>
@@ -31,10 +31,14 @@
 					$sql = "INSERT INTO anomalia (zona, imagem, lingua, ts, descricao, tem_anomalia_redacao)
 					VALUES ('$zona', '$imagem', '$lingua', now(),'$descricao', '$tem_anomalia_redacao')";
 
-					echo("<p>$sql</p>");
 					$result = $db->prepare($sql);
 					$result->execute();
+					
+					// Cleaning Up
+					$result = null;
 					$db = null;
+
+					echo("<p>Anomalia adicionada com sucesso.</p>");
 				}
 				catch (PDOException $e)
 				{

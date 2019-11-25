@@ -7,7 +7,7 @@
 	<body>
 		<div>
 			<h1 id="title">Inserir Local</h1>
-			<form class="back-btn" action="../insert.html">
+			<form class="back-btn" action="../insert.php">
 			    <input type="submit" value="Sair" />
 			</form>
 		</div>
@@ -27,10 +27,14 @@
 					$sql = "INSERT INTO local_publico (latitude, longitude, nome)
 					VALUES ('$latitude', '$longitude', '$nome')";
 
-					echo("<p>$sql</p>");
 					$result = $db->prepare($sql);
 					$result->execute();
+					
+					// Cleaning Up
+					$result = null;
 					$db = null;
+
+					echo("<p>Local adicionado com sucesso.</p>");
 				}
 				catch (PDOException $e)
 				{

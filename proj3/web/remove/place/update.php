@@ -27,10 +27,11 @@
 					$sql = "DELETE FROM local_publico
 					WHERE latitude='$latitude' and longitude='$longitude'";
 
-					echo("<p>$sql</p>");
 					$result = $db->prepare($sql);
 					$result->execute();
 					$db = null;
+
+					echo("<p>Local removido com sucesso.</p>");
 				}
 				catch (PDOException $e)
 				{

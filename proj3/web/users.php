@@ -29,7 +29,7 @@
 					$result = $db->prepare($sql);
 					$result->execute();
 					echo("<table border=\"1\">\n");
-					echo("<tr><td>email</td><td>psw</td></tr>\n");
+					echo("<tr><td>email</td><td>password</td></tr>\n");
 					foreach($result as $row) {
 						echo("<tr><td>");
 						echo($row['email']);
@@ -38,6 +38,9 @@
 						echo("</td></tr>\n");
 					}
 					echo("</table>\n");
+					
+					// Cleaning Up
+					$result = null;
 					$db = null;
 				}
 				catch (PDOException $e)

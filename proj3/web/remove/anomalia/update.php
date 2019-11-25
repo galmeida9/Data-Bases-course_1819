@@ -23,13 +23,15 @@
 					$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
 					$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-					$sql = "DELETE FROM anomalia
-					WHERE id='$id'";
-
-					echo("<p>$sql</p>");
+					$sql = "DELETE FROM anomalia WHERE id='$id'";
 					$result = $db->prepare($sql);
 					$result->execute();
+					
+					// Cleaning Up
+					$result = null;
 					$db = null;
+
+					echo("<p>Anomalia removida com sucesso.</p>");
 				}
 				catch (PDOException $e)
 				{

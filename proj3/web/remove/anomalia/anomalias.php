@@ -27,6 +27,7 @@
 					$sql = "SELECT id, zona, imagem, lingua, ts, descricao, tem_anomalia_redacao FROM anomalia;";
 					$result = $db->prepare($sql);
 					$result->execute();
+
 					echo("<table border=\"0\" cellspacing=\"5\">\n");
 					foreach($result as $row) {
 						echo("<tr>\n");
@@ -40,8 +41,10 @@
 						echo("<td><a href=\"update.php?id={$row['id']}\">Remover</a></td>\n");
 						echo("</tr>\n");
 					}
-					
 					echo("</table>\n");
+					
+					// Cleaning Up
+					$result = null;
 					$db = null;
 				}
 				catch (PDOException $e)

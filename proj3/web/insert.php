@@ -54,12 +54,36 @@
 							<input id="b" type="text" name="localizacao">
 						</p>
 						<p>
-							<label for="b">Latitude:</label>
-							<input id="b" type="text" name="latitude">
-						</p>
-						<p>
-							<label for="b">Longitude:</label>
-							<input id="b" type="text" name="longitude">
+							<label for="b">Local:</label>
+							<select name="local">
+							<?php
+								try{
+									$host = "ec2-54-246-98-119.eu-west-1.compute.amazonaws.com";
+									$user ="gurfrjwmuedfot";
+									$password = "06e304a9e8b6c7b590df483952c65689eb12d16e4ea7443c44c688b8496f0639";
+									$dbname = "d4f2uther4d3uk";
+									$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+									$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+									$sql = "SELECT nome FROM local_publico";
+									$result = $db->prepare($sql);
+									$result->execute();
+
+									foreach($result as $row) {
+										$local = $row['nome'];
+										printf('<option value="%1$s">%1$s</option>', $local);
+									}
+									
+									// Cleaning Up
+									$result = null;
+									$db = null;
+								}
+								catch (PDOException $e)
+								{
+									echo("<p>ERROR: {$e->getMessage()}</p>");
+								}
+							?>
+							</select>
 						</p>
 						<p> <input id="submit-btn" type="submit" value="Submit"/> </p>
 					</form>
