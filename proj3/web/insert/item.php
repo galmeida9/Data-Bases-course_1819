@@ -18,6 +18,21 @@
 				$localizacao = $_REQUEST['localizacao'];
 				$local = $_REQUEST['local'];
 
+				if(!isset($descricao) || $descricao == '') {
+					echo("<p>ERROR: Não foi especificada uma descrição.</p>");
+					return;
+				}
+
+				if(!isset($localizacao) || $localizacao == '') {
+					echo("<p>ERROR: Não foi especificada uma localização.</p>");
+					return;
+				}
+
+				if(!isset($local) || $local == '') {
+					echo("<p>ERROR: Não foi especificado um local.</p>");
+					return;
+				}
+				
 				try {
 					$host = "ec2-54-246-98-119.eu-west-1.compute.amazonaws.com";
 					$user ="gurfrjwmuedfot";

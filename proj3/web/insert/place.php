@@ -17,6 +17,22 @@
 				$latitude = $_REQUEST['latitude'];
 				$longitude = $_REQUEST['longitude'];
 				$nome = $_REQUEST['nome'];
+
+				if(!isset($latitude) || $latitude == '') {
+					echo("<p>ERROR: Não foi especificada uma latitude.</p>");
+					return;
+				}
+
+				if(!isset($longitude) || $longitude == '') {
+					echo("<p>ERROR: Não foi especificada uma longitude.</p>");
+					return;
+				}
+
+				if(!isset($nome) || $nome == '') {
+					echo("<p>ERROR: Não foi especificado um nome.</p>");
+					return;
+				}
+
 				try{
 					$host = "ec2-54-246-98-119.eu-west-1.compute.amazonaws.com";
 					$user ="gurfrjwmuedfot";

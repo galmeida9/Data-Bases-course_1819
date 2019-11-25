@@ -20,6 +20,26 @@
 				$descricao = $_REQUEST['descricao'];
 				$tem_anomalia_redacao = ($_POST['tem_anomalia_redacao'] == 'Yes') ? 'true' : 'false';
 
+				if(!isset($zona) || $zona == '') {
+					echo("<p>ERROR: Não foi especificada uma zona.</p>");
+					return;
+				}
+
+				if(!isset($imagem) || $imagem == '') {
+					echo("<p>ERROR: Não foi especificada uma imagem.</p>");
+					return;
+				}
+
+				if(!isset($lingua) || $lingua == '') {
+					echo("<p>ERROR: Não foi especificado uma língua.</p>");
+					return;
+				}
+
+				if(!isset($descricao) || $descricao == '') {
+					echo("<p>ERROR: Não foi especificado uma descrição.</p>");
+					return;
+				}
+
 				try{
 					$host = "ec2-54-246-98-119.eu-west-1.compute.amazonaws.com";
 					$user ="gurfrjwmuedfot";
