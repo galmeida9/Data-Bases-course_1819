@@ -129,10 +129,6 @@
 					<b>Correção</b>
 					<form action="" method="post">
 						<p>
-							<label for="a">Email:</label>
-							<input id="a" type="text" name="email">
-						</p>
-						<p>
 							<label for="b">ID Anomalia:</label>
 							<input id="b" type="text" name="anomalia_id">
 						</p>
@@ -143,10 +139,6 @@
 				<div class="column">
 					<b>Proposta de correção</b>
 					<form action="" method="post">
-						<p>
-							<label for="a">Email:</label>
-							<input id="a" type="text" name="email">
-						</p>
 						<p>
 							<label for="b">Texto:</label>
 							<input id="b" type="text" name="texto">
