@@ -28,8 +28,8 @@ create table item (
     latitude float(6) not null,
     longitude float(6) not null,
     constraint pk_item_id primary key(id),
-    constraint fk_latitude foreign key(latitude) references local_publico(latitude),
-    constraint fk_longitude foreign key(longitude) references local_publico(longitude)
+    constraint fk_latitude foreign key(latitude) references local_publico(latitude) on delete cascade,
+    constraint fk_longitude foreign key(longitude) references local_publico(longitude) on delete cascade
 );
 
 create table anomalia (
@@ -48,15 +48,15 @@ create table anomalia_traducao (
     zona2 box not null,
     lingua2 varchar(20) not null,
     constraint pk_anomalia_traducao_id primary key(id),
-    constraint fk_anomalia_traducao_id foreign key(id) references anomalia(id)
+    constraint fk_anomalia_traducao_id foreign key(id) references anomalia(id) on delete cascade
 );
 
 create table duplicado (
     item1 serial,
     item2 serial check(item1 < item2),
     constraint pk_item_ids primary key(item1, item2),
-    constraint fk_item1 foreign key(item1) references item(id),
-    constraint fk_item2 foreign key(item2) references item(id)
+    constraint fk_item1 foreign key(item1) references item(id) on delete cascade,
+    constraint fk_item2 foreign key(item2) references item(id) on delete cascade
 );
 
 create table utilizador (
@@ -68,13 +68,13 @@ create table utilizador (
 create table utilizador_qualificado (
     email varchar(40) not null,
     constraint pk_utilizador_qualificado_email primary key(email),
-    constraint fk_utilizador_qualificado_email foreign key(email) references utilizador(email)
+    constraint fk_utilizador_qualificado_email foreign key(email) references utilizador(email) on delete cascade
 );
 
 create table utilizador_regular (
     email varchar(40) not null,
     constraint pk_utilizador_regular_email primary key(email),
-    constraint fk_utilizador_regular_email foreign key(email) references utilizador(email)
+    constraint fk_utilizador_regular_email foreign key(email) references utilizador(email) on delete cascade
 );
 
 create table incidencia (
@@ -82,9 +82,9 @@ create table incidencia (
     item_id serial,
     email varchar(40) not null,
     constraint pk_incidenecia primary key(anomalia_id),
-    constraint fk_anomalia_id foreign key(anomalia_id) references anomalia(id),
-    constraint fk_item_id foreign key(item_id) references item(id),
-    constraint fk_incidencia_email foreign key(email) references utilizador(email)
+    constraint fk_anomalia_id foreign key(anomalia_id) references anomalia(id) on delete cascade,
+    constraint fk_item_id foreign key(item_id) references item(id) on delete cascade,
+    constraint fk_incidencia_email foreign key(email) references utilizador(email) on delete cascade
 );
 
 create table proposta_de_correcao (
@@ -93,7 +93,7 @@ create table proposta_de_correcao (
     data_hora timestamp not null,
     texto varchar(200) not null,
     constraint pk_email_nro primary key(email, nro),
-    constraint fk_proposta_de_correcao_email foreign key(email) references utilizador_qualificado(email),
+    constraint fk_proposta_de_correcao_email foreign key(email) references utilizador_qualificado(email) on delete cascade,
     unique(nro),
     unique(email)
 );
@@ -103,7 +103,7 @@ create table correcao (
     nro serial,
     anomalia_id serial,
     constraint pk_email_nro_anomalia_id primary key(email, nro, anomalia_id),
-    constraint pk_correcao_email foreign key(email) references proposta_de_correcao(email),
-    constraint pk_correcao_nro foreign key(nro) references proposta_de_correcao(nro),
-    constraint pk_correcao_anomalia_id foreign key(anomalia_id) references incidencia(anomalia_id)
+    constraint pk_correcao_email foreign key(email) references proposta_de_correcao(email) on delete cascade,
+    constraint pk_correcao_nro foreign key(nro) references proposta_de_correcao(nro) on delete cascade,
+    constraint pk_correcao_anomalia_id foreign key(anomalia_id) references incidencia(anomalia_id) on delete cascade
 );
