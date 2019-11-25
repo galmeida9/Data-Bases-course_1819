@@ -1,7 +1,6 @@
 html, body {
     margin: 0;
     height: 100%;
-    font-size: 11pt;
     font-family: sans-serif;
 }
 
@@ -20,14 +19,14 @@ main {
 }
 
 .sidenav {
-	height: 100%; /* Full-height: remove this if you want "auto" height */
-	width: 160px; /* Set the width of the sidebar */
-	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-	z-index: 1; /* Stay on top */
-	top: 0; /* Stay at the top */
+	height: 100%;
+	width: 160px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
 	left: 0;
-	background-color: #111; /* Black */
-	overflow-x: hidden; /* Disable horizontal scroll */
+	background-color: #111;
+	overflow-x: hidden;
 	padding-top: 20px;
 }
 
@@ -43,12 +42,8 @@ main {
 	color: #f1f1f1;
 }
 
-a {
-	padding: 5px 10px;
-}
-
-a:hover {
-	color: black;
+.sidenav a.active {
+	color: white;
 }
 
 .page {
@@ -61,14 +56,9 @@ li {
 	font-size: 17px;
 }
 
-#new {
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
 .view-btn {
 	padding-left: 20px;
-	padding-bottom: 20px;
+	padding-top: 5px;
 }
 
 .back-btn {
@@ -83,10 +73,25 @@ li {
 .row
 {
     display: table;
-    width: 100%; /*Optional*/
+    padding-bottom: 20px;
 }
 
 .column
 {
     display: table-cell;
+   	padding-left: 20px;
+   	padding-right: 20px;
+}
+
+form  { display: table;      }
+p     { display: table-row;  }
+label { display: table-cell; }
+input { display: table-cell; }
+
+input {
+	margin: 5px;
+}
+
+#submit-btn {
+	margin-left: 0px;
 }

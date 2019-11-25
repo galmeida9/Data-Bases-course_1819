@@ -2,42 +2,33 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="../../style.css" />
 	</head>
-	<script>
-		function goBack() {
-		  window.history.back();
-		}
-	</script>
-
 	<body>
 		<div>
-			<h1 id="title">Utilizadores</h1>
-			<button class="back-btn" onclick="goBack()">Voltar</button>
+			<h1 id="title">Remover Anomalia</h1>
+			<form class="back-btn" action="../../edit.html">
+			    <input type="submit" value="Sair" />
+			</form>
 		</div>
 
 		<div class="table">
 			<?php
-				try {
+				$id = $_REQUEST['id'];
+				try{
 					$host = "ec2-54-246-98-119.eu-west-1.compute.amazonaws.com";
 					$user ="gurfrjwmuedfot";
 					$password = "06e304a9e8b6c7b590df483952c65689eb12d16e4ea7443c44c688b8496f0639";
 					$dbname = "d4f2uther4d3uk";
 					$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
 					$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-					$sql = "SELECT email, psw FROM utilizador;";
+
+					$sql = "DELETE FROM anomalia
+					WHERE id='$id'";
+
+					echo("<p>$sql</p>");
 					$result = $db->prepare($sql);
 					$result->execute();
-					echo("<table border=\"1\">\n");
-					echo("<tr><td>email</td><td>psw</td></tr>\n");
-					foreach($result as $row) {
-						echo("<tr><td>");
-						echo($row['email']);
-						echo("</td><td>");
-						echo($row['psw']);
-						echo("</td></tr>\n");
-					}
-					echo("</table>\n");
 					$db = null;
 				}
 				catch (PDOException $e)

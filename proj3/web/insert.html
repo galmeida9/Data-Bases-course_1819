@@ -13,7 +13,7 @@
 	<body>
 		<div class="sidenav">
 			<a href="index.html">Home</a>
-			<a href="">Inserir</a>
+			<a class="active" href="">Inserir</a>
 			<a href="edit.html">Editar</a>
 			<a href="view.html">Visualizar</a>
 			<a href="register.html">Registar</a>
@@ -24,47 +24,103 @@
 
 			<div class="row">
 				<div class="column">
-					<b id="new">Novo local:</b>
-					<form id="new" action="update.php" method="post">
+					<b>Local</b>
+					<form action="insert/place.php" method="post">
 						<p>
-							<input type="hidden" name="account_number" value="<?=$_REQUEST['account_number']?>"/>
+							<label for="a">Latitude:</label>
+							<input id="a" type="text" name="latitude">
 						</p>
-						<p> latitude: <input type="text" name="latitude"/> </p>
-						<p> longitude: <input type="text" name="longitude"/> </p>
-						<p> nome: <input type="text" name="nome"/> </p>
-						<p> <input type="submit" value="Submit"/> </p>
+						<p>
+							<label for="b">Longitude:</label>
+							<input id="b" type="text" name="longitude">
+						</p>
+						<p>
+							<label for="b">Nome:</label>
+							<input id="b" type="text" name="nome">
+						</p>
+						<p> <input id="submit-btn" type="submit" value="Submit"/> </p>
 					</form>
 				</div>
 				
 				<div class="column">
-					<b id="new">Novo item:</b>
-					<form id="new" action="update.php" method="post">
+					<b>Item</b>
+					<form action="insert/item.php" method="post">
 						<p>
-							<input type="hidden" name="account_number" value="<?=$_REQUEST['account_number']?>"/>
+							<label for="a">Descrição:</label>
+							<input id="a" type="text" name="descricao">
 						</p>
-						<p> id: <input type="text" name="id"/> </p>
-						<p> descrição: <input type="text" name="descricao"/> </p>
-						<p> latitude: <input type="text" name="latitude"/> </p>
-						<p> longitude: <input type="text" name="longitude"/> </p>
-						<p> nome: <input type="text" name="nome"/> </p>
-						<p> <input type="submit" value="Submit"/> </p>
+						<p>
+							<label for="b">Localização:</label>
+							<input id="b" type="text" name="localizacao">
+						</p>
+						<p>
+							<label for="b">Latitude:</label>
+							<input id="b" type="text" name="latitude">
+						</p>
+						<p>
+							<label for="b">Longitude:</label>
+							<input id="b" type="text" name="longitude">
+						</p>
+						<p> <input id="submit-btn" type="submit" value="Submit"/> </p>
 					</form>
 				</div>
 
 				<div class="column">
-					<b id="new">Nova anomalia:</b>
-					<form id="new" action="update.php" method="post">
+					<b>Anomalia</b>
+					<form action="insert/anomalia.php" method="post">
 						<p>
-							<input type="hidden" name="account_number" value="<?=$_REQUEST['account_number']?>"/>
+							<label for="a">Zona:</label>
+							<input id="a" type="text" name="zona">
 						</p>
-						<p> id: <input type="text" name="id"/> </p>
-						<p> zona: <input type="text" name="zona"/> </p>
-						<p> imagem: <input type="text" name="imagem"/> </p>
-						<p> lingua: <input type="text" name="lingua"/> </p>
-						<p> ts: <input type="text" name="ts"/> </p>
-						<p> descrição: <input type="text" name="descricao"/> </p>
-						<p> tem_anomalia_redação: <input type="checkbox" name="tem_anomalia_redacao"/> </p>
-						<p> <input type="submit" value="Submit"/> </p>
+						<p>
+							<label for="b">Imagem:</label>
+							<input id="b" type="text" name="imagem">
+						</p>
+						<p>
+							<label for="b">Língua:</label>
+							<input id="b" type="text" name="lingua">
+						</p>
+						<p>
+							<label for="b">Descrição:</label>
+							<input id="b" type="text" name="descricao">
+						</p>
+						<p>
+							<label for="b">Anomalia Redação?:</label>
+							<input id="b" type="checkbox" name="tem_anomalia_redacao" value="Yes">
+						</p>
+						<p> <input id="submit-btn" type="submit" value="Submit"/> </p>
+					</form>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="column">
+					<b>Correção</b>
+					<form action="" method="post">
+						<p>
+							<label for="a">Email:</label>
+							<input id="a" type="text" name="email">
+						</p>
+						<p>
+							<label for="b">ID Anomalia:</label>
+							<input id="b" type="text" name="anomalia_id">
+						</p>
+						<p> <input id="submit-btn" type="submit" value="Submit"/> </p>
+					</form>
+				</div>
+				
+				<div class="column">
+					<b>Proposta de correção</b>
+					<form action="" method="post">
+						<p>
+							<label for="a">Email:</label>
+							<input id="a" type="text" name="email">
+						</p>
+						<p>
+							<label for="b">Texto:</label>
+							<input id="b" type="text" name="texto">
+						</p>
+						<p> <input id="submit-btn" type="submit" value="Submit"/> </p>
 					</form>
 				</div>
 			</div>
