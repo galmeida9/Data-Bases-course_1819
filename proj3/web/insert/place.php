@@ -34,7 +34,7 @@
 					$result = null;
 					$db = null;
 
-					echo("<p>Local adicionado com sucesso.</p>");
+					echo("<p>Local inserida com sucesso.</p>");
 				}
 				catch (PDOException $e)
 				{

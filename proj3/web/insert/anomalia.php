@@ -38,7 +38,7 @@
 					$result = null;
 					$db = null;
 
-					echo("<p>Anomalia adicionada com sucesso.</p>");
+					echo("<p>Anomalia inserida com sucesso.</p>");
 				}
 				catch (PDOException $e)
 				{
