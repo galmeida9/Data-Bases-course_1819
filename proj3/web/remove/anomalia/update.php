@@ -5,9 +5,16 @@
 		<link rel="stylesheet" href="../../style.css" />
 	</head>
 	<body>
+		<?php
+			session_start();
+            if (!isset($_SESSION['email'])) {
+				header("Location: login.php");
+			}
+		?>
+
 		<div>
 			<h1 id="title">Remover Anomalia</h1>
-			<form class="back-btn" action="../../edit.html">
+			<form class="back-btn" action="../../edit.php">
 			    <input type="submit" value="Sair" />
 			</form>
 		</div>

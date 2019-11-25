@@ -47,7 +47,7 @@
                     $realPsw = $row['psw'];
                     if ($realPsw == $psw) {
                         $_SESSION['email'] = $username;
-                        header("Location: index.html");
+                        header("Location: index.php");
                     }
                     else {
                         echo("<center class='error'>Wrong password.</center>");

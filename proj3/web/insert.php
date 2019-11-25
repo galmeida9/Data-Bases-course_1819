@@ -11,12 +11,19 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
+		<?php
+			session_start();
+            if (!isset($_SESSION['email'])) {
+				header("Location: login.php");
+			}
+		?>
+		
 		<div class="sidenav">
-			<a href="index.html">Home</a>
+			<a href="index.php">Home</a>
 			<a class="active" href="">Inserir</a>
-			<a href="edit.html">Editar</a>
-			<a href="view.html">Visualizar</a>
-			<a href="register.html">Registar</a>
+			<a href="edit.php">Editar</a>
+			<a href="view.php">Visualizar</a>
+			<a href="register.php">Registar</a>
 		</div>
 
 		<div id="tr" class="main">

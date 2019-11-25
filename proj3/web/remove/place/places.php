@@ -10,6 +10,13 @@
 		}
 	</script>
 	<body>
+		<?php
+			session_start();
+            if (!isset($_SESSION['email'])) {
+				header("Location: login.php");
+			}
+		?>
+
 		<div>
 			<h1 id="title">Locais</h1>
 			<button class="back-btn" onclick="goBack()">Voltar</button>

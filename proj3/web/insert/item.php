@@ -5,6 +5,13 @@
 		<link rel="stylesheet" href="../style.css" />
 	</head>
 	<body>
+		<?php
+			session_start();
+            if (!isset($_SESSION['email'])) {
+				header("Location: login.php");
+			}
+		?>
+
 		<div>
 			<h1 id="title">Inserir Item</h1>
 			<form class="back-btn" action="../insert.php">
