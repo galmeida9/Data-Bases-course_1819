@@ -95,3 +95,9 @@ input, select {
 #submit-btn {
 	margin-left: 0px;
 }
+
+.logout {
+	bottom: 0;
+    position: absolute;
+    margin-bottom: 16pt;
+}

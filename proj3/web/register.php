@@ -24,6 +24,7 @@
 			<a href="edit.php">Editar</a>
 			<a href="view.php">Visualizar</a>
 			<a class="active" href="">Registar</a>
+			<a href="logout.php" class="logout">Logout</a>
 		</div>
 
 		<div id="tr" class="main">

@@ -19,6 +19,7 @@
 			<a href="edit.php">Editar</a>
 			<a href="view.php">Visualizar</a>
 			<a href="register.php">Registar</a>
+			<a href="logout.php" class="logout">Logout</a>
 		</div>
 
 		<div id="tr" class="main">
