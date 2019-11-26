@@ -60,7 +60,7 @@
 			<div class="row">
 				<div class="column">
 					<b>Correções</b>
-					<form action="" method="post">
+					<form action="edit/correction/corrections.php" method="post">
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Editar correção"/> </p>
 					</form>
 					<form action="" method="post">

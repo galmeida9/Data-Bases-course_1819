@@ -2,7 +2,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="../style.css" />
+		<link rel="stylesheet" href="../../style.css" />
 	</head>
 	<script>
 		function goBack() {
@@ -24,7 +24,7 @@
 
 		<div class="table">
 			<?php
-				require("../db_class.php");
+				require("../../db_class.php");
 				try {
 					//DB Init
 					$db = new DB();
@@ -36,13 +36,15 @@
 					$sql = "SELECT email, nro, anomalia_id FROM correcao;";
 					$result = $db->query($sql);
 
-					echo("<table border=\"0\" cellspacing=\"5\">\n");
+					echo("<table border=\"1\" cellspacing=\"5\">\n");
+					echo("<tr><td><b>Email</b></td><td><b>Número</b></td><td><b>ID Anomalia</b></td></tr>\n");
 					foreach($result as $row) {
 						echo("<tr>\n");
 						echo("<td>{$row['email']}</td>\n");
 						echo("<td>{$row['nro']}</td>\n");
 						echo("<td>{$row['anomalia_id']}</td>\n");
-						echo("<td><a href=\"balance.php?nro={$row['nro']}\">Editar Correção</a></td>\n");
+						//echo("<td><a href=\"correction.php?nro={$row['nro']}\">Editar Correção</a></td>\n");
+						echo("<td><a href=\"\">Editar Correção</a></td>\n");
 						echo("</tr>\n");
 					}
 					
