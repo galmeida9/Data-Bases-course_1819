@@ -34,7 +34,7 @@
 				<div class="column">
 					<b>Utilizadores</b>
 					<form action="users.php" method="post">
-						<p> <input id="submit-btn" type="submit" value="Listar utilizadores"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Listar utilizadores"/> </p>
 					</form>
 				</div>
 			</div>
@@ -43,7 +43,7 @@
 				<div class="column">
 					<b>Anomalias</b>
 					<form action="" method="post">
-						<p> <input id="submit-btn" type="submit" value="Listar anomalias"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Listar anomalias"/> </p>
 					</form>
 				</div>
 			</div>

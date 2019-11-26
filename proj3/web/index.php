@@ -27,9 +27,9 @@
 		</div>
 		<div id="repor">
 			<h3 id="indexTitle">Repor Base de Dados</h3>
-			<form method="post">
-    			<input type="submit" name="repor" value="Repor dados" />
-			</form>
+			<center><form method="post">
+    			<input class="button" type="submit" name="repor" value="Repor dados" />
+			</form></center>
 		</div>
 
 		<?php

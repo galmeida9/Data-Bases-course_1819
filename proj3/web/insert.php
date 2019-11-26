@@ -46,7 +46,7 @@
 							<label for="b">Nome:</label>
 							<input id="b" type="text" name="nome">
 						</p>
-						<p> <input id="submit-btn" type="submit" value="Submit"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
 					</form>
 				</div>
 				
@@ -94,10 +94,12 @@
 							?>
 							</select>
 						</p>
-						<p> <input id="submit-btn" type="submit" value="Submit"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
 					</form>
 				</div>
+			</div>
 
+			<div class="row">
 				<div class="column">
 					<b>Anomalia</b>
 					<form action="insert/anomalia.php" method="post">
@@ -121,7 +123,7 @@
 							<label for="b">Anomalia Redação?:</label>
 							<input id="b" type="checkbox" name="tem_anomalia_redacao" value="Yes">
 						</p>
-						<p> <input id="submit-btn" type="submit" value="Submit"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
 					</form>
 				</div>
 			</div>
@@ -134,7 +136,7 @@
 							<label for="b">ID Anomalia:</label>
 							<input id="b" type="text" name="anomalia_id">
 						</p>
-						<p> <input id="submit-btn" type="submit" value="Submit"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
 					</form>
 				</div>
 				
@@ -145,7 +147,7 @@
 							<label for="b">Texto:</label>
 							<input id="b" type="text" name="texto">
 						</p>
-						<p> <input id="submit-btn" type="submit" value="Submit"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
 					</form>
 				</div>
 			</div>
