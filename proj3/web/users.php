@@ -38,7 +38,7 @@
 					$result = $db->query($sql);
 
 					echo("<table border=\"1\">\n");
-					echo("<tr><td>email</td></tr>\n");
+					echo("<tr><td><b>Email</b></td></tr>\n");
 					foreach($result as $row) {
 						echo("<tr><td>");
 						echo($row['email']);

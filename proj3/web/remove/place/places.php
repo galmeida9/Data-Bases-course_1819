@@ -40,6 +40,7 @@
 					if (!$result) return;
 
 					echo("<table border=\"0\" cellspacing=\"5\">\n");
+					echo("<tr><td><b>Latitude</b></td><td><b>Longitude</b></td><td><b>Nome</b></td></tr>\n");
 					foreach($result as $row) {
 						echo("<tr>\n");
 						echo("<td>{$row['latitude']}</td>\n");

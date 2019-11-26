@@ -37,6 +37,8 @@
 					$result = $db->query($sql);
 
 					echo("<table border=\"0\" cellspacing=\"5\">\n");
+					echo("<tr><td><b>ID</b></td><td><b>Descrição</b></td><td><b>Localização</b></td>");
+					echo("<td><b>Latitude</b></td><td><b>Longitude</b></td></tr>\n");
 					foreach($result as $row) {
 						echo("<tr>\n");
 						echo("<td>{$row['id']}</td>\n");
