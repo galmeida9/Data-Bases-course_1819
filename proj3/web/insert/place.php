@@ -21,6 +21,7 @@
 
 		<div class="table">
 			<?php
+				require("../db_class.php");
 				$latitude = $_REQUEST['latitude'];
 				$longitude = $_REQUEST['longitude'];
 				$nome = $_REQUEST['nome'];
@@ -41,21 +42,20 @@
 				}
 
 				try{
-					$host = "ec2-54-246-98-119.eu-west-1.compute.amazonaws.com";
-					$user ="gurfrjwmuedfot";
-					$password = "06e304a9e8b6c7b590df483952c65689eb12d16e4ea7443c44c688b8496f0639";
-					$dbname = "d4f2uther4d3uk";
-					$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-					$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+					//DB Init
+					$db = new DB();
+					$db->debug_to_console("Connect");
+					$db->connect();
+
+					//INSERT Query
+					$db->debug_to_console("Insert Query");
 					$sql = "INSERT INTO local_publico (latitude, longitude, nome)
 					VALUES ('$latitude', '$longitude', '$nome')";
-
-					$result = $db->prepare($sql);
-					$result->execute();
+					$result = $db->query($sql);
 					
 					// Cleaning Up
 					$result = null;
-					$db = null;
+					unset($db);
 
 					echo("<p>Local inserido com sucesso.</p>");
 				}

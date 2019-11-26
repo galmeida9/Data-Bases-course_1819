@@ -25,16 +25,18 @@
 
 		<div class="table">
 			<?php
+				require("db_class.php");
 				try {
-					$host = "ec2-54-246-98-119.eu-west-1.compute.amazonaws.com";
-					$user ="gurfrjwmuedfot";
-					$password = "06e304a9e8b6c7b590df483952c65689eb12d16e4ea7443c44c688b8496f0639";
-					$dbname = "d4f2uther4d3uk";
-					$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-					$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+					//DB Init
+					$db = new DB();
+					$db->debug_to_console("Connect");
+					$db->connect();
+
+					//GET Query
+					$db->debug_to_console("Query");
 					$sql = "SELECT email, psw FROM utilizador;";
-					$result = $db->prepare($sql);
-					$result->execute();
+					$result = $db->query($sql);
+
 					echo("<table border=\"1\">\n");
 					echo("<tr><td>email</td><td>password</td></tr>\n");
 					foreach($result as $row) {
@@ -48,7 +50,7 @@
 					
 					// Cleaning Up
 					$result = null;
-					$db = null;
+					unset($db);
 				}
 				catch (PDOException $e)
 				{

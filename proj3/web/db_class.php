@@ -12,7 +12,7 @@ class DB {
     var $dbObj;
     var $debug;
 
-    public function __construct($debug){
+    public function __construct($debug = True){
         $this->debug = $debug;
     }
 
@@ -22,7 +22,8 @@ class DB {
             $this->dbObj->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch (PDOException $e) {
-            return $this->debug_to_console($e->getMessage());
+            $this->debug_to_console($e->getMessage());
+            return False;
         }
     }
 
@@ -33,8 +34,27 @@ class DB {
             return $result;
         }
         catch (PDOException $e) {
-            return $this->debug_to_console($e->getMessage());
+            $this->debug_to_console($e->getMessage());
+            return False;
         }
+    }
+
+    public function beginTransaction(){
+        $this->dbObj->beginTransaction();
+    }
+
+    public function commit(){
+        $this->dbObj->commit();
+    }
+
+    public function rollBack(){
+        $this->dbObj->rollBack();
+    }
+
+    public function queryTransaction($sql){
+        $result = $this->dbObj->prepare($sql);
+        $result->execute();
+        return $result;
     }
 
     public function debug_to_console($data) {

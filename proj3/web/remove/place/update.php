@@ -21,24 +21,29 @@
 
 		<div class="table">
 			<?php
+				require("../../db_class.php");
 				$latitude = $_REQUEST['latitude'];
 				$longitude = $_REQUEST['longitude'];
 				try{
-					$host = "ec2-54-246-98-119.eu-west-1.compute.amazonaws.com";
-					$user ="gurfrjwmuedfot";
-					$password = "06e304a9e8b6c7b590df483952c65689eb12d16e4ea7443c44c688b8496f0639";
-					$dbname = "d4f2uther4d3uk";
-					$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-					$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+					//DB Init
+					$db = new DB();
+					$db->debug_to_console("Connect");
+					$db->connect();
 
-					$sql = "DELETE FROM local_publico
-					WHERE latitude='$latitude' and longitude='$longitude'";
+					//DELETE Query
+					$db->debug_to_console("Delete Query");
+					$sql = "DELETE FROM local_publico WHERE latitude='$latitude' and longitude='$longitude'";
+					$db->debug_to_console($sql);
+					$result = $db->query($sql);
 
-					$result = $db->prepare($sql);
-					$result->execute();
-					$db = null;
+					// If returns False is error
+					if (!$result) return;
 
+					$db->debug_to_console("PHP acabado.");
 					echo("<p>Local removido com sucesso.</p>");
+					//Cleaning up
+					unset($db);
+					$result = null;
 				}
 				catch (PDOException $e)
 				{

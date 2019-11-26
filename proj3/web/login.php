@@ -33,11 +33,11 @@
             $psw = $_REQUEST['psw'];
 
             //DB Init
-            $db = new DB(True);
+            $db = new DB();
             $db->debug_to_console("Connect");
             $db->connect();
 
-            //GET Query
+            //SELECT Query
             $db->debug_to_console("Query");
             $sql = "SELECT psw FROM utilizador WHERE email = '$username';";
             $result = $db->query($sql);
@@ -61,7 +61,10 @@
             if ($isEmpty && $username != "") {
                 echo("<center class='error'>Wrong email.</center>");
             }
+            
+            //Cleaning up
             unset($db);
+            $result = null;
         ?>
     </body>
 </html>
