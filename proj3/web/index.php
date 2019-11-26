@@ -25,5 +25,11 @@
 		<div id="tr" class="main">
 			<h1 id="title">Translate Right</h1>
 		</div>
+		<div id="repor">
+			<h3 id="indexTitle">Repor Base de Dados</h3>
+			<form action="reporDados.php" method="post">
+    			<input type="submit" value="Repor dados" />
+			</form>
+		</div>
 	</body>
 </html>

@@ -65,6 +65,42 @@ class DB {
     
         echo("<script>console.log('DB Debug: " . $output . "' );</script>");
     }
+
+    public function executeFileQuery($filename) {
+        $file = fopen("../$filename", "r");
+        $query = null;
+        if ($file) {
+            while (($line = fgets($file)) !== false) {
+                if (strpos($line, '--') !== false) {
+                    // Do nothing
+                }
+                else if ('' === trim($line)) {
+                    if (!is_null($query)) {
+                        $this->query($query);
+                        $query = null;
+                    }
+                }
+                else if (strpos($line, 'drop') !== false) {
+                    $this->query($line);
+                }
+                else if (strpos($line, 'insert') !== false) {
+                    $this->query($line);
+                }
+                else {
+                    if (is_null($query)) {
+                        $query = $line;
+                    }
+                    else {
+                        $query = $query . $line;
+                    }
+                }
+            }
+            fclose($file);
+        }
+        else {
+            echo("<p>error opening file.</p>");
+        }
+    }
 }
 
 ?>

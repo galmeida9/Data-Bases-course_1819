@@ -13,8 +13,8 @@ drop table if exists correcao cascade;
 
 -- Create all tables
 create table local_publico (
-    latitude float(6) not null,
-    longitude float(6) not null,
+    latitude float not null,
+    longitude float not null,
     nome varchar(50) not null,
     constraint pk_latitude_longitude primary key(latitude, longitude),
     unique(latitude),
@@ -25,8 +25,8 @@ create table item (
     id serial,
     descricao varchar(200) not null,
     localizacao varchar(50) not null,
-    latitude float(6) not null,
-    longitude float(6) not null,
+    latitude float not null,
+    longitude float not null,
     constraint pk_item_id primary key(id),
     constraint fk_latitude foreign key(latitude) references local_publico(latitude) on delete cascade,
     constraint fk_longitude foreign key(longitude) references local_publico(longitude) on delete cascade
@@ -107,3 +107,4 @@ create table correcao (
     constraint pk_correcao_nro foreign key(nro) references proposta_de_correcao(nro) on delete cascade,
     constraint pk_correcao_anomalia_id foreign key(anomalia_id) references incidencia(anomalia_id) on delete cascade
 );
+

@@ -1,6 +1,6 @@
 -- Locais Publicos
 insert into local_publico values (38.737003, -9.138694, 'Instituto Superior Tecnico');
-insert into local_publico values (38.767960, -9.097086, 'Vasco da Gama');
+insert into local_publico values (38.767961, -9.097086, 'Vasco da Gama');
 insert into local_publico values (37.736111, -9.140838, 'Ali Baba Kebab Haus');
 
 -- Items
@@ -39,3 +39,4 @@ insert into proposta_de_correcao values ('marcelo.rebelo.sousa@gmail.com', defau
 
 -- Correcao
 insert into correcao values ('marcelo.rebelo.sousa@gmail.com', 1, 1);
+
