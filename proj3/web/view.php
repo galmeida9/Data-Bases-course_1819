@@ -42,7 +42,7 @@
 			<div class="row">
 				<div class="column">
 					<b>Anomalias</b>
-					<form action="" method="post">
+					<form action="anomalia.php" method="post">
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Listar anomalias"/> </p>
 					</form>
 				</div>
