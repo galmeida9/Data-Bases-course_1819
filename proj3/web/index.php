@@ -27,9 +27,20 @@
 		</div>
 		<div id="repor">
 			<h3 id="indexTitle">Repor Base de Dados</h3>
-			<form action="reporDados.php" method="post">
-    			<input type="submit" value="Repor dados" />
+			<form method="post">
+    			<input type="submit" name="repor" value="Repor dados" />
 			</form>
 		</div>
+
+		<?php
+			if (isset($_POST['repor'])) {
+				require("db_class.php");
+				$db = new DB();
+				$db->connect();
+				$db->executeFileQuery("schema.sql");
+				$db->executeFileQuery("populate.sql");
+				header("Location: index.php");
+			}
+		?>
 	</body>
 </html>
