@@ -28,42 +28,40 @@
         </form>
 
         <?php
+            require("db_class.php");
             $username = $_REQUEST['uname'];
             $psw = $_REQUEST['psw'];
-            try{
-                $host = "ec2-54-246-98-119.eu-west-1.compute.amazonaws.com";
-                $user ="gurfrjwmuedfot";
-                $password = "06e304a9e8b6c7b590df483952c65689eb12d16e4ea7443c44c688b8496f0639";
-                $dbname = "d4f2uther4d3uk";
-                $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $sql = "SELECT psw FROM utilizador WHERE email = '$username';";
+            //DB Init
+            $db = new DB(True);
+            $db->debug_to_console("Connect");
+            $db->connect();
 
-                $result = $db->prepare($sql);
-                $result->execute();
-                $isEmpty = 1;
-                foreach($result as $row) {
-                    $realPsw = $row['psw'];
-                    if ($realPsw == $psw) {
-                        $_SESSION['email'] = $username;
-                        header("Location: index.php");
-                    }
-                    else {
-                        echo("<center class='error'>Wrong password.</center>");
-                    }
-                    $isEmpty = 0;
-                    break;
+            //GET Query
+            $db->debug_to_console("Query");
+            $sql = "SELECT psw FROM utilizador WHERE email = '$username';";
+            $result = $db->query($sql);
+
+            // If returns False is error
+            if (!$result) return;
+
+            $isEmpty = 1;
+            foreach($result as $row) {
+                $realPsw = $row['psw'];
+                if ($realPsw == $psw) {
+                    $_SESSION['email'] = $username;
+                    header("Location: index.php");
                 }
-                if ($isEmpty && $username != "") {
-                    echo("<center class='error'>Wrong email.</center>");
+                else {
+                    echo("<center class='error'>Wrong password.</center>");
                 }
-                $db = null;
+                $isEmpty = 0;
+                break;
             }
-            catch (PDOException $e)
-            {
-                echo("<p>ERROR: {$e->getMessage()}</p>");
+            if ($isEmpty && $username != "") {
+                echo("<center class='error'>Wrong email.</center>");
             }
+            unset($db);
         ?>
     </body>
 </html>
