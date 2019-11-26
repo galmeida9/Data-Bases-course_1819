@@ -2,7 +2,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="../style.css" />
 	</head>
 	<script>
 		function goBack() {
@@ -13,7 +13,7 @@
 		<?php
 			session_start();
             if (!isset($_SESSION['email'])) {
-				header("Location: login.php");
+				header("Location: ../login.php");
 			}
 		?>
         
@@ -33,7 +33,7 @@
 
             <div class="table">
                 <?php
-                    require("db_class.php");
+                    require("../db_class.php");
                     try {
                         //DB Init
                         $db = new DB();

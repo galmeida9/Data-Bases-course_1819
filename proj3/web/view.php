@@ -33,7 +33,7 @@
 			<div class="row">
 				<div class="column">
 					<b>Utilizadores</b>
-					<form action="users.php" method="post">
+					<form action="view/users.php" method="post">
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Listar utilizadores"/> </p>
 					</form>
 				</div>
@@ -41,9 +41,34 @@
 
 			<div class="row">
 				<div class="column">
-					<b>Anomalias</b>
-					<form action="anomalia.php" method="post">
+					<b>Anomalias entre 2 locais</b>
+					<form action="view/anomalia.php" method="post">
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Listar anomalias"/> </p>
+					</form>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="column">
+					<b>Anomalias numa vizinhança</b>
+					<form action="view/anomaliaPos.php" method="post">
+						<p>
+							<label for="a">Latitude:</label>
+							<input id="a" type="text" name="lat">
+						</p>
+						<p>
+							<label for="b">Longitude:</label>
+							<input id="b" type="text" name="long">
+						</p>
+						<p>
+							<label for="b">dx:</label>
+							<input id="b" type="text" name="dx">
+						</p>
+						<p>
+							<label for="b">dy:</label>
+							<input id="b" type="text" name="dy">
+						</p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
 					</form>
 				</div>
 			</div>
