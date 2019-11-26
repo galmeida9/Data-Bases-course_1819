@@ -4,11 +4,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../../style.css" />
 	</head>
-	<script>
-		function goBack() {
-		  window.history.back();
-		}
-	</script>
 	<body>
 		<?php
 			session_start();
@@ -18,18 +13,20 @@
 		?>
 
 		<div class="sidenav">
-			<a href="index.php">Home</a>
-			<a href="insert.php">Inserir</a>
-			<a href="edit.php">Editar</a>
-			<a href="view.php">Visualizar</a>
-			<a href="register.php">Registar</a>
-			<a href="logout.php" class="logout">Logout</a>
+			<a href="../../index.php">Home</a>
+			<a href="../../insert.php">Inserir</a>
+			<a href="../../edit.php">Editar</a>
+			<a href="../../view.php">Visualizar</a>
+			<a href="../../register.php">Registar</a>
+			<a href="../../logout.php" class="logout">Logout</a>
 		</div>
 
 		<div id="tr" class="main">
-			<h1 id="title">Remover anomalias</h1>
+			<h1 id="title">Remover anomalia</h1>
             
-            <button class="button buttonSmall" onclick="goBack()" style="margin-left: 20pt;margin-bottom: 20pt;">Voltar</button>
+            <form class="back-btn" action="../../edit.php">
+			    <input type="submit" value="Voltar" />
+			</form>
 
             <div class="table">
 				<?php
@@ -45,7 +42,7 @@
 						$sql = "SELECT id, zona, imagem, lingua, ts, descricao, tem_anomalia_redacao FROM anomalia;";
 						$result = $db->query($sql);
 
-						echo("<table border=\"0\" cellspacing=\"5\">\n");
+						echo("<table border=\"1\" cellspacing=\"5\">\n");
 						echo("<tr><td><b>ID</b></td><td><b>Zona</b></td><td><b>Imagem</b></td><td><b>Língua</b></td>");
 						echo("<td><b>Data/Hora</b></td><td><b>Descrição</b></td><td><b>Anomalia Redação?</b></td></tr>\n");
 						foreach($result as $row) {
@@ -60,7 +57,7 @@
 							if ($row['tem_anomalia_redacao'] == 1) {
 								echo("<td>Sim</td>\n");
 							} else {
-								echo("<td>Não</td>\n");
+								echo("<td>-</td>\n");
 							}
 
 							

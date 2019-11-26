@@ -2,7 +2,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="../../style.css" />
 	</head>
 	<script>
 		function goBack() {
@@ -23,10 +23,10 @@
 		</div>
 
 		<div class="table">
-			<h3>Change balance for account <?=$_REQUEST['account_number']?></h3>
+			<h3>Editar texto para correção #<?=$_REQUEST['nro']?></h3>
 			<form action="update.php" method="post">
-				<p><input type="hidden" name="account_number" value="<?=$_REQUEST['account_number']?>"/></p>
-				<p>New balance: <input type="text" name="balance"/></p>
+				<p><input type="hidden" name="nro" value="<?=$_REQUEST['nro']?>"/></p>
+				<p>Novo texto: <input type="text" name="text"/></p>
 				<p><input type="submit" value="Submit"/></p>
 			</form>
 		</div>
