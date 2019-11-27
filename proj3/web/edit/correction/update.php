@@ -7,24 +7,26 @@
 	<body>
 		<?php
 			session_start();
-            if (!isset($_SESSION['email'])) {
-				header("Location: login.php");
+			if (!isset($_SESSION['email'])) {
+				header("Location: ../../login/login.php");
 			}
 		?>
 
 		<div>
 			<h1 id="title">Editar correção</h1>
 			<form class="back-btn" action="../../edit.php">
-			    <input type="submit" value="Sair" />
+			    <input type="submit" value="Voltar" />
 			</form>
 		</div>
 
 		<div class="table">
 			<?php
 				require("../../db_class.php");
-				$latitude = $_REQUEST['latitude'];
-				$longitude = $_REQUEST['longitude'];
-				try{
+				$email = $_REQUEST['email'];
+				$nro = $_REQUEST['nro'];
+				$anomalia_id = $_REQUEST['anomalia_id'];
+
+				try {
 					//DB Init
 					$db = new DB();
 					$db->debug_to_console("Connect");
@@ -32,7 +34,7 @@
 
 					//DELETE Query
 					$db->debug_to_console("Delete Query");
-					$sql = "DELETE FROM local_publico WHERE latitude='$latitude' and longitude='$longitude'";
+					$sql = "UPDATE correcao SET anomalia_id = :anomalia_id WHERE nro = :nro;";
 					$db->debug_to_console($sql);
 					$result = $db->query($sql);
 
@@ -41,6 +43,7 @@
 
 					$db->debug_to_console("PHP acabado.");
 					echo("<p>Local removido com sucesso.</p>");
+
 					//Cleaning up
 					unset($db);
 					$result = null;

@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html>
-	<script>
-		function goBack() {
-		  window.history.back();
-		}
-	</script>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,7 +9,7 @@
 		<?php
 			session_start();
             if (!isset($_SESSION['email'])) {
-				header("Location: login.php");
+				header("Location: login/login.php");
 			}
 		?>
 
@@ -24,7 +19,7 @@
 			<a href="edit.php">Editar</a>
 			<a href="view.php">Visualizar</a>
 			<a class="active" href="">Registar</a>
-			<a href="logout.php" class="logout">Logout</a>
+			<a href="login/logout.php" class="logout">Logout</a>
 		</div>
 
 		<div id="tr" class="main">

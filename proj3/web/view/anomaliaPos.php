@@ -4,11 +4,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../style.css" />
 	</head>
-	<script>
-		function goBack() {
-		  window.history.back();
-		}
-	</script>
 	<body>
 		<?php
 			session_start();
@@ -18,18 +13,20 @@
 		?>
         
         <div class="sidenav">
-			<a href="index.php">Home</a>
-			<a href="insert.php">Inserir</a>
-			<a href="edit.php">Editar</a>
-			<a href="view.php">Visualizar</a>
-			<a href="register.php">Registar</a>
-			<a href="logout.php" class="logout">Logout</a>
-		</div>
+            <a href="../index.php">Home</a>
+            <a href="../insert.php">Inserir</a>
+            <a href="../edit.php">Editar</a>
+            <a href="../view.php">Visualizar</a>
+            <a href="../register.php">Registar</a>
+            <a href="../login/logout.php" class="logout">Logout</a>
+        </div>
 
 		<div id="tr" class="main">
 			<h1 id="title">Visualizar</h1>
             
-            <button class="button buttonSmall" onclick="goBack()" style="margin-left: 20pt;margin-bottom: 20pt;">Voltar</button>
+            <form class="back-btn" action="../view.php">
+                <input type="submit" value="Voltar" />
+            </form>
 
             <div class="table">
                 <?php

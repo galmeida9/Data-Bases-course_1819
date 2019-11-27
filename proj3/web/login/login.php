@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="login/login.css" />
+        <link rel="stylesheet" href="login.css" />
     </head>
 
     <body>
@@ -13,7 +13,7 @@
 
         <form action="" method="post" id="login">
             <div class="imgcontainer">
-                <img src="resources/logo.png" alt="logo" class="logo">
+                <img src="../resources/logo.png" alt="logo" class="logo">
             </div>
           
             <div class="container">
@@ -28,7 +28,7 @@
         </form>
 
         <?php
-            require("db_class.php");
+            require("../db_class.php");
             $username = $_REQUEST['uname'];
             $psw = $_REQUEST['psw'];
 
@@ -50,7 +50,7 @@
                 $realPsw = $row['psw'];
                 if ($realPsw == $psw) {
                     $_SESSION['email'] = $username;
-                    header("Location: index.php");
+                    header("Location: ../index.php");
                 }
                 else {
                     echo("<center class='error'>Wrong password.</center>");

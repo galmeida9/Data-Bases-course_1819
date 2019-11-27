@@ -9,7 +9,7 @@
 		<?php
 			session_start();
             if (!isset($_SESSION['email'])) {
-				header("Location: login.php");
+				header("Location: login/login.php");
 			}
 		?>
 
@@ -19,17 +19,20 @@
 			<a href="edit.php">Editar</a>
 			<a href="view.php">Visualizar</a>
 			<a href="register.php">Registar</a>
-			<a href="logout.php" class="logout">Logout</a>
+			<a href="login/logout.php" class="logout">Logout</a>
 		</div>
 
 		<div id="tr" class="main">
 			<h1 id="title">Translate Right</h1>
 		</div>
+		
 		<div id="repor">
 			<h3 id="indexTitle">Repor Base de Dados</h3>
-			<center><form method="post">
-    			<input class="button" type="submit" name="repor" value="Repor dados" />
-			</form></center>
+			<center>
+				<form method="post">
+    				<input class="button" type="submit" name="repor" value="Repor dados" />
+				</form>
+			</center>
 		</div>
 
 		<?php

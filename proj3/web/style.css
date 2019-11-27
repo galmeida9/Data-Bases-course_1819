@@ -80,6 +80,7 @@ li {
 {
     display: table-cell;
    	padding: 20px;
+   	padding-top: 0px;
 }
 
 form  { display: table;      }

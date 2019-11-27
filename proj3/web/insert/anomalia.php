@@ -7,13 +7,13 @@
 	<body>
 		<?php
 			session_start();
-            if (!isset($_SESSION['email'])) {
-				header("Location: login.php");
+			if (!isset($_SESSION['email'])) {
+				header("Location: ../login/login.php");
 			}
 		?>
 
 		<div>
-			<h1 id="title">Inserir Anomalia</h1>
+			<h1 id="title">Inserir anomalia</h1>
 			<form class="back-btn" action="../insert.php">
 			    <input type="submit" value="Voltar" />
 			</form>
