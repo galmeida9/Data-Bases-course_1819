@@ -23,9 +23,29 @@ insert into anomalia values (default, '((3,3), (3,4))', 'https://i.ytimg.com/vi/
 insert into anomalia values (default, '((4,3), (5,4))', 'https://www.tiendasquebarato.com/wp-content/uploads/2018/03/Que-Barato_logo-1x.png', 'portugues', now(), 'Foi escrito brato ao invés de barato', true);
 insert into anomalia values (default, '((4,4), (5,5))', 'https://www.tiendasquebarato.com/wp-content/uploads/2018/03/Que-Barato_logo-1x.png', 'portugues', now(), 'Foi escrito barto ao invés de barato', true);
 insert into anomalia values (default, '((5,4), (5,5))', 'https://i.ytimg.com/vi/wvuxChUBrdY/maxresdefault.jpg', 'portugues', now(), 'Erro ortográfico', true);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-01-01 00:00:00', 'Letreiro mal escrito', true);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-02-01 00:00:00', 'Letreiro mal escrito', true);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-03-01 00:00:00', 'Letreiro mal escrito', true);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-04-01 00:00:00', 'Letreiro mal escrito', true);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-05-01 00:00:00', 'Letreiro mal escrito', true);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-01-01 00:00:00', 'Letreiro mal escrito', true);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-02-01 00:00:00', 'Letreiro mal escrito', true);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-03-01 00:00:00', 'Letreiro mal escrito', true);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-04-01 00:00:00', 'Letreiro mal escrito', true);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-05-01 00:00:00', 'Letreiro mal escrito', true);
 
 -- Anomalia de traducao
 insert into anomalia_traducao values (2, '((10,10), (20,20))', 'portugues');
+insert into anomalia_traducao values (8, '((10,10), (20,20))', 'portugues');
+insert into anomalia_traducao values (9, '((10,10), (20,20))', 'portugues');
+insert into anomalia_traducao values (10, '((10,10), (20,20))', 'portugues');
+insert into anomalia_traducao values (11, '((10,10), (20,20))', 'portugues');
+insert into anomalia_traducao values (12, '((10,10), (20,20))', 'portugues');
+insert into anomalia_traducao values (13, '((10,10), (20,20))', 'portugues');
+insert into anomalia_traducao values (14, '((10,10), (20,20))', 'portugues');
+insert into anomalia_traducao values (15, '((10,10), (20,20))', 'portugues');
+insert into anomalia_traducao values (16, '((10,10), (20,20))', 'portugues');
+insert into anomalia_traducao values (17, '((10,10), (20,20))', 'portugues');
 
 -- Duplicado
 insert into duplicado values (2, 3);
@@ -54,6 +74,16 @@ insert into incidencia values (4, 4, 'daniel@me.com');
 insert into incidencia values (5, 4, 'pgalhardo@me.com');
 insert into incidencia values (6, 7, 'daniel@me.com');
 insert into incidencia values (7, 6, 'marcelo.rebelo.sousa@gmail.com');
+insert into incidencia values (8, 2, 'gabriel.almeida@tecnico.ulisboa.pt');
+insert into incidencia values (9, 2, 'gabriel.almeida@tecnico.ulisboa.pt');
+insert into incidencia values (10, 2, 'gabriel.almeida@tecnico.ulisboa.pt');
+insert into incidencia values (11, 2, 'gabriel.almeida@tecnico.ulisboa.pt');
+insert into incidencia values (12, 2, 'gabriel.almeida@tecnico.ulisboa.pt');
+insert into incidencia values (13, 4, 'daniel@me.com');
+insert into incidencia values (14, 4, 'daniel@me.com');
+insert into incidencia values (15, 4, 'daniel@me.com');
+insert into incidencia values (16, 4, 'daniel@me.com');
+insert into incidencia values (17, 4, 'daniel@me.com');
 
 
 -- Proposta de Correcao
