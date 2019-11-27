@@ -78,7 +78,7 @@ create table incidencia (
     anomalia_id serial,
     item_id serial,
     email varchar(40) not null,
-    constraint pk_incidenecia primary key(anomalia_id),
+    constraint pk_incidencia primary key(anomalia_id),
     constraint fk_anomalia_id foreign key(anomalia_id) references anomalia(id) on delete cascade,
     constraint fk_item_id foreign key(item_id) references item(id) on delete cascade,
     constraint fk_incidencia_email foreign key(email) references utilizador(email) on delete cascade
