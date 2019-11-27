@@ -95,16 +95,14 @@ create table proposta_de_correcao (
     constraint pk_email_nro primary key(email, nro),
     constraint fk_proposta_de_correcao_email foreign key(email) references utilizador_qualificado(email) on delete cascade,
     unique(nro),
-    unique(email)
 );
 
 create table correcao (
     email varchar(40) not null,
-    nro serial,
+    nro integer not null,
     anomalia_id integer not null,
     constraint pk_email_nro_anomalia_id primary key(email, nro, anomalia_id),
-    constraint pk_correcao_email foreign key(email) references proposta_de_correcao(email) on delete cascade,
-    constraint pk_correcao_nro foreign key(nro) references proposta_de_correcao(nro) on delete cascade,
+    constraint pk_correcao_email foreign key(email, nro) references proposta_de_correcao(email, nro) on delete cascade,
     constraint pk_correcao_anomalia_id foreign key(anomalia_id) references incidencia(anomalia_id) on delete cascade
 );
 
