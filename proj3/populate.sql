@@ -35,7 +35,7 @@ insert into utilizador values ('daniel@me.com', '123');
 
 -- Utilizador Qualificado
 insert into utilizador_qualificado values ('marcelo.rebelo.sousa@gmail.com');
-insert into utilizador_qualificado values ('daniel@me.com', '123');
+insert into utilizador_qualificado values ('daniel@me.com');
 
 -- Utilizador Regular
 insert into utilizador_regular values ('gabriel.almeida@tecnico.ulisboa.pt');
