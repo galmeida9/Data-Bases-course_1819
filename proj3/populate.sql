@@ -22,6 +22,7 @@ insert into anomalia values (default, '((2,3), (3,4))', 'http://www.forcaportuga
 insert into anomalia values (default, '((3,3), (3,4))', 'https://i.ytimg.com/vi/wvuxChUBrdY/maxresdefault.jpg', 'portugues', now(), 'Foi escrito ropa ao invés de roupa', true);
 insert into anomalia values (default, '((4,3), (5,4))', 'https://www.tiendasquebarato.com/wp-content/uploads/2018/03/Que-Barato_logo-1x.png', 'portugues', now(), 'Foi escrito brato ao invés de barato', true);
 insert into anomalia values (default, '((4,4), (5,5))', 'https://www.tiendasquebarato.com/wp-content/uploads/2018/03/Que-Barato_logo-1x.png', 'portugues', now(), 'Foi escrito barto ao invés de barato', true);
+insert into anomalia values (default, '((5,4), (5,5))', 'https://i.ytimg.com/vi/wvuxChUBrdY/maxresdefault.jpg', 'portugues', now(), 'Erro ortográfico', true);
 
 -- Anomalia de traducao
 insert into anomalia_traducao values (2, '((10,10), (20,20))', 'portugues');
@@ -52,11 +53,20 @@ insert into incidencia values (3, 4, 'daniel@me.com');
 insert into incidencia values (4, 4, 'daniel@me.com');
 insert into incidencia values (5, 4, 'pgalhardo@me.com');
 insert into incidencia values (6, 7, 'daniel@me.com');
+insert into incidencia values (7, 6, 'marcelo.rebelo.sousa@gmail.com');
 
 
 -- Proposta de Correcao
 insert into proposta_de_correcao values ('marcelo.rebelo.sousa@gmail.com', default, now(), 'Em vez de otorrinoleringlogista deveria ser otorrinolaringologista');
+insert into proposta_de_correcao values ('daniel@me.com', default, now(), 'Barato');
+insert into proposta_de_correcao values ('daniel@me.com', default, now(), 'Barato');
+insert into proposta_de_correcao values ('daniel@me.com', default, now(), 'Barato');
+insert into proposta_de_correcao values ('pgalhardo@me.com', default, now(), 'Barato');
 
 -- Correcao
 insert into correcao values ('marcelo.rebelo.sousa@gmail.com', 1, 1);
+insert into correcao values ('daniel@me.com', 2, 3);
+insert into correcao values ('daniel@me.com', 3, 4);
+insert into correcao values ('daniel@me.com', 4, 6);
+insert into correcao values ('pgalhardo@me.com', 5, 5);
 
