@@ -3,6 +3,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../../style.css" />
+		<link rel="stylesheet" href="../../modal.css" />
 	</head>
 	<body>
 		<?php
@@ -49,7 +50,7 @@
 							echo("<tr>\n");
 							echo("<td>{$row['id']}</td>\n");
 							echo("<td>{$row['zona']}</td>\n");
-							echo("<td>{$row['imagem']}</td>\n");
+							echo("<td><a onclick='showImg(\"{$row['imagem']}\")'>imagem</a></td>\n");
 							echo("<td>{$row['lingua']}</td>\n");
 							echo("<td>{$row['ts']}</td>\n");
 							echo("<td>{$row['descricao']}</td>\n");
@@ -76,8 +77,14 @@
 					}
 				?>
 			</div>
+
+			<div id="myModal" class="modal">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="img01">
+            </div>
 		</div>
 
 		
 	</body>
+	<script src="../../modal.js"></script>
 </html>

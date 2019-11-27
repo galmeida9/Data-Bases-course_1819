@@ -2,7 +2,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="../modal.css" />
 	</head>
 	<body>
 		<?php
@@ -22,10 +23,10 @@
         </div>
 
 		<div id="tr" class="main">
-			<h1 id="title">Visualizar</h1>
+			<h1 id="title">Anomalias numa vizinhança</h1>
             
             <form class="back-btn" action="../view.php">
-                <input type="submit" value="Voltar" />
+                <input class="button buttonSmall" type="submit" value="Voltar" />
             </form>
 
             <div class="table">
@@ -69,7 +70,7 @@
                             echo("<tr>\n");
                             echo("<td>{$row3['id']}</td>\n");
                             echo("<td>{$row3['zona']}</td>\n");
-                            echo("<td>{$row3['imagem']}</td>\n");
+                            echo("<td><a onclick='showImg(\"{$row3['imagem']}\")'>imagem</a></td>\n");
                             echo("<td>{$row3['lingua']}</td>\n");
                             echo("<td>{$row3['ts']}</td>\n");
                             echo("<td>{$row3['descricao']}</td>\n");
@@ -87,7 +88,15 @@
                     unset($db);
                 ?>
             </div>
+
+            <div id="myModal" class="modal">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="img01">
+            </div>
 		</div>
 
-	</body>
+    </body>
+    
+    <script src="../modal.js"></script>
+
 </html>

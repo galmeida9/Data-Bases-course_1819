@@ -32,7 +32,7 @@ create table item (
 create table anomalia (
     id serial,
     zona box not null,
-    imagem varchar(50) not null,
+    imagem varchar(512) not null,
     lingua varchar(20) not null,
     ts timestamp(0) not null,
     descricao varchar(200) not null,
