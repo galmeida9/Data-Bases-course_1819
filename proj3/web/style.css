@@ -92,6 +92,10 @@ input, select {
 	margin: 5px;
 }
 
+select {
+    width:15em;
+}
+
 #submit-btn {
 	margin-left: 0px;
 }

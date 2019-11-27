@@ -44,7 +44,7 @@
 				}
 
 				if(!isset($descricao) || $descricao == '') {
-					echo("<p>ERROR: Não foi especificado uma descrição.</p>");
+					echo("<p>ERROR: Não foi especificada uma descrição.</p>");
 					return;
 				}
 

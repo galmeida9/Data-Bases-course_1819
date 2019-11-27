@@ -188,13 +188,13 @@
 									
 									//GET Query
 									$db->debug_to_console("Query");
-									$sql = "SELECT nro, email FROM proposta_de_correcao";
+									$sql = "SELECT nro, texto FROM proposta_de_correcao";
 									$result = $db->query($sql);
 
 									foreach($result as $row) {
 										$nro = $row['nro'];
-										$email = $row['email'];
-										printf('<option value="%1$s">%1$s - %2$s</option>', $nro, $email);
+										$texto = $row['texto'];
+										printf('<option value="%1$s">%1$s - %2$s</option>', $nro, $texto);
 									}
 									
 									// Cleaning Up
