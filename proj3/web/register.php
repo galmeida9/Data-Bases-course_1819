@@ -24,8 +24,163 @@
 
 		<div id="tr" class="main">
 			<h1 id="title">Registar</h1>
-			<div class="container">
-				
+
+			<div class="row">
+				<div class="column">
+					<b>Incidência</b>
+					<form action="register/incidencia.php" method="post">
+						<p>
+							<label for="b">Anomalia:</label>
+							<select name="anomalia_id">
+							<?php
+								try{
+									require_once("db_class.php");
+									
+									//DB Init
+									$db = new DB();
+									$db->debug_to_console("Connect");
+									$db->connect();
+									
+									//GET Query
+									$db->debug_to_console("Query");
+									$sql = "SELECT id, descricao FROM anomalia";
+									$result = $db->query($sql);
+
+									foreach($result as $row) {
+										$id = $row['id'];
+										$descricao = $row['descricao'];
+										printf('<option value="%1$s">%1$s - %2$s</option>', $id, $descricao);
+									}
+									
+									// Cleaning Up
+									$result = null;
+									$db->disconnect();
+									unset($db);
+								}
+								catch (PDOException $e)
+								{
+									echo("<p>ERROR: {$e->getMessage()}</p>");
+								}
+							?>
+							</select>
+						</p>
+						<p>
+							<label for="b">Item:</label>
+							<select name="item_id">
+							<?php
+								try{
+									require_once("db_class.php");
+									
+									//DB Init
+									$db = new DB();
+									$db->debug_to_console("Connect");
+									$db->connect();
+									
+									//GET Query
+									$db->debug_to_console("Query");
+									$sql = "SELECT id, descricao FROM item";
+									$result = $db->query($sql);
+
+									foreach($result as $row) {
+										$id = $row['id'];
+										$descricao = $row['descricao'];
+										printf('<option value="%1$s">%1$s - %2$s</option>', $id, $descricao);
+									}
+									
+									// Cleaning Up
+									$result = null;
+									$db->disconnect();
+									unset($db);
+								}
+								catch (PDOException $e)
+								{
+									echo("<p>ERROR: {$e->getMessage()}</p>");
+								}
+							?>
+							</select>
+						</p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
+					</form>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="column">
+					<b>Duplicado</b>
+					<form action="register/duplicado.php" method="post">
+						<p>
+							<label for="b">Item #1:</label>
+							<select name="item1">
+							<?php
+								try{
+									require_once("db_class.php");
+									
+									//DB Init
+									$db = new DB();
+									$db->debug_to_console("Connect");
+									$db->connect();
+									
+									//GET Query
+									$db->debug_to_console("Query");
+									$sql = "SELECT id, descricao FROM item";
+									$result = $db->query($sql);
+
+									foreach($result as $row) {
+										$id = $row['id'];
+										$descricao = $row['descricao'];
+										printf('<option value="%1$s">%1$s - %2$s</option>', $id, $descricao);
+									}
+									
+									// Cleaning Up
+									$result = null;
+									$db->disconnect();
+									unset($db);
+								}
+								catch (PDOException $e)
+								{
+									echo("<p>ERROR: {$e->getMessage()}</p>");
+								}
+							?>
+							</select>
+						</p>
+						<p>
+							<label for="b">Item #2:</label>
+							<select name="item2">
+							<?php
+								try{
+									require_once("db_class.php");
+									
+									//DB Init
+									$db = new DB();
+									$db->debug_to_console("Connect");
+									$db->connect();
+									
+									//GET Query
+									$db->debug_to_console("Query");
+									$sql = "SELECT id, descricao FROM item";
+									$result = $db->query($sql);
+
+									foreach($result as $row) {
+										$id = $row['id'];
+										$descricao = $row['descricao'];
+										printf('<option value="%1$s">%1$s - %2$s</option>', $id, $descricao);
+									}
+									
+									// Cleaning Up
+									$result = null;
+									$db->disconnect();
+									unset($db);
+								}
+								catch (PDOException $e)
+								{
+									echo("<p>ERROR: {$e->getMessage()}</p>");
+								}
+							?>
+							</select>
+						</p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
+					</form>
+				</div>
 			</div>
 		</div>
 	</body>

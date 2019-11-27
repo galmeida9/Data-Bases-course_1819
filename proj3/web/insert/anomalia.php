@@ -61,14 +61,12 @@
 					$result = $db->query($sql);
 
 					if ($result == true) {
-						echo("<p>Proposta de correção inserida com sucesso.</p>");
+						echo("<p>Anomalia inserida com sucesso.</p>");
 					} 
 					
 					// Cleaning Up
 					$result = null;
 					unset($db);
-
-					echo("<p>Anomalia inserida com sucesso.</p>");
 				}
 				catch (PDOException $e)
 				{
