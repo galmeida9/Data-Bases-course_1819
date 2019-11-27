@@ -16,9 +16,7 @@ create table local_publico (
     latitude float not null,
     longitude float not null,
     nome varchar(50) not null,
-    constraint pk_latitude_longitude primary key(latitude, longitude),
-    unique(latitude),
-	unique(longitude)
+    constraint pk_latitude_longitude primary key(latitude, longitude)
 );
 
 create table item (
@@ -28,8 +26,7 @@ create table item (
     latitude float not null,
     longitude float not null,
     constraint pk_item_id primary key(id),
-    constraint fk_latitude foreign key(latitude) references local_publico(latitude) on delete cascade,
-    constraint fk_longitude foreign key(longitude) references local_publico(longitude) on delete cascade
+    constraint fk_latitude foreign key(latitude, longitude) references local_publico(latitude, longitude) on delete cascade
 );
 
 create table anomalia (
@@ -94,7 +91,7 @@ create table proposta_de_correcao (
     texto varchar(200) not null,
     constraint pk_email_nro primary key(email, nro),
     constraint fk_proposta_de_correcao_email foreign key(email) references utilizador_qualificado(email) on delete cascade,
-    unique(nro),
+    unique(nro)
 );
 
 create table correcao (
