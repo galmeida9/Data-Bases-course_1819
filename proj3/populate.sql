@@ -13,13 +13,15 @@ insert into item values (default, 'letreiro', 'Lisboa', 38.737003, -9.138694);
 insert into item values (default, 'Cartaz', 'Porto', 41.157306, -8.629528);
 insert into item values (default, 'Placar', 'Porto', 41.157306, -8.629528);
 insert into item values (default, 'Cartaz', 'Portimão', 37.139168, -8.536958);
+insert into item values (default, 'Cartaz', 'Coimbra', 40.203216, -8.407549);
 
 -- Anomalia TODO: VER COMO SE INSERE A IMAGEM
 insert into anomalia values (default, '((1,1), (2,2))', 'imagem1.jpg', 'portugues', now(), 'Letreiro mal escrito', true);
 insert into anomalia values (default, '((1,2), (4,5))', 'imagem2.jpg', 'ingles', now(), 'menu com erro ortografico', false);
 insert into anomalia values (default, '((2,3), (3,4))', 'imagem3.jpg', 'portugues', now(), 'Foi escrito louja ao invés de loja', true);
 insert into anomalia values (default, '((3,3), (3,4))', 'imagem4.jpg', 'portugues', now(), 'Foi escrito ropa ao invés de roupa', true);
-insert into anomalia values (default, '((4,3), (5,4))', 'imagem4.jpg', 'portugues', now(), 'Foi escrito brato ao invés de barato', true);
+insert into anomalia values (default, '((4,3), (5,4))', 'imagem5.jpg', 'portugues', now(), 'Foi escrito brato ao invés de barato', true);
+insert into anomalia values (default, '((4,4), (5,5))', 'imagem6.jpg', 'portugues', now(), 'Foi escrito barto ao invés de barato', true);
 
 -- Anomalia de traducao
 insert into anomalia_traducao values (2, '((10,10), (20,20))', 'portugues');
@@ -47,6 +49,7 @@ insert into incidencia values (2, 1, 'marcelo.rebelo.sousa@gmail.com');
 insert into incidencia values (3, 4, 'daniel@me.com');
 insert into incidencia values (4, 4, 'daniel@me.com');
 insert into incidencia values (5, 4, 'pgalhardo@me.com');
+insert into incidencia values (6, 7, 'daniel@me.com');
 
 
 -- Proposta de Correcao
