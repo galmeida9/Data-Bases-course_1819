@@ -15,7 +15,7 @@
 		?>
 
 		<div>
-			<h1 id="title">Inserir correção</h1>
+			<h1 id="title">Inserir proposta de correção</h1>
 			<form class="back-btn" action="../insert.php">
 			    <input type="submit" value="Voltar" />
 			</form>
@@ -24,11 +24,10 @@
 		<div class="table">
 			<?php
 				require("../db_class.php");
-				$anomalia_id = $_REQUEST['anomalia_id'];
-				$nro = $_REQUEST['nro'];
+				$texto = $_REQUEST['texto'];
 
-				if(!isset($anomalia_id) || $anomalia_id == '') {
-					echo("<p>ERROR: Não foi especificada um ID de anomalia.</p>");
+				if(!isset($texto) || $texto == '') {
+					echo("<p>ERROR: Não foi especificado um texto.</p>");
 					return;
 				}
 
@@ -40,15 +39,14 @@
 
 					//INSERT Query
 					$db->debug_to_console("Insert Query");
-					$sql = "INSERT INTO correcao (email, nro, anomalia_id)
-					VALUES ('$email', '$nro', '$anomalia_id')";
+					$sql = "INSERT INTO proposta_de_correcao (email, data_hora, texto)
+					VALUES ('$email', now(), '$texto')";
 					$result = $db->query($sql);
-					
 
 					if ($result == true) {
-						echo("<p>Correção inserida com sucesso.</p>");
+						echo("<p>Proposta de correção inserida com sucesso.</p>");
 					} 
-
+					
 					// Cleaning Up
 					$result = null;
 					unset($db);

@@ -23,8 +23,13 @@ class DB {
         }
         catch (PDOException $e) {
             $this->debug_to_console($e->getMessage());
+            echo("<p>ERROR: {$e->getMessage()}</p>");
             return False;
         }
+    }
+
+    public function disconnect() {
+        $this->dbObj = null;
     }
 
     public function query($sql){
@@ -35,6 +40,7 @@ class DB {
         }
         catch (PDOException $e) {
             $this->debug_to_console($e->getMessage());
+            echo("<p>ERROR: {$e->getMessage()}</p>");
             return False;
         }
     }

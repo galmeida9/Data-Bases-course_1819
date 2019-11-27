@@ -66,14 +66,16 @@
 					VALUES ('$descricao', '$localizacao', '$latitude', '$longitude')";
 					$result = $db->queryTransaction($sql);
 
+					if ($result == true) {
+						echo("<p>Item inserido com sucesso.</p>");
+					} 
+
 					//Commit
 					$db->commit();
 
 					// Cleaning Up
 					$result = null;
 					unset($db);
-
-					echo("<p>Item inserido com sucesso.</p>");
 				}
 				catch (PDOException $e)
 				{

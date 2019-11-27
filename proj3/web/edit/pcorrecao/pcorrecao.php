@@ -13,19 +13,22 @@
 		?>
 
 		<div>
-			<h1 id="title">Correções</h1>
+			<h1 id="title">Editar proposta de correção</h1>
 			<form class="back-btn" action="../../edit.php">
 				<input type="submit" value="Voltar" />
 			</form>
-		</div>
 
-		<div class="table">
-			<h3>Editar correção #<?=$_REQUEST['nro']?></h3>
-			<form action="update.php" method="post">
-				<p><input type="hidden" name="nro" value="<?=$_REQUEST['nro']?>"/></p>
-				<p>Novo ID de anomalia: <input type="text" name="anomalia_id"/></p>
-				<p><input type="submit" value="Submit"/></p>
-			</form>
+			<div class="table">
+				<h3>Insira o novo texto</h3>
+				<form action="update.php" method="post">
+					<p>
+						<label for="a">Texto:</label>
+						<input id="a" type="hidden" name="nro" value="<?=$_REQUEST['nro']?>">
+						<input id="a" type="text" name="texto">
+					</p>
+					<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
+				</form>
+			</div>
 		</div>
 	</body>
 </html>

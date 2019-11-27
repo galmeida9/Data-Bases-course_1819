@@ -13,7 +13,7 @@
 		?>
 
 		<div>
-			<h1 id="title">Remover Local</h1>
+			<h1 id="title">Remover item</h1>
 			<form class="back-btn" action="../../edit.php">
 			    <input type="submit" value="Sair" />
 			</form>
@@ -23,6 +23,7 @@
 			<?php
 				require("../../db_class.php");
 				$id = $_REQUEST['id'];
+
 				try{
 					//DB Init
 					$db = new DB();
@@ -34,7 +35,9 @@
 					$sql = "DELETE FROM item WHERE id='$id'";
 					$result = $db->query($sql);
 
-					echo("<p>Item removido com sucesso.</p>");
+					if ($result == true) {
+						echo("<p>Item removido com sucesso.</p>");
+					}
 
 					//Cleaning up
 					unset($db);

@@ -55,10 +55,7 @@
 			<div class="row">
 				<div class="column">
 					<b>Correções</b>
-					<form action="edit/correction/corrections.php" method="post">
-						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Editar correção"/> </p>
-					</form>
-					<form action="" method="post">
+					<form action="remove/correcao/correcoes.php" method="post">
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Remover correção"/> </p>
 					</form>
 				</div>
@@ -67,10 +64,10 @@
 			<div class="row">
 				<div class="column">
 					<b>Propostas de correção</b>
-					<form action="" method="post">
+					<form action="edit/pcorrecao/pscorrecao.php" method="post">
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Editar proposta de correção"/> </p>
 					</form>
-					<form action="" method="post">
+					<form action="remove/pcorrecao/pscorrecao.php" method="post">
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Remover proposta de correção"/> </p>
 					</form>
 				</div>

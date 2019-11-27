@@ -52,12 +52,14 @@
 					$sql = "INSERT INTO local_publico (latitude, longitude, nome)
 					VALUES ('$latitude', '$longitude', '$nome')";
 					$result = $db->query($sql);
+
+					if ($result == true) {
+						echo("<p>Local inserido com sucesso.</p>");
+					} 
 					
 					// Cleaning Up
 					$result = null;
 					unset($db);
-
-					echo("<p>Local inserido com sucesso.</p>");
 				}
 				catch (PDOException $e)
 				{

@@ -22,13 +22,12 @@
 		</div>
 
 		<div class="main">
-			<h1 id="title">Remover anomalia</h1>
-            
-            <form class="back-btn" action="../../edit.php">
-			    <input type="submit" value="Voltar" />
+			<h1 id="title">Editar proposta de correção</h1>
+			<form class="back-btn" action="../../edit.php">
+				<input type="submit" value="Voltar" />
 			</form>
-
-            <div class="table">
+		
+			<div class="table">
 				<?php
 					require("../../db_class.php");
 					try {
@@ -37,36 +36,26 @@
 						$db->debug_to_console("Connect");
 						$db->connect();
 
-						//SELECT Query
+						//GET Query
 						$db->debug_to_console("Query");
-						$sql = "SELECT id, zona, imagem, lingua, ts, descricao, tem_anomalia_redacao FROM anomalia;";
+						$sql = "SELECT * FROM proposta_de_correcao;";
 						$result = $db->query($sql);
 
 						echo("<table border=\"1\" cellspacing=\"5\">\n");
-						echo("<tr><td><b>ID</b></td><td><b>Zona</b></td><td><b>Imagem</b></td><td><b>Língua</b></td>");
-						echo("<td><b>Data/Hora</b></td><td><b>Descrição</b></td><td><b>Anomalia Redação?</b></td></tr>\n");
+						echo("<tr><td><b>Número</b></td><td><b>Email</b></td><td><b>Data/Hora</b></td><td><b>Texto</b></td></tr>\n");
 						foreach($result as $row) {
 							echo("<tr>\n");
-							echo("<td>{$row['id']}</td>\n");
-							echo("<td>{$row['zona']}</td>\n");
-							echo("<td>{$row['imagem']}</td>\n");
-							echo("<td>{$row['lingua']}</td>\n");
-							echo("<td>{$row['ts']}</td>\n");
-							echo("<td>{$row['descricao']}</td>\n");
-
-							if ($row['tem_anomalia_redacao'] == 1) {
-								echo("<td>Sim</td>\n");
-							} else {
-								echo("<td>-</td>\n");
-							}
-
-							
-							echo("<td><a href=\"update.php?id={$row['id']}\">Remover</a></td>\n");
+							echo("<td>{$row['nro']}</td>\n");
+							echo("<td>{$row['email']}</td>\n");
+							echo("<td>{$row['data_hora']}</td>\n");
+							echo("<td>{$row['texto']}</td>\n");
+							echo("<td><a href=\"pcorrecao.php?nro={$row['nro']}\">Editar</a></td>\n");
 							echo("</tr>\n");
 						}
-						echo("</table>\n");
 						
-						// Cleaning Up
+						echo("</table>\n");
+
+						// Cleaning up
 						$result = null;
 						unset($db);
 					}
@@ -77,7 +66,5 @@
 				?>
 			</div>
 		</div>
-
-		
 	</body>
 </html>

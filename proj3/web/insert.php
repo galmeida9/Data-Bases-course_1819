@@ -22,7 +22,7 @@
 			<a href="login/logout.php" class="logout">Logout</a>
 		</div>
 
-		<div id="tr" class="main">
+		<div class="main">
 			<h1 id="title">Inserir</h1>
 
 			<div class="row">
@@ -61,7 +61,7 @@
 							<select name="local">
 							<?php
 								try{
-									require("db_class.php");
+									require_once("db_class.php");
 									
 									//DB Init
 									$db = new DB();
@@ -80,6 +80,7 @@
 									
 									// Cleaning Up
 									$result = null;
+									$db->disconnect();
 									unset($db);
 								}
 								catch (PDOException $e)
@@ -125,22 +126,88 @@
 
 			<div class="row">
 				<div class="column">
-					<b>Correção</b>
-					<form action="insert/correcao.php" method="post">
+					<b>Proposta de correção</b>
+					<form action="insert/pcorrecao.php" method="post">
 						<p>
-							<label for="b">ID Anomalia:</label>
-							<input id="b" type="text" name="anomalia_id">
+							<label for="b">Texto:</label>
+							<input id="b" type="text" name="texto">
 						</p>
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
 					</form>
 				</div>
 				
 				<div class="column">
-					<b>Proposta de correção</b>
-					<form action="" method="post">
+					<b>Correção</b>
+					<form action="insert/correcao.php" method="post">
 						<p>
-							<label for="b">Texto:</label>
-							<input id="b" type="text" name="texto">
+							<label for="b">Anomalia:</label>
+							<select name="anomalia_id">
+							<?php
+								try{
+									require_once("db_class.php");
+									
+									//DB Init
+									$db = new DB();
+									$db->debug_to_console("Connect");
+									$db->connect();
+									
+									//GET Query
+									$db->debug_to_console("Query");
+									$sql = "SELECT id, descricao FROM anomalia";
+									$result = $db->query($sql);
+
+									foreach($result as $row) {
+										$id = $row['id'];
+										$descricao = $row['descricao'];
+										printf('<option value="%1$s">%1$s - %2$s</option>', $id, $descricao);
+									}
+									
+									// Cleaning Up
+									$result = null;
+									$db->disconnect();
+									unset($db);
+								}
+								catch (PDOException $e)
+								{
+									echo("<p>ERROR: {$e->getMessage()}</p>");
+								}
+							?>
+							</select>
+						</p>
+						<p>
+							<label for="b">Proposta de correção:</label>
+							<select name="nro">
+							<?php
+								try{
+									require_once("db_class.php");
+									
+									//DB Init
+									$db = new DB();
+									$db->debug_to_console("Connect");
+									$db->connect();
+									
+									//GET Query
+									$db->debug_to_console("Query");
+									$sql = "SELECT nro, email FROM proposta_de_correcao";
+									$result = $db->query($sql);
+
+									foreach($result as $row) {
+										$nro = $row['nro'];
+										$email = $row['email'];
+										printf('<option value="%1$s">%1$s - %2$s</option>', $nro, $email);
+									}
+									
+									// Cleaning Up
+									$result = null;
+									$db->disconnect();
+									unset($db);
+								}
+								catch (PDOException $e)
+								{
+									echo("<p>ERROR: {$e->getMessage()}</p>");
+								}
+							?>
+							</select>
 						</p>
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
 					</form>

@@ -59,6 +59,10 @@
 					$sql = "INSERT INTO anomalia (zona, imagem, lingua, ts, descricao, tem_anomalia_redacao)
 					VALUES ('$zona', '$imagem', '$lingua', now(),'$descricao', '$tem_anomalia_redacao')";
 					$result = $db->query($sql);
+
+					if ($result == true) {
+						echo("<p>Proposta de correção inserida com sucesso.</p>");
+					} 
 					
 					// Cleaning Up
 					$result = null;
