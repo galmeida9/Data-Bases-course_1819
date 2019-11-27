@@ -46,6 +46,7 @@ insert into incidencia values (1, 2, 'gabriel.almeida@tecnico.ulisboa.pt');
 insert into incidencia values (2, 1, 'marcelo.rebelo.sousa@gmail.com');
 insert into incidencia values (3, 4, 'daniel@me.com');
 insert into incidencia values (4, 4, 'daniel@me.com');
+insert into incidencia values (5, 4, 'pgalhardo@me.com');
 
 
 -- Proposta de Correcao
