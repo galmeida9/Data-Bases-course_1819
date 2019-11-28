@@ -86,7 +86,9 @@
 				}
 				catch (PDOException $e)
 				{
-					$db->rollBack();
+					if ($tem_anomalia_redacao == 'false') {
+						$db->rollBack();
+					}
 					echo("<p>ERRO: {$e->getMessage()}</p>");
 				}
 			?>
