@@ -55,7 +55,8 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERRO: {$e->getMessage()}</p>");
+					//echo("<p>ERRO: {$e->getMessage()}</p>");
+					echo("<p>ERRO: Proposta de correção selecionada não foi feita por este utilizador.</p>");
 				}
 			?>
 		</div>

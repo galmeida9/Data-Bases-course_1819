@@ -27,6 +27,8 @@
 				$lingua = $_REQUEST['lingua'];
 				$descricao = $_REQUEST['descricao'];
 				$tem_anomalia_redacao = ($_POST['tem_anomalia_traducao'] == 'Yes') ? 'false' : 'true';
+				$zona2 = $_REQUEST['zona2'];
+				$lingua2 = $_REQUEST['lingua2'];
 
 				if(!isset($zona) || $zona == '') {
 					echo("<p>ERRO: Não foi especificada uma zona.</p>");
@@ -38,6 +40,11 @@
 					return;
 				}
 
+				if (!filter_var($imagem, FILTER_VALIDATE_URL)) { 
+					echo("<p>ERRO: Não foi especificada um url válido de uma imagem.</p>");
+					return;
+				}
+
 				if(!isset($lingua) || $lingua == '') {
 					echo("<p>ERRO: Não foi especificado uma língua.</p>");
 					return;
@@ -45,6 +52,16 @@
 
 				if(!isset($descricao) || $descricao == '') {
 					echo("<p>ERRO: Não foi especificada uma descrição.</p>");
+					return;
+				}
+
+				if ($zona == $zona2) {
+					echo("<p>ERRO: Segunda zona não pode ser igual à primeira.</p>");
+					return;
+				}
+
+				if ($lingua == $lingua2) {
+					echo("<p>ERRO: Segunda língua não pode ser igual à primeira.</p>");
 					return;
 				}
 
@@ -67,8 +84,6 @@
 						$row = $result->fetch();
 
 						$id = $row['max'];
-						$zona2 = $_REQUEST['zona2'];
-						$lingua2 = $_REQUEST['lingua2'];
 
 						$sql = "INSERT INTO anomalia_traducao (id, zona2, lingua2)
 							VALUES ('$id','$zona2', '$lingua2')";
