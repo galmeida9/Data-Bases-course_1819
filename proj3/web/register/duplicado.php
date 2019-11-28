@@ -17,7 +17,7 @@
 		<div>
 			<h1 id="title">Registar duplicado</h1>
 			<form class="back-btn" action="../register.php">
-			    <input type="submit" value="Voltar" />
+			    <input class="button buttonSmall" type="submit" value="Voltar" />
 			</form>
 		</div>
 

@@ -25,7 +25,7 @@
 			<h1 id="title">Remover proposta de correção</h1>
             
             <form class="back-btn" action="../../edit.php">
-			    <input type="submit" value="Voltar" />
+			    <input class="button buttonSmall" type="submit" value="Voltar" />
 			</form>
 
             <div class="table">

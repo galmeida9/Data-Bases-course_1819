@@ -15,7 +15,7 @@
 		<div>
 			<h1 id="title">Inserir anomalia</h1>
 			<form class="back-btn" action="../insert.php">
-			    <input type="submit" value="Voltar" />
+			    <input class="button buttonSmall" type="submit" value="Voltar" />
 			</form>
 		</div>
 

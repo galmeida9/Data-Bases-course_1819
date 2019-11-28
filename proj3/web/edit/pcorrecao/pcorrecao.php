@@ -15,7 +15,7 @@
 		<div>
 			<h1 id="title">Editar proposta de correção</h1>
 			<form class="back-btn" action="../../edit.php">
-				<input type="submit" value="Cancelar" />
+				<input class="button buttonSmall" type="submit" value="Cancelar" />
 			</form>
 
 			<div class="table">

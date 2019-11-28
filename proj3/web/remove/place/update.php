@@ -15,7 +15,7 @@
 		<div>
 			<h1 id="title">Remover local</h1>
 			<form class="back-btn" action="../../edit.php">
-			    <input type="submit" value="Sair" />
+			    <input class="button buttonSmall" type="submit" value="Sair" />
 			</form>
 		</div>
 

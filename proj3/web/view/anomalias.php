@@ -23,10 +23,10 @@
 		</div>
 
 		<div id="tr" class="main">
-			<h1 id="title">Visualizar</h1>
+			<h1 id="title">Anomalias entre dois locais</h1>
             
             <form class="back-btn" action="../view.php">
-                <input type="submit" value="Voltar" />
+                <input class="button buttonSmall" type="submit" value="Voltar" />
             </form>
 
             <div class="table">
