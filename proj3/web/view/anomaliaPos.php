@@ -81,8 +81,8 @@
 
                     if (count($anomId) > 0) {
                         echo("<table border=\"1\" cellspacing=\"5\">\n");
-                        echo("<tr><td><b>ID</b></td><td><b>Zona</b></td><td><b>Imagem</b></td><td><b>Língua</b></td>");
-                        echo("<td><b>Data/Hora</b></td><td><b>Descrição</b></td><td><b>Anomalia Redação?</b></td></tr>\n");
+                        echo("<tr><td><b>ID</b></td><td><b>Tipo</b></td><td><b>Zona</b></td><td><b>Imagem</b></td>");
+                        echo("<td><b>Língua</b></td><td><b>Data/Hora</b></td><td><b>Descrição</b></td></tr>\n");
                         foreach($anomId as $id) {
                             $sql3 = "SELECT * FROM anomalia WHERE id = $id;";
                             $result3 = $db->query($sql3);
@@ -90,18 +90,18 @@
 
                             echo("<tr>\n");
                             echo("<td>{$row3['id']}</td>\n");
-                            echo("<td>{$row3['zona']}</td>\n");
-                            echo("<td><a onclick='showImg(\"{$row3['imagem']}\")'>imagem</a></td>\n");
-                            echo("<td>{$row3['lingua']}</td>\n");
-                            echo("<td>{$row3['ts']}</td>\n");
-                            echo("<td>{$row3['descricao']}</td>\n");
 
                             if ($row3['tem_anomalia_redacao'] == 1) {
-                                echo("<td>Sim</td>\n");
+                                echo("<td>Redação</td>\n");
                             } else {
-                                echo("<td>-</td>\n");
+                                echo("<td><b>Tradução</b></td>\n");
                             }
 
+                            echo("<td>{$row3['zona']}</td>\n");
+                            echo("<td><a onclick='showImg(\"{$row['imagem']}\")'>Ver</a></td>\n");
+                            echo("<td>{$row3['lingua']}</td>\n");
+                            echo("<td>{$row3['ts']}</td>\n");
+                            echo("<td>{$row3['descricao']}</td>\n");                     
                             echo("</tr>\n");
                         }
                         echo("</table>\n");

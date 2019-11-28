@@ -87,18 +87,18 @@
 
                             echo("<tr>\n");
                             echo("<td>{$anomalia['id']}</td>\n");
-                            echo("<td>{$anomalia['zona']}</td>\n");
-                            echo("<td><a onclick='showImg(\"{$anomalia['imagem']}\")'>imagem</a></td>\n");
-                            echo("<td>{$anomalia['lingua']}</td>\n");
-                            echo("<td>{$anomalia['ts']}</td>\n");
-                            echo("<td>{$anomalia['descricao']}</td>\n");
 
                             if ($anomalia['tem_anomalia_redacao'] == 1) {
-                                echo("<td>Sim</td>\n");
+                                echo("<td>Redação</td>\n");
                             } else {
-                                echo("<td>-</td>\n");
+                                echo("<td><b>Tradução</b></td>\n");
                             }
 
+                            echo("<td>{$anomalia['zona']}</td>\n");
+                            echo("<td><a onclick='showImg(\"{$anomalia['imagem']}\")'>Ver</a></td>\n");
+                            echo("<td>{$anomalia['lingua']}</td>\n");
+                            echo("<td>{$anomalia['ts']}</td>\n");
+                            echo("<td>{$anomalia['descricao']}</td>\n");                     
                             echo("</tr>\n");
                         }
                         echo("</table>\n");
