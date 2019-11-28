@@ -1,0 +1,2 @@
+Adicionar suporte para 'Anomalia Tradução'.
+Verificação de permissões para editar / remover proposta de correção.

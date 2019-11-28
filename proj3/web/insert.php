@@ -133,8 +133,7 @@
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
 				</div>
-			</div>
-			<div class="row">
+
 				<div class="column">
 					<b>Correção</b>
 					<form action="insert/correcao.php" method="post">
