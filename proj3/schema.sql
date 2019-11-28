@@ -90,8 +90,7 @@ create table proposta_de_correcao (
     data_hora timestamp not null,
     texto varchar(200) not null,
     constraint pk_email_nro primary key(email, nro),
-    constraint fk_proposta_de_correcao_email foreign key(email) references utilizador_qualificado(email) on delete cascade,
-    unique(nro)
+    constraint fk_proposta_de_correcao_email foreign key(email) references utilizador_qualificado(email) on delete cascade
 );
 
 create table correcao (
