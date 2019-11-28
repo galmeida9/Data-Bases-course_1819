@@ -78,8 +78,8 @@
                         }
 
                         echo("<table border=\"1\" cellspacing=\"5\">\n");
-                        echo("<tr><td><b>ID</b></td><td><b>Zona</b></td><td><b>Imagem</b></td><td><b>Língua</b></td>");
-                        echo("<td><b>Data/Hora</b></td><td><b>Descrição</b></td><td><b>Anomalia Redação?</b></td></tr>\n");
+                        echo("<tr><td><b>ID</b></td><td><b>Tipo</b></td><td><b>Zona</b></td><td><b>Imagem</b></td>");
+                        echo("<td><b>Língua</b></td><td><b>Data/Hora</b></td><td><b>Descrição</b></td></tr>\n");
                         foreach($result as $id) {
                             $sql = "SELECT * FROM anomalia WHERE id = '$id';";
                             $anomalias = $db->query($sql);
