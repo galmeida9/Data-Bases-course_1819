@@ -23,16 +23,16 @@ insert into anomalia values (default, '((3,3), (3,4))', 'https://i.ytimg.com/vi/
 insert into anomalia values (default, '((4,3), (5,4))', 'https://www.tiendasquebarato.com/wp-content/uploads/2018/03/Que-Barato_logo-1x.png', 'portugues', now(), 'Foi escrito brato ao invés de barato', true);
 insert into anomalia values (default, '((4,4), (5,5))', 'https://www.tiendasquebarato.com/wp-content/uploads/2018/03/Que-Barato_logo-1x.png', 'portugues', now(), 'Foi escrito barto ao invés de barato', true);
 insert into anomalia values (default, '((5,4), (5,5))', 'https://i.ytimg.com/vi/wvuxChUBrdY/maxresdefault.jpg', 'portugues', now(), 'Erro ortográfico', true);
-insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-01-01 00:00:00', 'Letreiro mal escrito', true);
-insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-02-01 00:00:00', 'Letreiro mal escrito', true);
-insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-03-01 00:00:00', 'Letreiro mal escrito', true);
-insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-04-01 00:00:00', 'Letreiro mal escrito', true);
-insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-05-01 00:00:00', 'Letreiro mal escrito', true);
-insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-01-01 00:00:00', 'Letreiro mal escrito', true);
-insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-02-01 00:00:00', 'Letreiro mal escrito', true);
-insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-03-01 00:00:00', 'Letreiro mal escrito', true);
-insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-04-01 00:00:00', 'Letreiro mal escrito', true);
-insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-05-01 00:00:00', 'Letreiro mal escrito', true);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-01-01 00:00:00', 'Letreiro mal escrito', false);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-02-01 00:00:00', 'Letreiro mal escrito', false);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-03-01 00:00:00', 'Letreiro mal escrito', false);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-04-01 00:00:00', 'Letreiro mal escrito', false);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-05-01 00:00:00', 'Letreiro mal escrito', false);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-01-01 00:00:00', 'Letreiro mal escrito', false);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-02-01 00:00:00', 'Letreiro mal escrito', false);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-03-01 00:00:00', 'Letreiro mal escrito', false);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-04-01 00:00:00', 'Letreiro mal escrito', false);
+insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', '2019-05-01 00:00:00', 'Letreiro mal escrito', false);
 
 -- Anomalia de traducao
 insert into anomalia_traducao values (2, '((10,10), (20,20))', 'portugues');
