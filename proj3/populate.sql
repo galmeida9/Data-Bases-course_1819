@@ -15,7 +15,7 @@ insert into item values (default, 'Placar', 'Porto', 41.157306, -8.629528);
 insert into item values (default, 'Cartaz', 'Portimão', 37.139168, -8.536958);
 insert into item values (default, 'Cartaz', 'Coimbra', 40.203216, -8.407549);
 
--- Anomalia TODO: VER COMO SE INSERE A IMAGEM
+-- Anomalia
 insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/images/39/397827025661247.jpg', 'portugues', now(), 'Letreiro mal escrito', true);
 insert into anomalia values (default, '((1,2), (4,5))', 'https://images.squarespace-cdn.com/content/v1/5bf5c4a17e3c3a7cf4ed645a/1561670393341-26BPRXMXTWFW8541ODLS/ke17ZwdGBToddI8pDm48kAcJn0w-wU5dHBD60E0UZTV7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTmEavKLH_ZiDOy8D8MfZnX23QZJwCzR7IYgvsN_lJZxdc352eQAZNMyVB2nTgCZ2cR/COBrunch.png?format=2500w', 'ingles', now(), 'menu com erro ortografico', false);
 insert into anomalia values (default, '((2,3), (3,4))', 'http://www.forcaportugal.com/fotos/galerias/loja-l-red-gra_43825865457569cf9b1a8c.jpg', 'portugues', now(), 'Foi escrito louja ao invés de loja', true);

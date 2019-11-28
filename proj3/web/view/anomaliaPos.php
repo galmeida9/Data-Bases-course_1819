@@ -61,9 +61,10 @@
 
                     if (count($anomId) > 0) {
                         echo("<table border=\"1\" cellspacing=\"5\">\n");
-                        echo("<tr><td>id</td><td>zona</td><td>imagem</td><td>língua</td><td>tempo</td><td>descrição</td><td>Anomalia Redação</td></tr>\n");
+                        echo("<tr><td><b>ID</b></td><td><b>Zona</b></td><td><b>Imagem</b></td><td><b>Língua</b></td>");
+                        echo("<td><b>Data/Hora</b></td><td><b>Descrição</b></td><td><b>Anomalia Redação?</b></td></tr>\n");
                         foreach($anomId as $id) {
-                            $sql3 = "SELECT id, zona, imagem, lingua, ts, descricao, tem_anomalia_redacao FROM anomalia WHERE id = $id;";
+                            $sql3 = "SELECT * FROM anomalia WHERE id = $id;";
                             $result3 = $db->query($sql3);
                             $row3 = $result3->fetch();
 
@@ -74,7 +75,13 @@
                             echo("<td>{$row3['lingua']}</td>\n");
                             echo("<td>{$row3['ts']}</td>\n");
                             echo("<td>{$row3['descricao']}</td>\n");
-                            echo("<td>{$row3['tem_anomalia_redacao']}</td>\n");
+
+                            if ($row3['tem_anomalia_redacao'] == 1) {
+                                echo("<td>Sim</td>\n");
+                            } else {
+                                echo("<td>-</td>\n");
+                            }
+
                             echo("</tr>\n");
                         }
                         echo("</table>\n");

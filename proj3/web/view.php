@@ -36,9 +36,82 @@
 
 			<div class="row">
 				<div class="column">
-					<b>Anomalias entre 2 locais</b>
-					<form action="view/anomalia.php" method="post">
-						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Listar anomalias"/> </p>
+					<p>
+						<b>Anomalias de incidências registadas na área</b>
+						<br>
+						<br>
+						<font size="3">Selecione dois locais para delimitar uma área:</font>
+					</p>
+					<form action="view/anomalias.php" method="post">
+						<p>
+							<label for="b">Local #1:</label>
+							<select name="local1">
+							<?php
+								try{
+									require_once("db_class.php");
+									
+									//DB Init
+									$db = new DB();
+									$db->debug_to_console("Connect");
+									$db->connect();
+									
+									//GET Query
+									$db->debug_to_console("Query");
+									$sql = "SELECT nome FROM local_publico";
+									$result = $db->query($sql);
+
+									foreach($result as $row) {
+										$nome = $row['nome'];
+										printf('<option value="%1$s">%1$s</option>', $nome);
+									}
+									
+									// Cleaning Up
+									$result = null;
+									$db->disconnect();
+									unset($db);
+								}
+								catch (PDOException $e)
+								{
+									echo("<p>ERROR: {$e->getMessage()}</p>");
+								}
+							?>
+							</select>
+						</p>
+						<p>
+							<label for="b">Local #2:</label>
+							<select name="local2">
+							<?php
+								try{
+									require_once("db_class.php");
+									
+									//DB Init
+									$db = new DB();
+									$db->debug_to_console("Connect");
+									$db->connect();
+									
+									//GET Query
+									$db->debug_to_console("Query");
+									$sql = "SELECT nome FROM local_publico";
+									$result = $db->query($sql);
+
+									foreach($result as $row) {
+										$nome = $row['nome'];
+										printf('<option value="%1$s">%1$s</option>', $nome);
+									}
+									
+									// Cleaning Up
+									$result = null;
+									$db->disconnect();
+									unset($db);
+								}
+								catch (PDOException $e)
+								{
+									echo("<p>ERROR: {$e->getMessage()}</p>");
+								}
+							?>
+							</select>
+						</p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
 				</div>
 			</div>
@@ -63,7 +136,7 @@
 							<label for="b">dy:</label>
 							<input id="b" type="text" name="dy">
 						</p>
-						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
 				</div>
 			</div>

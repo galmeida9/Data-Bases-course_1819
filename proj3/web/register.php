@@ -99,7 +99,7 @@
 							?>
 							</select>
 						</p>
-						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
 				</div>
 			</div>
@@ -178,7 +178,7 @@
 							?>
 							</select>
 						</p>
-						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
 				</div>
 			</div>

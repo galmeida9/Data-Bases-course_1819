@@ -15,7 +15,7 @@
 		<div>
 			<h1 id="title">Editar proposta de correção</h1>
 			<form class="back-btn" action="../../edit.php">
-				<input type="submit" value="Voltar" />
+				<input type="submit" value="Cancelar" />
 			</form>
 
 			<div class="table">
@@ -26,7 +26,7 @@
 						<input id="a" type="hidden" name="nro" value="<?=$_REQUEST['nro']?>">
 						<input id="a" type="text" name="texto">
 					</p>
-					<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
+					<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 				</form>
 			</div>
 		</div>

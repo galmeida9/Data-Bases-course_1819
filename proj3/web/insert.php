@@ -41,7 +41,7 @@
 							<label for="b">Nome:</label>
 							<input id="b" type="text" name="nome">
 						</p>
-						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
 				</div>
 				
@@ -90,7 +90,7 @@
 							?>
 							</select>
 						</p>
-						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
 				</div>
 			</div>
@@ -119,7 +119,7 @@
 							<label for="b">Anomalia Redação?:</label>
 							<input id="b" type="checkbox" name="tem_anomalia_redacao" value="Yes">
 						</p>
-						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
 				</div>
 			</div>
@@ -132,7 +132,7 @@
 							<label for="b">Texto:</label>
 							<input id="b" type="text" name="texto">
 						</p>
-						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
 				</div>
 				
@@ -209,7 +209,7 @@
 							?>
 							</select>
 						</p>
-						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submit"/> </p>
+						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
 				</div>
 			</div>
