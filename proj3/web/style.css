@@ -138,3 +138,7 @@ select {
 .buttonSmall {
 	padding: 10px 20px;
 }
+
+#long-input {
+	width: 300px;
+}

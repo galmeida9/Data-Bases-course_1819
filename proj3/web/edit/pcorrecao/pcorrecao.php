@@ -24,7 +24,7 @@
 					<p>
 						<label for="a">Texto:</label>
 						<input id="a" type="hidden" name="nro" value="<?=$_REQUEST['nro']?>">
-						<input id="a" type="text" name="texto">
+						<input id="long-input" type="text" name="texto">
 					</p>
 					<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 				</form>

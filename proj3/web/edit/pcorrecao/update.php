@@ -44,7 +44,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERROR: {$e->getMessage()}</p>");
+					echo("<p>ERRO: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

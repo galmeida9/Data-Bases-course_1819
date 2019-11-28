@@ -34,20 +34,25 @@
                     require("../db_class.php");
                     $result = array();
 
+                    $local1 = $_REQUEST['local1'];
+                    $local2 = $_REQUEST['local2'];
+                    if ($local1 == $local2) {
+                        echo("<p>ERRO: Selecione locais distintos.</p>");
+                        return;
+                    }
+
                     try {
                         //DB Init
                         $db = new DB();
                         $db->connect();
 
-                        $local = $_REQUEST['local1'];
-                        $sql = "SELECT latitude, longitude FROM local_publico WHERE nome='$local';";
+                        $sql = "SELECT latitude, longitude FROM local_publico WHERE nome='$local1';";
                         $local_table = $db->query($sql);
                         $local = $local_table->fetch();
                         $lat1 = $local['latitude'];
                         $lon1 = $local['longitude'];
 
-                        $local = $_REQUEST['local2'];
-                        $sql = "SELECT latitude, longitude FROM local_publico WHERE nome='$local';";
+                        $sql = "SELECT latitude, longitude FROM local_publico WHERE nome='$local2';";
                         $local_table = $db->query($sql);
                         $local = $local_table->fetch();
                         $lat2 = $local['latitude'];
@@ -104,7 +109,7 @@
                     }
                     catch (PDOException $e)
                     {
-                        echo("<p>ERROR: {$e->getMessage()}</p>");
+                        echo("<p>ERRO: {$e->getMessage()}</p>");
                     }
                 ?>
             </div>

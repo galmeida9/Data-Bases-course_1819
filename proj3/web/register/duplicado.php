@@ -28,17 +28,17 @@
 				$item2 = $_REQUEST['item2'];
 
 				if(!isset($item1) || $item1 == '') {
-					echo("<p>ERROR: O primeiro item não foi especificado.</p>");
+					echo("<p>ERRO: O primeiro item não foi especificado.</p>");
 					return;
 				}
 
 				if(!isset($item2) || $item2 == '') {
-					echo("<p>ERROR: O segundo item não foi especificado.</p>");
+					echo("<p>ERRO: O segundo item não foi especificado.</p>");
 					return;
 				}
 
 				if ($item1 == $item2) {
-					echo("<p>ERROR: Selecione itens diferentes.</p>");
+					echo("<p>ERRO: Selecione itens distintos.</p>");
 					return;
 				}
 
@@ -64,7 +64,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERROR: {$e->getMessage()}</p>");
+					echo("<p>ERRO: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

@@ -28,7 +28,7 @@
 				$nro = $_REQUEST['nro'];
 
 				if(!isset($anomalia_id) || $anomalia_id == '') {
-					echo("<p>ERROR: Não foi especificada um ID de anomalia.</p>");
+					echo("<p>ERRO: Não foi especificada um ID de anomalia.</p>");
 					return;
 				}
 
@@ -55,7 +55,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERROR: {$e->getMessage()}</p>");
+					echo("<p>ERRO: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

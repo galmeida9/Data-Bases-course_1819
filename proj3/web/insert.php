@@ -30,16 +30,16 @@
 					<b>Local</b>
 					<form action="insert/place.php" method="post">
 						<p>
-							<label for="a">Latitude:</label>
-							<input id="a" type="text" name="latitude">
+							<label>Latitude:</label>
+							<input type="text" name="latitude">
 						</p>
 						<p>
-							<label for="b">Longitude:</label>
-							<input id="b" type="text" name="longitude">
+							<label>Longitude:</label>
+							<input type="text" name="longitude">
 						</p>
 						<p>
-							<label for="b">Nome:</label>
-							<input id="b" type="text" name="nome">
+							<label>Nome:</label>
+							<input type="text" name="nome">
 						</p>
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
@@ -49,15 +49,15 @@
 					<b>Item</b>
 					<form action="insert/item.php" method="post">
 						<p>
-							<label for="a">Descrição:</label>
-							<input id="a" type="text" name="descricao">
+							<label>Descrição:</label>
+							<input type="text" name="descricao">
 						</p>
 						<p>
-							<label for="b">Localização:</label>
-							<input id="b" type="text" name="localizacao">
+							<label>Localização:</label>
+							<input type="text" name="localizacao">
 						</p>
 						<p>
-							<label for="b">Local:</label>
+							<label>Local:</label>
 							<select name="local">
 							<?php
 								try{
@@ -85,7 +85,7 @@
 								}
 								catch (PDOException $e)
 								{
-									echo("<p>ERROR: {$e->getMessage()}</p>");
+									echo("<p>ERRO: {$e->getMessage()}</p>");
 								}
 							?>
 							</select>
@@ -93,31 +93,29 @@
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
 				</div>
-			</div>
 
-			<div class="row">
 				<div class="column">
 					<b>Anomalia</b>
 					<form action="insert/anomalia.php" method="post">
 						<p>
-							<label for="a">Zona:</label>
-							<input id="a" type="text" name="zona">
+							<label>Zona:</label>
+							<input type="text" name="zona">
 						</p>
 						<p>
-							<label for="b">Imagem:</label>
-							<input id="b" type="text" name="imagem">
+							<label>Imagem:</label>
+							<input type="text" name="imagem">
 						</p>
 						<p>
-							<label for="b">Língua:</label>
-							<input id="b" type="text" name="lingua">
+							<label>Língua:</label>
+							<input type="text" name="lingua">
 						</p>
 						<p>
-							<label for="b">Descrição:</label>
-							<input id="b" type="text" name="descricao">
+							<label>Descrição:</label>
+							<input type="text" name="descricao">
 						</p>
 						<p>
-							<label for="b">Anomalia Redação?:</label>
-							<input id="b" type="checkbox" name="tem_anomalia_redacao" value="Yes">
+							<label>Anomalia Redação?:</label>
+							<input type="checkbox" name="tem_anomalia_redacao" value="Yes">
 						</p>
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
@@ -129,18 +127,19 @@
 					<b>Proposta de correção</b>
 					<form action="insert/pcorrecao.php" method="post">
 						<p>
-							<label for="b">Texto:</label>
-							<input id="b" type="text" name="texto">
+							<label>Texto:</label>
+							<input id="long-input" type="text" name="texto">
 						</p>
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
 				</div>
-				
+			</div>
+			<div class="row">
 				<div class="column">
 					<b>Correção</b>
 					<form action="insert/correcao.php" method="post">
 						<p>
-							<label for="b">Anomalia:</label>
+							<label>Anomalia:</label>
 							<select name="anomalia_id">
 							<?php
 								try{
@@ -169,13 +168,13 @@
 								}
 								catch (PDOException $e)
 								{
-									echo("<p>ERROR: {$e->getMessage()}</p>");
+									echo("<p>ERRO: {$e->getMessage()}</p>");
 								}
 							?>
 							</select>
 						</p>
 						<p>
-							<label for="b">Proposta de correção:</label>
+							<label>Proposta de correção:</label>
 							<select name="nro">
 							<?php
 								try{
@@ -204,7 +203,7 @@
 								}
 								catch (PDOException $e)
 								{
-									echo("<p>ERROR: {$e->getMessage()}</p>");
+									echo("<p>ERRO: {$e->getMessage()}</p>");
 								}
 							?>
 							</select>

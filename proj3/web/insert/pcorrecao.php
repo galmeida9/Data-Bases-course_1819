@@ -27,7 +27,7 @@
 				$texto = $_REQUEST['texto'];
 
 				if(!isset($texto) || $texto == '') {
-					echo("<p>ERROR: Não foi especificado um texto.</p>");
+					echo("<p>ERRO: Não foi especificado um texto.</p>");
 					return;
 				}
 
@@ -53,7 +53,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERROR: {$e->getMessage()}</p>");
+					echo("<p>ERRO: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

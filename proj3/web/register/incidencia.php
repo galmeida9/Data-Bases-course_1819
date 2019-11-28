@@ -28,12 +28,12 @@
 				$item_id = $_REQUEST['item_id'];
 
 				if(!isset($anomalia_id) || $anomalia_id == '') {
-					echo("<p>ERROR: Não foi especificada uma anomalia.</p>");
+					echo("<p>ERRO: Não foi especificada uma anomalia.</p>");
 					return;
 				}
 
 				if(!isset($item_id) || $item_id == '') {
-					echo("<p>ERROR: Não foi especificado um item.</p>");
+					echo("<p>ERRO: Não foi especificado um item.</p>");
 					return;
 				}
 
@@ -59,7 +59,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERROR: {$e->getMessage()}</p>");
+					echo("<p>ERRO: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

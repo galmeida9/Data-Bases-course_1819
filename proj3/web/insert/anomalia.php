@@ -29,22 +29,22 @@
 				$tem_anomalia_redacao = ($_POST['tem_anomalia_redacao'] == 'Yes') ? 'true' : 'false';
 
 				if(!isset($zona) || $zona == '') {
-					echo("<p>ERROR: Não foi especificada uma zona.</p>");
+					echo("<p>ERRO: Não foi especificada uma zona.</p>");
 					return;
 				}
 
 				if(!isset($imagem) || $imagem == '') {
-					echo("<p>ERROR: Não foi especificada uma imagem.</p>");
+					echo("<p>ERRO: Não foi especificada uma imagem.</p>");
 					return;
 				}
 
 				if(!isset($lingua) || $lingua == '') {
-					echo("<p>ERROR: Não foi especificado uma língua.</p>");
+					echo("<p>ERRO: Não foi especificado uma língua.</p>");
 					return;
 				}
 
 				if(!isset($descricao) || $descricao == '') {
-					echo("<p>ERROR: Não foi especificada uma descrição.</p>");
+					echo("<p>ERRO: Não foi especificada uma descrição.</p>");
 					return;
 				}
 
@@ -70,7 +70,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERROR: {$e->getMessage()}</p>");
+					echo("<p>ERRO: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

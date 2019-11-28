@@ -38,6 +38,26 @@
                     $dy = $_REQUEST['dy'];
                     $anomId = array();
 
+                    if(!isset($lat) || $lat == '') {
+                        echo("<p>ERRO: Não foi especificada uma latitude.</p>");
+                        return;
+                    }
+
+                    if(!isset($long) || $long == '') {
+                        echo("<p>ERRO: Não foi especificada uma longitude.</p>");
+                        return;
+                    }
+
+                    if(!isset($dx) || $dx == '') {
+                        echo("<p>ERRO: O parâmetro dx não foi especificado.</p>");
+                        return;
+                    }
+
+                    if(!isset($dy) || $dy == '') {
+                        echo("<p>ERRO: O parâmetro dy não foi especificado.</p>");
+                        return;
+                    }
+
                     //DB Init
                     $db = new DB();
                     $db->connect();

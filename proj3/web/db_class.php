@@ -23,7 +23,7 @@ class DB {
         }
         catch (PDOException $e) {
             $this->debug_to_console($e->getMessage());
-            echo("<p>ERROR: {$e->getMessage()}</p>");
+            echo("<p>ERRO: {$e->getMessage()}</p>");
             return False;
         }
     }
@@ -40,7 +40,7 @@ class DB {
         }
         catch (PDOException $e) {
             $this->debug_to_console($e->getMessage());
-            echo("<p>ERROR: {$e->getMessage()}</p>");
+            echo("<p>ERRO: {$e->getMessage()}</p>");
             return False;
         }
     }

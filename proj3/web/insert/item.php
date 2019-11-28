@@ -28,17 +28,17 @@
 				$local = $_REQUEST['local'];
 
 				if(!isset($descricao) || $descricao == '') {
-					echo("<p>ERROR: Não foi especificada uma descrição.</p>");
+					echo("<p>ERRO: Não foi especificada uma descrição.</p>");
 					return;
 				}
 
 				if(!isset($localizacao) || $localizacao == '') {
-					echo("<p>ERROR: Não foi especificada uma localização.</p>");
+					echo("<p>ERRO: Não foi especificada uma localização.</p>");
 					return;
 				}
 
 				if(!isset($local) || $local == '') {
-					echo("<p>ERROR: Não foi especificado um local.</p>");
+					echo("<p>ERRO: Não foi especificado um local.</p>");
 					return;
 				}
 				
@@ -80,7 +80,7 @@
 				catch (PDOException $e)
 				{
 					$db->rollBack();
-					echo("<p>ERROR: {$e->getMessage()}</p>");
+					echo("<p>ERRO: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>
