@@ -44,24 +44,23 @@
 						$result = $db->query($sql);
 
 						echo("<table border=\"1\" cellspacing=\"5\">\n");
-						echo("<tr><td><b>ID</b></td><td><b>Zona</b></td><td><b>Imagem</b></td><td><b>Língua</b></td>");
-						echo("<td><b>Data/Hora</b></td><td><b>Descrição</b></td><td><b>Anomalia Redação?</b></td></tr>\n");
+						echo("<tr><td><b>ID</b></td><td><b>Tipo</b></td><td><b>Zona</b></td><td><b>Imagem</b></td>");
+						echo("<td><b>Língua</b></td><td><b>Data/Hora</b></td><td><b>Descrição</b></td></tr>\n");
 						foreach($result as $row) {
 							echo("<tr>\n");
 							echo("<td>{$row['id']}</td>\n");
-							echo("<td>{$row['zona']}</td>\n");
-							echo("<td><a onclick='showImg(\"{$row['imagem']}\")'>imagem</a></td>\n");
-							echo("<td>{$row['lingua']}</td>\n");
-							echo("<td>{$row['ts']}</td>\n");
-							echo("<td>{$row['descricao']}</td>\n");
 
 							if ($row['tem_anomalia_redacao'] == 1) {
-								echo("<td>Sim</td>\n");
+								echo("<td>Redação</td>\n");
 							} else {
-								echo("<td>-</td>\n");
+								echo("<td><b>Tradução</b></td>\n");
 							}
 
-							
+							echo("<td>{$row['zona']}</td>\n");
+							echo("<td><a onclick='showImg(\"{$row['imagem']}\")'>Ver</a></td>\n");
+							echo("<td>{$row['lingua']}</td>\n");
+							echo("<td>{$row['ts']}</td>\n");
+							echo("<td>{$row['descricao']}</td>\n");						
 							echo("<td><a href=\"update.php?id={$row['id']}\">Remover</a></td>\n");
 							echo("</tr>\n");
 						}

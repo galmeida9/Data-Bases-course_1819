@@ -109,7 +109,7 @@
 					<b>Duplicado</b>
 					<form action="register/duplicado.php" method="post">
 						<p>
-							<label for="b">Item #1:</label>
+							<label for="b">Item 1:</label>
 							<select name="item1">
 							<?php
 								try{
@@ -144,7 +144,7 @@
 							</select>
 						</p>
 						<p>
-							<label for="b">Item #2:</label>
+							<label for="b">Item 2:</label>
 							<select name="item2">
 							<?php
 								try{

@@ -44,7 +44,7 @@
 					</p>
 					<form action="view/anomalias.php" method="post">
 						<p>
-							<label for="b">Local #1:</label>
+							<label for="b">Local 1:</label>
 							<select name="local1">
 							<?php
 								try{
@@ -78,7 +78,7 @@
 							</select>
 						</p>
 						<p>
-							<label for="b">Local #2:</label>
+							<label for="b">Local 2:</label>
 							<select name="local2">
 							<?php
 								try{

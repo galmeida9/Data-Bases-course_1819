@@ -5,6 +5,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="style.css" />
 	</head>
+	<script type="text/javascript">
+		function toggleForm(){  
+			if(document.getElementById("tem_anomalia_traducao").checked == true) {
+				document.getElementById("zona2").disabled = false;
+				document.getElementById("lingua2").disabled = false;
+			} else {
+				document.getElementById("zona2").disabled = true;
+				document.getElementById("lingua2").disabled = true; 
+			}
+		}  
+	</script> 
 	<body>
 		<?php
 			session_start();
@@ -114,9 +125,19 @@
 							<input type="text" name="descricao">
 						</p>
 						<p>
-							<label>Anomalia Redação?:</label>
-							<input type="checkbox" name="tem_anomalia_redacao" value="Yes">
+							<label>Anomalia Tradução?:</label>
+							<input id="tem_anomalia_traducao" type="checkbox" onclick="toggleForm()" name="tem_anomalia_traducao" value="Yes">
 						</p>
+						<div id="anomalia_traducao">
+							<p>
+								<label>Zona 2:</label>
+								<input id="zona2" type="text" name="zona2" disabled>
+							</p>
+							<p>
+								<label>Língua 2:</label>
+								<input id="lingua2" type="text" name="lingua2" disabled>
+							</p>
+						</div>
 						<p> <input class="button buttonSmall" id="submit-btn" type="submit" value="Submeter"/> </p>
 					</form>
 				</div>

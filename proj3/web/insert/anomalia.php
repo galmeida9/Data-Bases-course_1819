@@ -26,7 +26,7 @@
 				$imagem = $_REQUEST['imagem'];
 				$lingua = $_REQUEST['lingua'];
 				$descricao = $_REQUEST['descricao'];
-				$tem_anomalia_redacao = ($_POST['tem_anomalia_redacao'] == 'Yes') ? 'true' : 'false';
+				$tem_anomalia_redacao = ($_POST['tem_anomalia_traducao'] == 'Yes') ? 'false' : 'true';
 
 				if(!isset($zona) || $zona == '') {
 					echo("<p>ERRO: Não foi especificada uma zona.</p>");
@@ -51,25 +51,42 @@
 				try{
 					//DB Init
 					$db = new DB();
-					$db->debug_to_console("Connect");
 					$db->connect();
 
-					//Insert Query
-					$db->debug_to_console("Query");
+					if ($tem_anomalia_redacao == 'false') {
+						$db->beginTransaction();
+					}
+					
 					$sql = "INSERT INTO anomalia (zona, imagem, lingua, ts, descricao, tem_anomalia_redacao)
-					VALUES ('$zona', '$imagem', '$lingua', now(),'$descricao', '$tem_anomalia_redacao')";
+						VALUES ('$zona', '$imagem', '$lingua', now(), '$descricao', '$tem_anomalia_redacao')";
 					$result = $db->query($sql);
 
-					if ($result == true) {
-						echo("<p>Anomalia inserida com sucesso.</p>");
-					} 
+					if ($tem_anomalia_redacao == 'false') {
+						$sql = "SELECT MAX(id) FROM anomalia;";
+						$result = $db->query($sql);
+						$row = $result->fetch();
+
+						$id = $row['max'];
+						$zona2 = $_REQUEST['zona2'];
+						$lingua2 = $_REQUEST['lingua2'];
+
+						$sql = "INSERT INTO anomalia_traducao (id, zona2, lingua2)
+							VALUES ('$id','$zona2', '$lingua2')";
+						$result = $db->query($sql);
+					}
 					
+					if ($tem_anomalia_redacao == 'false') {
+						$db->commit();
+					}
+					echo("<p>Anomalia inserida com sucesso.</p>");
+
 					// Cleaning Up
 					$result = null;
 					unset($db);
 				}
 				catch (PDOException $e)
 				{
+					$db->rollBack();
 					echo("<p>ERRO: {$e->getMessage()}</p>");
 				}
 			?>

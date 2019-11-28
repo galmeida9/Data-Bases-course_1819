@@ -32,17 +32,10 @@ class DB {
         $this->dbObj = null;
     }
 
-    public function query($sql){
-        try {
-            $result = $this->dbObj->prepare($sql);
-            $result->execute();
-            return $result;
-        }
-        catch (PDOException $e) {
-            $this->debug_to_console($e->getMessage());
-            echo("<p>ERRO: {$e->getMessage()}</p>");
-            return False;
-        }
+    public function query($sql) {
+        $result = $this->dbObj->prepare($sql);
+        $result->execute();
+        return $result;
     }
 
     public function beginTransaction(){
