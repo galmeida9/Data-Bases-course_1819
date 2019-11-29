@@ -60,7 +60,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
+					echo("<p><font color='red'>ERRO</font>: latitude e longitude têm de ser números.</p>");
 				}
 			?>
 		</div>
