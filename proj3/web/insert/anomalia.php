@@ -124,7 +124,7 @@
 					if ($tem_anomalia_redacao == 'false') {
 						$db->rollBack();
 					}
-					echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
+					echo("<p><font color='red'>ERRO</font>: zona tem de estar na forma (x1, y1, x2, y2) e se houver duas zonas, elas não se podem intersectar.</p>");
 				}
 			?>
 		</div>
