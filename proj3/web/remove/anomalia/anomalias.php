@@ -32,6 +32,7 @@
             <div class="table">
 				<?php
 					require("../../db_class.php");
+					
 					try {
 						//DB Init
 						$db = new DB();
@@ -80,8 +81,7 @@
                 <img class="modal-content" id="img01">
             </div>
 		</div>
-
-		
 	</body>
+	
 	<script src="../../modal.js"></script>
 </html>

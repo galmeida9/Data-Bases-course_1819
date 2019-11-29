@@ -33,9 +33,9 @@
 							<label for="b">Anomalia:</label>
 							<select name="anomalia_id">
 							<?php
-								try{
-									require_once("db_class.php");
-									
+								require_once("db_class.php");
+
+								try {
 									//DB Init
 									$db = new DB();
 									$db->connect();
@@ -65,9 +65,9 @@
 							<label for="b">Item:</label>
 							<select name="item_id">
 							<?php
-								try{
-									require_once("db_class.php");
-									
+								require_once("db_class.php");
+
+								try {									
 									//DB Init
 									$db = new DB();
 									$db->connect();
@@ -106,9 +106,9 @@
 							<label for="b">Item 1:</label>
 							<select name="item1">
 							<?php
-								try{
-									require_once("db_class.php");
-									
+								require_once("db_class.php");
+
+								try {
 									//DB Init
 									$db = new DB();
 									$db->connect();
@@ -138,9 +138,9 @@
 							<label for="b">Item 2:</label>
 							<select name="item2">
 							<?php
-								try{
-									require_once("db_class.php");
-									
+								require_once("db_class.php");
+								
+								try {
 									//DB Init
 									$db = new DB();
 									$db->connect();

@@ -24,7 +24,7 @@
 				require("../../db_class.php");
 				$id = $_REQUEST['id'];
 
-				try{
+				try {
 					//DB Init
 					$db = new DB();
 					$db->connect();

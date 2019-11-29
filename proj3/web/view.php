@@ -47,9 +47,9 @@
 							<label for="b">Local 1:</label>
 							<select name="local1">
 							<?php
-								try{
-									require_once("db_class.php");
-									
+								require_once("db_class.php");
+
+								try {
 									//DB Init
 									$db = new DB();
 									$db->connect();
@@ -78,9 +78,9 @@
 							<label for="b">Local 2:</label>
 							<select name="local2">
 							<?php
-								try{
-									require_once("db_class.php");
-									
+								require_once("db_class.php");
+								
+								try {
 									//DB Init
 									$db = new DB();
 									$db->connect();

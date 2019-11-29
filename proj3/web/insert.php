@@ -71,9 +71,9 @@
 							<label>Local:</label>
 							<select name="local">
 							<?php
-								try{
-									require_once("db_class.php");
-									
+								require_once("db_class.php");
+
+								try {
 									//DB Init
 									$db = new DB();
 									$db->connect();

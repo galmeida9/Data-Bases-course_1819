@@ -26,7 +26,7 @@
 				require("../../db_class.php");
 				$nro = $_REQUEST['nro'];
 
-				try{
+				try {
 					//DB Init
 					$db = new DB();
 					$db->connect();

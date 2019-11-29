@@ -31,6 +31,7 @@
             <div class="table">
 				<?php
 					require("../../db_class.php");
+					
 					try {
 						//DB Init
 						$db = new DB();
