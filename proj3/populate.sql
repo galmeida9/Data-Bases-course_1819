@@ -36,16 +36,16 @@ insert into anomalia values (default, '((1,1), (2,2))', 'https://img.olx.com.br/
 
 -- Anomalia de traducao
 insert into anomalia_traducao values (2, '((10,10), (20,20))', 'portugues');
-insert into anomalia_traducao values (8, '((10,10), (20,20))', 'portugues');
-insert into anomalia_traducao values (9, '((10,10), (20,20))', 'portugues');
-insert into anomalia_traducao values (10, '((10,10), (20,20))', 'portugues');
-insert into anomalia_traducao values (11, '((10,10), (20,20))', 'portugues');
-insert into anomalia_traducao values (12, '((10,10), (20,20))', 'portugues');
-insert into anomalia_traducao values (13, '((10,10), (20,20))', 'portugues');
-insert into anomalia_traducao values (14, '((10,10), (20,20))', 'portugues');
-insert into anomalia_traducao values (15, '((10,10), (20,20))', 'portugues');
-insert into anomalia_traducao values (16, '((10,10), (20,20))', 'portugues');
-insert into anomalia_traducao values (17, '((10,10), (20,20))', 'portugues');
+insert into anomalia_traducao values (8, '((10,10), (20,20))', 'ingles');
+insert into anomalia_traducao values (9, '((10,10), (20,20))', 'ingles');
+insert into anomalia_traducao values (10, '((10,10), (20,20))', 'ingles');
+insert into anomalia_traducao values (11, '((10,10), (20,20))', 'ingles');
+insert into anomalia_traducao values (12, '((10,10), (20,20))', 'ingles');
+insert into anomalia_traducao values (13, '((10,10), (20,20))', 'ingles');
+insert into anomalia_traducao values (14, '((10,10), (20,20))', 'ingles');
+insert into anomalia_traducao values (15, '((10,10), (20,20))', 'ingles');
+insert into anomalia_traducao values (16, '((10,10), (20,20))', 'ingles');
+insert into anomalia_traducao values (17, '((10,10), (20,20))', 'ingles');
 
 -- Duplicado
 insert into duplicado values (2, 3);
