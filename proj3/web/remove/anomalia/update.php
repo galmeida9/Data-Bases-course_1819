@@ -35,6 +35,7 @@
 
 					// Cleaning Up
 					$result = null;
+					$db->disconnect();
 					unset($db);
 
 					echo("<p>Anomalia removida com sucesso.</p>");

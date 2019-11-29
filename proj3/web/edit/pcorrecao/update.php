@@ -36,9 +36,10 @@
 
 					echo("<p>Proposta de correção editada com sucesso.</p>");
 
-					//Cleaning up
+					// Cleaning Up
 					$result = null;
-					$db = null;
+					$db->disconnect();
+					unset($db);
 				}
 				catch (PDOException $e)
 				{

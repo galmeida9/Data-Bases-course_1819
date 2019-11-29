@@ -54,10 +54,10 @@
 						}
 						echo("</table>\n");
 
-						//Cleaning up
-						unset($db);
+						// Cleaning Up
 						$result = null;
-
+						$db->disconnect();
+						unset($db);
 					}
 					catch (PDOException $e)
 					{

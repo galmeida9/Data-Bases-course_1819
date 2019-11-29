@@ -53,7 +53,8 @@
 
 					// Cleaning Up
 					$result = null;
-					unset($db);					
+					$db->disconnect();
+					unset($db);
 				}
 				catch (PDOException $e)
 				{
