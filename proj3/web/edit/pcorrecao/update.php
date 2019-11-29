@@ -25,6 +25,11 @@
 				$nro = $_REQUEST['nro'];
 				$texto = $_REQUEST['texto'];
 
+				if (!isset($texto) || $texto == '') {
+					echo("<p><font color='red'>ERRO</font>: Não foi especificada um texto.</p>");
+					exit();
+				}
+
 				try {
 					//DB Init
 					$db = new DB();
