@@ -10,6 +10,8 @@
 			if (!isset($_SESSION['email'])) {
 				header("Location: ../../login/login.php");
 			}
+
+			$email = $_SESSION['email'];
 		?>
 
 		<div>
@@ -19,6 +21,34 @@
 			</form>
 
 			<div class="table">
+
+				<?php
+					require("../../db_class.php");
+
+					try{
+						//DB Init
+						$db = new DB();
+						$db->connect();
+
+						$sql = "SELECT * FROM utilizador_qualificado WHERE email='$email'";
+						$result = $db->query($sql);
+						$user = $result->fetch();
+
+						if (!$user) {
+							echo("<p>ERRO: Ação reservada a utilizadores qualificados.</p>");
+							exit();
+						}
+
+						// Cleaning Up
+						$result = null;
+						unset($db);					
+					}
+					catch (PDOException $e)
+					{
+						echo("<p>ERRO: {$e->getMessage()}</p>");
+					}
+				?>
+
 				<h3>Insira o novo texto</h3>
 				<form action="update.php" method="post">
 					<p>

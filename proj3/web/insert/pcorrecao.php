@@ -53,7 +53,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERRO: {$e->getMessage()}</p>");
+					echo("<p>ERRO: Ação reservada a utilizadores qualificados.</p>");
 				}
 			?>
 		</div>

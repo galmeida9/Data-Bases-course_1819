@@ -10,12 +10,14 @@
 			if (!isset($_SESSION['email'])) {
 				header("Location: ../../login/login.php");
 			}
+
+			$email = $_SESSION['email'];
 		?>
 
 		<div>
 			<h1 id="title">Remover correção</h1>
 			<form class="back-btn" action="../../edit.php">
-			    <input class="button buttonSmall" type="submit" value="Sair" />
+			    <input class="button buttonSmall" type="submit" value="Voltar" />
 			</form>
 		</div>
 
@@ -27,15 +29,25 @@
 				try{
 					//DB Init
 					$db = new DB();
-					$db->debug_to_console("Connect");
 					$db->connect();
+
+					$db->beginTransaction();
+
+					$sql = "SELECT * FROM utilizador_qualificado WHERE email='$email'";
+					$result = $db->query($sql);
+					$user = $result->fetch();
+
+					if (!$user) {
+						echo("<p>ERRO: Ação reservada a utilizadores qualificados.</p>");
+						$db->rollBack();
+						exit();
+					}
 
 					$sql = "DELETE FROM correcao WHERE nro='$nro'";
 					$result = $db->query($sql);
 
-					if ($result == true) {
-						echo("<p>Correção removida com sucesso.</p>");
-					}
+					$db->commit();
+					echo("<p>Correção removida com sucesso.</p>");
 
 					// Cleaning Up
 					$result = null;
@@ -43,6 +55,7 @@
 				}
 				catch (PDOException $e)
 				{
+					$db->rollBack();
 					echo("<p>ERRO: {$e->getMessage()}</p>");
 				}
 			?>
