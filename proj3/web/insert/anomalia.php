@@ -27,12 +27,12 @@
 					list($z2x1, $z2y1, $z2x2, $z2y2) = sscanf($zona2, "(%d,%d,%d,%d)");
 				    
 				    // If one zone is on left side of other
-				    if ($z1x1 > $z2x2 || $z2x1 > $z1x2) {
+				    if ($z1x1 >= $z2x2 || $z2x1 >= $z1x2) {
 				        return false;
 				    }
 				    
 				    // If one zone is above other
-				    if ($z1y2 < $z2y1 || $z2y1 > $z1y2) {
+				    if ($z1y2 <= $z2y1 || $z2y1 >= $z1y2) {
 				        return false;
 				    }
 				    return true;
