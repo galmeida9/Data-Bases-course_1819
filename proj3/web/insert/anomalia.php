@@ -21,6 +21,23 @@
 
 		<div class="table">
 			<?php
+
+				function overlap($zona, $zona2) {
+					list($z1x1, $z1y1, $z1x2, $z1y2) = sscanf($zona, "(%d,%d,%d,%d)");
+					list($z2x1, $z2y1, $z2x2, $z2y2) = sscanf($zona2, "(%d,%d,%d,%d)");
+				    
+				    // If one zone is on left side of other
+				    if ($z1x1 > $z2x2 || $z2x1 > $z1x2) {
+				        return false;
+				    }
+				    
+				    // If one zone is above other
+				    if ($z1y2 < $z2y1 || $z2y1 > $z1y2) {
+				        return false;
+				    }
+				    return true;
+				}
+				
 				require("../db_class.php");
 				$zona = $_REQUEST['zona'];
 				$imagem = $_REQUEST['imagem'];
@@ -30,12 +47,12 @@
 				$zona2 = $_REQUEST['zona2'];
 				$lingua2 = $_REQUEST['lingua2'];
 
-				if(!isset($zona) || $zona == '') {
+				if (!isset($zona) || $zona == '') {
 					echo("<p><font color='red'>ERRO</font>: Não foi especificada uma zona.</p>");
 					exit();
 				}
 
-				if(!isset($imagem) || $imagem == '') {
+				if (!isset($imagem) || $imagem == '') {
 					echo("<p><font color='red'>ERRO</font>: Não foi especificada uma imagem.</p>");
 					exit();
 				}
@@ -45,29 +62,27 @@
 					exit();
 				}
 
-				if(!isset($lingua) || $lingua == '') {
+				if (!isset($lingua) || $lingua == '') {
 					echo("<p><font color='red'>ERRO</font>: Não foi especificado uma língua.</p>");
 					exit();
 				}
 
-				if(!isset($descricao) || $descricao == '') {
-					echo("<p><font color='red'>ERRO</font>: Não foi especificada uma descrição.</p>");
-					exit();
+				if ($tem_anomalia_redacao == 'false') {
+
+					// RI-1
+					if (overlap($zona, $zona2)) {
+						echo("<p><font color='red'>ERRO</font>: A segunda zona não se pode sobrepor à primeira.</p>");
+						exit();
+					} 
+				        
+					// RI-2
+					if ($lingua == $lingua2) {
+						echo("<p><font color='red'>ERRO</font>: A segunda língua não pode ser igual à primeira.</p>");
+						exit();
+					}					
 				}
 
-				// RI-1
-				if ($zona == $zona2) {
-					echo("<p><font color='red'>ERRO</font>: A segunda zona não pode ser igual à primeira.</p>");
-					exit();
-				}
-
-				// RI-2
-				if ($lingua == $lingua2) {
-					echo("<p><font color='red'>ERRO</font>: A segunda língua não pode ser igual à primeira.</p>");
-					exit();
-				}
-
-				try{
+				try {
 					//DB Init
 					$db = new DB();
 					$db->connect();

@@ -27,17 +27,17 @@
 				$localizacao = $_REQUEST['localizacao'];
 				$local = $_REQUEST['local'];
 
-				if(!isset($descricao) || $descricao == '') {
+				if (!isset($descricao) || $descricao == '') {
 					echo("<p><font color='red'>ERRO</font>: Não foi especificada uma descrição.</p>");
 					exit();
 				}
 
-				if(!isset($localizacao) || $localizacao == '') {
+				if (!isset($localizacao) || $localizacao == '') {
 					echo("<p><font color='red'>ERRO</font>: Não foi especificada uma localização.</p>");
 					exit();
 				}
 
-				if(!isset($local) || $local == '') {
+				if (!isset($local) || $local == '') {
 					echo("<p><font color='red'>ERRO</font>: Não foi especificado um local.</p>");
 					exit();
 				}
