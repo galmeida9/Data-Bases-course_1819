@@ -1,1 +1,0 @@
-Verificação de permissões para editar / remover proposta de correção.
