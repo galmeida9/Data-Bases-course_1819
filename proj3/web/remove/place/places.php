@@ -34,16 +34,10 @@
 					try {
 						//DB Init
 						$db = new DB();
-						$db->debug_to_console("Connect");
 						$db->connect();
 
-						//SELECT Query
-						$db->debug_to_console("Query");
-						$sql = "SELECT latitude, longitude, nome FROM local_publico;";
+						$sql = "SELECT * FROM local_publico;";
 						$result = $db->query($sql);
-
-						// If returns False is error
-						if (!$result) return;
 
 						echo("<table border=\"1\" cellspacing=\"5\">\n");
 						echo("<tr><td><b>Latitude</b></td><td><b>Longitude</b></td><td><b>Nome</b></td></tr>\n");
@@ -55,7 +49,6 @@
 							echo("<td><a href=\"update.php?latitude={$row['latitude']}&longitude={$row['longitude']}\">Remover</a></td>\n");
 							echo("</tr>\n");
 						}
-						
 						echo("</table>\n");
 
 						//Cleaning up
@@ -64,7 +57,7 @@
 					}
 					catch (PDOException $e)
 					{
-						echo("<p>ERRO: {$e->getMessage()}</p>");
+						echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 					}
 				?>
 			</div>

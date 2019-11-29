@@ -27,31 +27,27 @@
 				$anomalia_id = $_REQUEST['anomalia_id'];
 				$item_id = $_REQUEST['item_id'];
 
-				if(!isset($anomalia_id) || $anomalia_id == '') {
-					echo("<p>ERRO: Não foi especificada uma anomalia.</p>");
-					return;
+				if (!isset($anomalia_id) || $anomalia_id == '') {
+					echo("<p><font color='red'>ERRO</font>: Não foi especificada uma anomalia.</p>");
+					exit();
 				}
 
-				if(!isset($item_id) || $item_id == '') {
-					echo("<p>ERRO: Não foi especificado um item.</p>");
-					return;
+				if (!isset($item_id) || $item_id == '') {
+					echo("<p><font color='red'>ERRO</font>: Não foi especificado um item.</p>");
+					exit();
 				}
 
-				try{
+				try {
 					//DB Init
 					$db = new DB();
-					$db->debug_to_console("Connect");
 					$db->connect();
 
-					//INSERT Query
-					$db->debug_to_console("Insert Query");
 					$sql = "INSERT INTO incidencia (anomalia_id, item_id, email)
-					VALUES ('$anomalia_id', '$item_id', '$email')";
-					$result = $db->query($sql);
+						VALUES (:anomalia_id, :item_id, :email)";
+					$params = [':anomalia_id' => $anomalia_id, ':item_id' => $item_id, ':email' => $email];
+					$result = $db->query($sql, $params);
 
-					if ($result == true) {
-						echo("<p>Incidência registada com sucesso.</p>");
-					} 
+					echo("<p>Incidência registada com sucesso.</p>");
 					
 					// Cleaning Up
 					$result = null;
@@ -59,7 +55,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERRO: {$e->getMessage()}</p>");
+					echo("<p><font color='red'><font color='red'>ERRO</font></font>: Já existe uma incidência registada para esta anomalia.</p>");
 				}
 			?>
 		</div>

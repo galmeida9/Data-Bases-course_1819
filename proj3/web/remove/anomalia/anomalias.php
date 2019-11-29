@@ -35,12 +35,9 @@
 					try {
 						//DB Init
 						$db = new DB();
-						$db->debug_to_console("Connect");
 						$db->connect();
 
-						//SELECT Query
-						$db->debug_to_console("Query");
-						$sql = "SELECT id, zona, imagem, lingua, ts, descricao, tem_anomalia_redacao FROM anomalia;";
+						$sql = "SELECT * FROM anomalia;";
 						$result = $db->query($sql);
 
 						echo("<table border=\"1\" cellspacing=\"5\">\n");
@@ -72,7 +69,7 @@
 					}
 					catch (PDOException $e)
 					{
-						echo("<p>ERRO: {$e->getMessage()}</p>");
+						echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 					}
 				?>
 			</div>

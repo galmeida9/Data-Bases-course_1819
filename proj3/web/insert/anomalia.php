@@ -31,38 +31,40 @@
 				$lingua2 = $_REQUEST['lingua2'];
 
 				if(!isset($zona) || $zona == '') {
-					echo("<p>ERRO: Não foi especificada uma zona.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: Não foi especificada uma zona.</p>");
+					exit();
 				}
 
 				if(!isset($imagem) || $imagem == '') {
-					echo("<p>ERRO: Não foi especificada uma imagem.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: Não foi especificada uma imagem.</p>");
+					exit();
 				}
 
 				if (!filter_var($imagem, FILTER_VALIDATE_URL)) { 
-					echo("<p>ERRO: Não foi especificada um url válido de uma imagem.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: Não foi especificada um url válido de uma imagem.</p>");
+					exit();
 				}
 
 				if(!isset($lingua) || $lingua == '') {
-					echo("<p>ERRO: Não foi especificado uma língua.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: Não foi especificado uma língua.</p>");
+					exit();
 				}
 
 				if(!isset($descricao) || $descricao == '') {
-					echo("<p>ERRO: Não foi especificada uma descrição.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: Não foi especificada uma descrição.</p>");
+					exit();
 				}
 
+				// RI-1
 				if ($zona == $zona2) {
-					echo("<p>ERRO: Segunda zona não pode ser igual à primeira.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: A segunda zona não pode ser igual à primeira.</p>");
+					exit();
 				}
 
+				// RI-2
 				if ($lingua == $lingua2) {
-					echo("<p>ERRO: Segunda língua não pode ser igual à primeira.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: A segunda língua não pode ser igual à primeira.</p>");
+					exit();
 				}
 
 				try{
@@ -75,8 +77,10 @@
 					}
 					
 					$sql = "INSERT INTO anomalia (zona, imagem, lingua, ts, descricao, tem_anomalia_redacao)
-						VALUES ('$zona', '$imagem', '$lingua', now(), '$descricao', '$tem_anomalia_redacao')";
-					$result = $db->query($sql);
+						VALUES (:zona, :imagem, :lingua, now(), :descricao, :tem_anomalia_redacao)";
+					$params = [':zona' => $zona, ':imagem' => $imagem, ':lingua' => $lingua, 
+						':descricao' => $descricao, ':tem_anomalia_redacao' => $tem_anomalia_redacao];
+					$result = $db->query($sql, $params);
 
 					if ($tem_anomalia_redacao == 'false') {
 						$sql = "SELECT MAX(id) FROM anomalia;";
@@ -84,10 +88,10 @@
 						$row = $result->fetch();
 
 						$id = $row['max'];
-
 						$sql = "INSERT INTO anomalia_traducao (id, zona2, lingua2)
-							VALUES ('$id','$zona2', '$lingua2')";
-						$result = $db->query($sql);
+							VALUES (:id, :zona2, :lingua2)";
+						$params = [':id' => $id, ':zona2' => $zona2, ':lingua2' => $lingua2];
+						$result = $db->query($sql, $params);
 					}
 					
 					if ($tem_anomalia_redacao == 'false') {
@@ -104,7 +108,7 @@
 					if ($tem_anomalia_redacao == 'false') {
 						$db->rollBack();
 					}
-					echo("<p>ERRO: {$e->getMessage()}</p>");
+					echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

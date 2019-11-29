@@ -27,17 +27,13 @@
 				try{
 					//DB Init
 					$db = new DB();
-					$db->debug_to_console("Connect");
 					$db->connect();
 
-					//DELETE Query
-					$db->debug_to_console("Query");
-					$sql = "DELETE FROM item WHERE id='$id'";
-					$result = $db->query($sql);
+					$sql = "DELETE FROM item WHERE id=:id";
+					$params = [':id' => $id];
+					$result = $db->query($sql, $params);
 
-					if ($result == true) {
-						echo("<p>Item removido com sucesso.</p>");
-					}
+					echo("<p>Item removido com sucesso.</p>");
 
 					//Cleaning up
 					unset($db);
@@ -45,7 +41,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERRO: {$e->getMessage()}</p>");
+					echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

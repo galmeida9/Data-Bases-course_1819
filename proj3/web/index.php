@@ -42,6 +42,7 @@
 				$db->connect();
 				$db->executeFileQuery("schema.sql");
 				$db->executeFileQuery("populate.sql");
+				unset($db);
 				header("Location: index.php");
 			}
 		?>

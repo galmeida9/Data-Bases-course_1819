@@ -52,11 +52,8 @@
 									
 									//DB Init
 									$db = new DB();
-									$db->debug_to_console("Connect");
 									$db->connect();
 									
-									//GET Query
-									$db->debug_to_console("Query");
 									$sql = "SELECT nome FROM local_publico";
 									$result = $db->query($sql);
 
@@ -72,7 +69,7 @@
 								}
 								catch (PDOException $e)
 								{
-									echo("<p>ERRO: {$e->getMessage()}</p>");
+									echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 								}
 							?>
 							</select>
@@ -86,11 +83,8 @@
 									
 									//DB Init
 									$db = new DB();
-									$db->debug_to_console("Connect");
 									$db->connect();
 									
-									//GET Query
-									$db->debug_to_console("Query");
 									$sql = "SELECT nome FROM local_publico";
 									$result = $db->query($sql);
 
@@ -106,7 +100,7 @@
 								}
 								catch (PDOException $e)
 								{
-									echo("<p>ERRO: {$e->getMessage()}</p>");
+									echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 								}
 							?>
 							</select>

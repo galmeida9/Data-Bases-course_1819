@@ -28,26 +28,21 @@
 				$nro = $_REQUEST['nro'];
 
 				if(!isset($anomalia_id) || $anomalia_id == '') {
-					echo("<p>ERRO: Não foi especificada um ID de anomalia.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: Não foi especificado um ID de anomalia.</p>");
+					exit();
 				}
 
 				try{
 					//DB Init
 					$db = new DB();
-					$db->debug_to_console("Connect");
 					$db->connect();
 
-					//INSERT Query
-					$db->debug_to_console("Insert Query");
 					$sql = "INSERT INTO correcao (email, nro, anomalia_id)
-					VALUES ('$email', '$nro', '$anomalia_id')";
-					$result = $db->query($sql);
-					
+						VALUES (:email, :nro, :anomalia_id)";
+					$params = [':email' => $email, ':nro' => $nro, ':anomalia_id' => $anomalia_id];
+					$result = $db->query($sql, $params);
 
-					if ($result == true) {
-						echo("<p>Correção inserida com sucesso.</p>");
-					} 
+					echo("<p>Correção inserida com sucesso.</p>");
 
 					// Cleaning Up
 					$result = null;
@@ -55,8 +50,7 @@
 				}
 				catch (PDOException $e)
 				{
-					//echo("<p>ERRO: {$e->getMessage()}</p>");
-					echo("<p>ERRO: Proposta de correção selecionada não foi feita por este utilizador.</p>");
+					echo("<p><font color='red'>ERRO</font>: A proposta de correção selecionada não foi feita por este utilizador.</p>");
 				}
 			?>
 		</div>

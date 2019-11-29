@@ -12,45 +12,38 @@ class DB {
     var $dbObj;
     var $debug;
 
-    public function __construct($debug = True){
+    public function __construct($debug = True) {
         $this->debug = $debug;
     }
 
-    public function connect(){
-        try {
-            $this->dbObj = new PDO("pgsql:host=$this->HOST;dbname=$this->DATABASE", $this->USER, $this->PASSWORD);
-            $this->dbObj->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-        catch (PDOException $e) {
-            $this->debug_to_console($e->getMessage());
-            echo("<p>ERRO: {$e->getMessage()}</p>");
-            return False;
-        }
+    public function connect() {
+        $this->dbObj = new PDO("pgsql:host=$this->HOST;dbname=$this->DATABASE", $this->USER, $this->PASSWORD);
+        $this->dbObj->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     public function disconnect() {
         $this->dbObj = null;
     }
 
-    public function query($sql) {
+    public function query($sql, $params = []) {
         $result = $this->dbObj->prepare($sql);
-        $result->execute();
+        $result->execute($params);
         return $result;
     }
 
-    public function beginTransaction(){
+    public function beginTransaction() {
         $this->dbObj->beginTransaction();
     }
 
-    public function commit(){
+    public function commit() {
         $this->dbObj->commit();
     }
 
-    public function rollBack(){
+    public function rollBack() {
         $this->dbObj->rollBack();
     }
 
-    public function queryTransaction($sql){
+    public function queryTransaction($sql) {
         $result = $this->dbObj->prepare($sql);
         $result->execute();
         return $result;

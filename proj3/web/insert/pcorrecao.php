@@ -27,25 +27,21 @@
 				$texto = $_REQUEST['texto'];
 
 				if(!isset($texto) || $texto == '') {
-					echo("<p>ERRO: Não foi especificado um texto.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: Não foi especificado um texto.</p>");
+					exit();
 				}
 
 				try{
 					//DB Init
 					$db = new DB();
-					$db->debug_to_console("Connect");
 					$db->connect();
 
-					//INSERT Query
-					$db->debug_to_console("Insert Query");
 					$sql = "INSERT INTO proposta_de_correcao (email, data_hora, texto)
-					VALUES ('$email', now(), '$texto')";
-					$result = $db->query($sql);
+						VALUES (:email, now(), :texto)";
+					$params = [':email' => $email, ':texto' => $texto];
+					$result = $db->query($sql, $params);
 
-					if ($result == true) {
-						echo("<p>Proposta de correção inserida com sucesso.</p>");
-					} 
+					echo("<p>Proposta de correção inserida com sucesso.</p>"); 
 					
 					// Cleaning Up
 					$result = null;
@@ -53,7 +49,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERRO: Ação reservada a utilizadores qualificados.</p>");
+					echo("<p><font color='red'>ERRO</font>: Ação reservada a utilizadores qualificados.</p>");
 				}
 			?>
 		</div>

@@ -36,9 +36,10 @@
 
                     $local1 = $_REQUEST['local1'];
                     $local2 = $_REQUEST['local2'];
+
                     if ($local1 == $local2) {
-                        echo("<p>ERRO: Selecione locais distintos.</p>");
-                        return;
+                        echo("<p><font color='red'>ERRO</font>: Selecione locais distintos.</p>");
+                        exit();
                     }
 
                     try {
@@ -46,14 +47,18 @@
                         $db = new DB();
                         $db->connect();
 
-                        $sql = "SELECT latitude, longitude FROM local_publico WHERE nome='$local1';";
-                        $local_table = $db->query($sql);
+                        $db->beginTransaction();
+
+                        $sql = "SELECT latitude, longitude FROM local_publico WHERE nome=:local1;";
+                        $params = [':local1' => $local1];
+                        $local_table = $db->query($sql, $params);
                         $local = $local_table->fetch();
                         $lat1 = $local['latitude'];
                         $lon1 = $local['longitude'];
 
-                        $sql = "SELECT latitude, longitude FROM local_publico WHERE nome='$local2';";
-                        $local_table = $db->query($sql);
+                        $sql = "SELECT latitude, longitude FROM local_publico WHERE nome=:local2;";
+                        $params = [':local2' => $local2];
+                        $local_table = $db->query($sql, $params);
                         $local = $local_table->fetch();
                         $lat2 = $local['latitude'];
                         $lon2 = $local['longitude'];
@@ -65,8 +70,9 @@
 
                         foreach($incidencias as $row) {
                             $id = $row['item_id'];
-                            $sql = "SELECT latitude, longitude FROM item WHERE id='$id';";
-                            $itens = $db->query($sql);
+                            $sql = "SELECT latitude, longitude FROM item WHERE id=:id;";
+                            $params = [':id' => $id];
+                            $itens = $db->query($sql, $params);
 
                             $item = $itens->fetch();
                             $latitude = $item['latitude'];
@@ -81,8 +87,9 @@
                         echo("<tr><td><b>ID</b></td><td><b>Tipo</b></td><td><b>Zona</b></td><td><b>Imagem</b></td>");
                         echo("<td><b>Língua</b></td><td><b>Data/Hora</b></td><td><b>Descrição</b></td></tr>\n");
                         foreach($result as $id) {
-                            $sql = "SELECT * FROM anomalia WHERE id = '$id';";
-                            $anomalias = $db->query($sql);
+                            $sql = "SELECT * FROM anomalia WHERE id=:id;";
+                            $params = [':id' => $id];
+                            $anomalias = $db->query($sql, $params);
                             $anomalia = $anomalias->fetch();
 
                             echo("<tr>\n");
@@ -102,6 +109,8 @@
                             echo("</tr>\n");
                         }
                         echo("</table>\n");
+
+                        $db->commit();
                         
                         // Cleaning Up
                         $result = null;
@@ -109,17 +118,17 @@
                     }
                     catch (PDOException $e)
                     {
-                        echo("<p>ERRO: {$e->getMessage()}</p>");
+                        $db->rollBack();
+                        echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
                     }
                 ?>
             </div>
-
             <div id="myModal" class="modal">
                 <span class="close">&times;</span>
                 <img class="modal-content" id="img01">
             </div>
 		</div>
-
     </body>
+    
     <script src="../modal.js"></script>
 </html>

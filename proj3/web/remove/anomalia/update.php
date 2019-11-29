@@ -23,16 +23,15 @@
 			<?php
 				require("../../db_class.php");
 				$id = $_REQUEST['id'];
-				try{
+
+				try {
 					//DB Init
 					$db = new DB();
-					$db->debug_to_console("Connect");
 					$db->connect();
 
-					//DELETE Query
-					$db->debug_to_console("Delete Query");
-					$sql = "DELETE FROM anomalia WHERE id='$id'";
-					$result = $db->query($sql);
+					$sql = "DELETE FROM anomalia WHERE id=:id";
+					$params = [':id' => $id];
+					$result = $db->query($sql, $params);
 
 					// Cleaning Up
 					$result = null;
@@ -42,7 +41,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERRO: {$e->getMessage()}</p>");
+					echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

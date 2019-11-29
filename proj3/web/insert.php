@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<script type="text/javascript">
-		function toggleForm(){  
+		function toggleForm() {  
 			if(document.getElementById("tem_anomalia_traducao").checked == true) {
 				document.getElementById("zona2").disabled = false;
 				document.getElementById("lingua2").disabled = false;
@@ -76,11 +76,8 @@
 									
 									//DB Init
 									$db = new DB();
-									$db->debug_to_console("Connect");
 									$db->connect();
 									
-									//GET Query
-									$db->debug_to_console("Query");
 									$sql = "SELECT nome FROM local_publico";
 									$result = $db->query($sql);
 
@@ -96,7 +93,7 @@
 								}
 								catch (PDOException $e)
 								{
-									echo("<p>ERRO: {$e->getMessage()}</p>");
+									echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 								}
 							?>
 							</select>
@@ -167,11 +164,8 @@
 									
 									//DB Init
 									$db = new DB();
-									$db->debug_to_console("Connect");
 									$db->connect();
 									
-									//GET Query
-									$db->debug_to_console("Query");
 									$sql = "SELECT id, descricao FROM anomalia";
 									$result = $db->query($sql);
 
@@ -188,7 +182,7 @@
 								}
 								catch (PDOException $e)
 								{
-									echo("<p>ERRO: {$e->getMessage()}</p>");
+									echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 								}
 							?>
 							</select>
@@ -202,11 +196,8 @@
 									
 									//DB Init
 									$db = new DB();
-									$db->debug_to_console("Connect");
 									$db->connect();
 									
-									//GET Query
-									$db->debug_to_console("Query");
 									$sql = "SELECT nro, texto FROM proposta_de_correcao";
 									$result = $db->query($sql);
 
@@ -223,7 +214,7 @@
 								}
 								catch (PDOException $e)
 								{
-									echo("<p>ERRO: {$e->getMessage()}</p>");
+									echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 								}
 							?>
 							</select>

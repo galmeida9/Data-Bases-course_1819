@@ -34,12 +34,9 @@
 					try {
 						//DB Init
 						$db = new DB();
-						$db->debug_to_console("Connect");
 						$db->connect();
 
-						//SELECT Query
-						$db->debug_to_console("Query");
-						$sql = "SELECT id, descricao, localizacao, latitude, longitude FROM item;";
+						$sql = "SELECT * FROM item;";
 						$result = $db->query($sql);
 
 						echo("<table border=\"1\" cellspacing=\"5\">\n");
@@ -55,7 +52,6 @@
 							echo("<td><a href=\"update.php?id={$row['id']}\">Remover</a></td>\n");
 							echo("</tr>\n");
 						}
-						
 						echo("</table>\n");
 
 						//Cleaning up
@@ -65,7 +61,7 @@
 					}
 					catch (PDOException $e)
 					{
-						echo("<p>ERRO: {$e->getMessage()}</p>");
+						echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 					}
 				?>
 			</div>

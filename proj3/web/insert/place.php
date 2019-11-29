@@ -27,35 +27,31 @@
 				$nome = $_REQUEST['nome'];
 
 				if(!isset($latitude) || $latitude == '') {
-					echo("<p>ERRO: Não foi especificada uma latitude.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: Não foi especificada uma latitude.</p>");
+					exit();
 				}
 
 				if(!isset($longitude) || $longitude == '') {
-					echo("<p>ERRO: Não foi especificada uma longitude.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: Não foi especificada uma longitude.</p>");
+					exit();
 				}
 
 				if(!isset($nome) || $nome == '') {
-					echo("<p>ERRO: Não foi especificado um nome.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: Não foi especificado um nome.</p>");
+					exit();
 				}
 
 				try{
 					//DB Init
 					$db = new DB();
-					$db->debug_to_console("Connect");
 					$db->connect();
 
-					//INSERT Query
-					$db->debug_to_console("Insert Query");
 					$sql = "INSERT INTO local_publico (latitude, longitude, nome)
-					VALUES ('$latitude', '$longitude', '$nome')";
-					$result = $db->query($sql);
+						VALUES (:latitude, :longitude, :nome)";
+					$params = [':latitude' => $latitude, ':longitude' => $longitude, ':nome' => $nome];
+					$result = $db->query($sql, $params);
 
-					if ($result == true) {
-						echo("<p>Local inserido com sucesso.</p>");
-					} 
+					echo("<p>Local inserido com sucesso.</p>");
 					
 					// Cleaning Up
 					$result = null;
@@ -63,7 +59,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERRO: {$e->getMessage()}</p>");
+					echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

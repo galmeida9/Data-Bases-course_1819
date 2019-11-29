@@ -30,12 +30,13 @@
 						$db = new DB();
 						$db->connect();
 
-						$sql = "SELECT * FROM utilizador_qualificado WHERE email='$email'";
-						$result = $db->query($sql);
+						$sql = "SELECT * FROM utilizador_qualificado WHERE email=:email";
+						$params = [':email' => $email];
+						$result = $db->query($sql, $params);
 						$user = $result->fetch();
 
 						if (!$user) {
-							echo("<p>ERRO: Ação reservada a utilizadores qualificados.</p>");
+							echo("<p><font color='red'>ERRO</font>: Ação reservada a utilizadores qualificados.</p>");
 							exit();
 						}
 
@@ -45,7 +46,7 @@
 					}
 					catch (PDOException $e)
 					{
-						echo("<p>ERRO: {$e->getMessage()}</p>");
+						echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 					}
 				?>
 

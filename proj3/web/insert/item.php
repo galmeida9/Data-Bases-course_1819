@@ -28,50 +28,43 @@
 				$local = $_REQUEST['local'];
 
 				if(!isset($descricao) || $descricao == '') {
-					echo("<p>ERRO: Não foi especificada uma descrição.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: Não foi especificada uma descrição.</p>");
+					exit();
 				}
 
 				if(!isset($localizacao) || $localizacao == '') {
-					echo("<p>ERRO: Não foi especificada uma localização.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: Não foi especificada uma localização.</p>");
+					exit();
 				}
 
 				if(!isset($local) || $local == '') {
-					echo("<p>ERRO: Não foi especificado um local.</p>");
-					return;
+					echo("<p><font color='red'>ERRO</font>: Não foi especificado um local.</p>");
+					exit();
 				}
 				
 				try {
 					//DB Init
             		$db = new DB();
-            		$db->debug_to_console("Connect");
             		$db->connect();
 					
-					//Begin Transaction
 					$db->beginTransaction();
 
-					//SELECT Query
-					$db->debug_to_console("Select Query");
-					$sql = "SELECT latitude, longitude FROM local_publico WHERE nome='$local' LIMIT 1;";
-					$result = $db->queryTransaction($sql);
+					$sql = "SELECT latitude, longitude FROM local_publico WHERE nome=:local;";
+					$params = [':local' => $local];
+					$result = $db->query($sql, $params);
 
 					$row = $result->fetch();
 					$latitude = $row['latitude'];
 					$longitude = $row['longitude'];
 					
-					//INSERT Query
-					$db->debug_to_console("Insert Query");
 					$sql = "INSERT INTO item (descricao, localizacao, latitude, longitude)
-					VALUES ('$descricao', '$localizacao', '$latitude', '$longitude')";
-					$result = $db->queryTransaction($sql);
+						VALUES (:descricao, :localizacao, :latitude, :longitude)";
+					$params = [':descricao' => $descricao, ':localizacao' => $localizacao,
+						':latitude' => $latitude, ':longitude' => $longitude];
+					$result = $db->query($sql, $params);
 
-					if ($result == true) {
-						echo("<p>Item inserido com sucesso.</p>");
-					} 
-
-					//Commit
 					$db->commit();
+					echo("<p>Item inserido com sucesso.</p>");
 
 					// Cleaning Up
 					$result = null;
@@ -80,7 +73,7 @@
 				catch (PDOException $e)
 				{
 					$db->rollBack();
-					echo("<p>ERRO: {$e->getMessage()}</p>");
+					echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

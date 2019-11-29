@@ -24,30 +24,25 @@
 				require("../../db_class.php");
 				$latitude = $_REQUEST['latitude'];
 				$longitude = $_REQUEST['longitude'];
-				try{
+				
+				try {
 					//DB Init
 					$db = new DB();
-					$db->debug_to_console("Connect");
 					$db->connect();
 
-					//DELETE Query
-					$db->debug_to_console("Delete Query");
-					$sql = "DELETE FROM local_publico WHERE latitude='$latitude' and longitude='$longitude'";
-					$db->debug_to_console($sql);
-					$result = $db->query($sql);
+					$sql = "DELETE FROM local_publico WHERE latitude=:latitude and longitude=:longitude";
+					$params = [':latitude' => $latitude, ':longitude' => $longitude];
+					$result = $db->query($sql, $params);
 
-					// If returns False is error
-					if (!$result) return;
-
-					$db->debug_to_console("PHP acabado.");
 					echo("<p>Local removido com sucesso.</p>");
+
 					//Cleaning up
 					unset($db);
 					$result = null;
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERRO: {$e->getMessage()}</p>");
+					echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

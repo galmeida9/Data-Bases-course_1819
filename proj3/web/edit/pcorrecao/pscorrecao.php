@@ -33,16 +33,14 @@
 					try {
 						//DB Init
 						$db = new DB();
-						$db->debug_to_console("Connect");
 						$db->connect();
 
-						//GET Query
-						$db->debug_to_console("Query");
 						$sql = "SELECT * FROM proposta_de_correcao;";
 						$result = $db->query($sql);
 
 						echo("<table border=\"1\" cellspacing=\"5\">\n");
-						echo("<tr><td><b>Número</b></td><td><b>Email</b></td><td><b>Data/Hora</b></td><td><b>Texto</b></td></tr>\n");
+						echo("<tr><td><b>Número</b></td><td><b>Email</b></td>");
+						echo("<td><b>Data/Hora</b></td><td><b>Texto</b></td></tr>\n");
 						foreach($result as $row) {
 							echo("<tr>\n");
 							echo("<td>{$row['nro']}</td>\n");
@@ -52,7 +50,6 @@
 							echo("<td><a href=\"pcorrecao.php?nro={$row['nro']}\">Editar</a></td>\n");
 							echo("</tr>\n");
 						}
-						
 						echo("</table>\n");
 
 						// Cleaning up
@@ -61,7 +58,7 @@
 					}
 					catch (PDOException $e)
 					{
-						echo("<p>ERRO: {$e->getMessage()}</p>");
+						echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 					}
 				?>
 			</div>

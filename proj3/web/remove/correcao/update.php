@@ -33,18 +33,20 @@
 
 					$db->beginTransaction();
 
-					$sql = "SELECT * FROM utilizador_qualificado WHERE email='$email'";
-					$result = $db->query($sql);
+					$sql = "SELECT * FROM utilizador_qualificado WHERE email=:email";
+					$params = [':email' => $email];
+					$result = $db->query($sql, $params);
 					$user = $result->fetch();
 
 					if (!$user) {
-						echo("<p>ERRO: Ação reservada a utilizadores qualificados.</p>");
+						echo("<p><font color='red'>ERRO</font>: Ação reservada a utilizadores qualificados.</p>");
 						$db->rollBack();
 						exit();
 					}
 
-					$sql = "DELETE FROM correcao WHERE nro='$nro'";
-					$result = $db->query($sql);
+					$sql = "DELETE FROM correcao WHERE nro=:nro";
+					$params = [':nro' => $nro];
+					$result = $db->query($sql, $params);
 
 					$db->commit();
 					echo("<p>Correção removida com sucesso.</p>");
@@ -56,7 +58,7 @@
 				catch (PDOException $e)
 				{
 					$db->rollBack();
-					echo("<p>ERRO: {$e->getMessage()}</p>");
+					echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

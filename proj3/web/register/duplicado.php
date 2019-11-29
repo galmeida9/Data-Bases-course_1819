@@ -27,36 +27,32 @@
 				$item1 = $_REQUEST['item1'];
 				$item2 = $_REQUEST['item2'];
 
-				if(!isset($item1) || $item1 == '') {
-					echo("<p>ERRO: O primeiro item não foi especificado.</p>");
-					return;
+				if (!isset($item1) || $item1 == '') {
+					echo("<p><font color='red'><font color='red'>ERRO</font></font>: O primeiro item não foi especificado.</p>");
+					exit();
 				}
 
-				if(!isset($item2) || $item2 == '') {
-					echo("<p>ERRO: O segundo item não foi especificado.</p>");
-					return;
+				if (!isset($item2) || $item2 == '') {
+					echo("<p><font color='red'><font color='red'>ERRO</font></font>: O segundo item não foi especificado.</p>");
+					exit();
 				}
 
 				if ($item1 == $item2) {
-					echo("<p>ERRO: Selecione itens distintos.</p>");
-					return;
+					echo("<p><font color='red'><font color='red'>ERRO</font></font>: Selecione itens distintos.</p>");
+					exit();
 				}
 
-				try{
+				try {
 					//DB Init
 					$db = new DB();
-					$db->debug_to_console("Connect");
 					$db->connect();
 
-					//INSERT Query
-					$db->debug_to_console("Insert Query");
 					$sql = "INSERT INTO duplicado (item1, item2)
-					VALUES ('$item1', '$item2')";
-					$result = $db->query($sql);
+						VALUES (:item1, :item2)";
+					$params = [':item1' => $item1, ':item2' => $item2];
+					$result = $db->query($sql, $params);
 
-					if ($result == true) {
-						echo("<p>Duplicado registado com sucesso.</p>");
-					} 
+					echo("<p>Duplicado registado com sucesso.</p>");
 					
 					// Cleaning Up
 					$result = null;
@@ -64,7 +60,7 @@
 				}
 				catch (PDOException $e)
 				{
-					echo("<p>ERRO: {$e->getMessage()}</p>");
+					echo("<p><font color='red'><font color='red'>ERRO</font></font>: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>

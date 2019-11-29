@@ -34,11 +34,8 @@
 					try {
 						//DB Init
 						$db = new DB();
-						$db->debug_to_console("Connect");
 						$db->connect();
 
-						//SELECT Query
-						$db->debug_to_console("Query");
 						$sql = "SELECT * FROM correcao;";
 						$result = $db->query($sql);
 
@@ -52,7 +49,6 @@
 							echo("<td><a href=\"update.php?nro={$row['nro']}\">Remover</a></td>\n");
 							echo("</tr>\n");
 						}
-						
 						echo("</table>\n");
 
 						//Cleaning up
@@ -62,7 +58,7 @@
 					}
 					catch (PDOException $e)
 					{
-						echo("<p>ERRO: {$e->getMessage()}</p>");
+						echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 					}
 				?>
 			</div>

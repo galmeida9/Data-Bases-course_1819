@@ -40,90 +40,98 @@
 
                     if(!isset($lat) || $lat == '') {
                         echo("<p>ERRO: Não foi especificada uma latitude.</p>");
-                        return;
+                        exit();
                     }
 
                     if(!isset($long) || $long == '') {
                         echo("<p>ERRO: Não foi especificada uma longitude.</p>");
-                        return;
+                        exit();
                     }
 
                     if(!isset($dx) || $dx == '') {
                         echo("<p>ERRO: O parâmetro dx não foi especificado.</p>");
-                        return;
+                        exit();
                     }
 
                     if(!isset($dy) || $dy == '') {
                         echo("<p>ERRO: O parâmetro dy não foi especificado.</p>");
-                        return;
+                        exit();
                     }
 
-                    //DB Init
-                    $db = new DB();
-                    $db->connect();
+                    try {
+                        //DB Init
+                        $db = new DB();
+                        $db->connect();
 
-                    //SELECT Query
-                    $db->debug_to_console("Query");
-                    $sql = "SELECT anomalia_id, item_id, email FROM incidencia";
-                    $result = $db->query($sql);
+                        $db->beginTransaction();
 
-                    foreach($result as $row) {
-                        $currentId = $row['anomalia_id'];
-                        $sql2 = "SELECT latitude, longitude FROM item WHERE id = $currentId;";
-                        $result2 = $db->query($sql2);
+                        $sql = "SELECT * FROM incidencia";
+                        $result = $db->query($sql);
 
-                        $row2 = $result2->fetch();
-                        if ($row2['latitude'] > $lat - $dx && $row2['latitude'] < $lat + $dx &&
-                            $row2['longitude'] > $long - $dy && $row2['longitude'] < $long + $dy) {
-                                array_push($anomId, $row['anomalia_id']);
-                        }
-                    }
+                        foreach($result as $row) {
+                            $id = $row['anomalia_id'];
+                            $sql = "SELECT latitude, longitude FROM item WHERE id = :id;";
+                            $params = [':id' => $id];
+                            $itens = $db->query($sql, $params);
 
-                    if (count($anomId) > 0) {
-                        echo("<table border=\"1\" cellspacing=\"5\">\n");
-                        echo("<tr><td><b>ID</b></td><td><b>Tipo</b></td><td><b>Zona</b></td><td><b>Imagem</b></td>");
-                        echo("<td><b>Língua</b></td><td><b>Data/Hora</b></td><td><b>Descrição</b></td></tr>\n");
-                        foreach($anomId as $id) {
-                            $sql3 = "SELECT * FROM anomalia WHERE id = $id;";
-                            $result3 = $db->query($sql3);
-                            $row3 = $result3->fetch();
-
-                            echo("<tr>\n");
-                            echo("<td>{$row3['id']}</td>\n");
-
-                            if ($row3['tem_anomalia_redacao'] == 1) {
-                                echo("<td>Redação</td>\n");
-                            } else {
-                                echo("<td><b>Tradução</b></td>\n");
+                            $item = $itens->fetch();
+                            if ($item['latitude'] > $lat - $dx && $item['latitude'] < $lat + $dx &&
+                                $item['longitude'] > $long - $dy && $item['longitude'] < $long + $dy) {
+                                    array_push($anomId, $row['anomalia_id']);
                             }
-
-                            echo("<td>{$row3['zona']}</td>\n");
-                            echo("<td><a onclick='showImg(\"{$row['imagem']}\")'>Ver</a></td>\n");
-                            echo("<td>{$row3['lingua']}</td>\n");
-                            echo("<td>{$row3['ts']}</td>\n");
-                            echo("<td>{$row3['descricao']}</td>\n");                     
-                            echo("</tr>\n");
                         }
-                        echo("</table>\n");
+
+                        if (count($anomId) > 0) {
+                            echo("<table border=\"1\" cellspacing=\"5\">\n");
+                            echo("<tr><td><b>ID</b></td><td><b>Tipo</b></td><td><b>Zona</b></td><td><b>Imagem</b></td>");
+                            echo("<td><b>Língua</b></td><td><b>Data/Hora</b></td><td><b>Descrição</b></td></tr>\n");
+                            foreach($anomId as $id) {
+                                $sql = "SELECT * FROM anomalia WHERE id = :id;";
+                                $params = [':id' => $id];
+                                $anomalias = $db->query($sql, $params);
+                                $anomalia = $anomalias->fetch();
+
+                                echo("<tr>\n");
+                                echo("<td>{$anomalia['id']}</td>\n");
+
+                                if ($anomalia['tem_anomalia_redacao'] == 1) {
+                                    echo("<td>Redação</td>\n");
+                                } else {
+                                    echo("<td><b>Tradução</b></td>\n");
+                                }
+
+                                echo("<td>{$anomalia['zona']}</td>\n");
+                                echo("<td><a onclick='showImg(\"{$anomalia['imagem']}\")'>Ver</a></td>\n");
+                                echo("<td>{$anomalia['lingua']}</td>\n");
+                                echo("<td>{$anomalia['ts']}</td>\n");
+                                echo("<td>{$anomalia['descricao']}</td>\n");                     
+                                echo("</tr>\n");
+                            }
+                            echo("</table>\n");
+                        }
+                        else {
+                            echo("<p>Não foram encontradas Anomalias</p>");
+                        }
+
+                        $db->commit();
+                            
+                        // Cleaning Up
+                        $result = null;
+                        unset($db);
                     }
-                    else {
-                        echo("<p>Não foram encontradas Anomalias</p>");
+                    catch (PDOException $e)
+                    {
+                        $db->rollBack();
+                        echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
                     }
-                        
-                    // Cleaning Up
-                    $result = null;
-                    unset($db);
                 ?>
             </div>
-
             <div id="myModal" class="modal">
                 <span class="close">&times;</span>
                 <img class="modal-content" id="img01">
             </div>
 		</div>
-
     </body>
     
     <script src="../modal.js"></script>
-
 </html>

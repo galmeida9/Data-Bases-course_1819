@@ -31,15 +31,13 @@
             <div class="table">
 				<?php
 					require("../db_class.php");
+
 					try {
 						//DB Init
 						$db = new DB();
-						$db->debug_to_console("Connect");
 						$db->connect();
 
-						//GET Query
-						$db->debug_to_console("Query");
-						$sql = "SELECT email, psw FROM utilizador;";
+						$sql = "SELECT email FROM utilizador;";
 						$result = $db->query($sql);
 
 						echo("<table border=\"1\">\n");
@@ -57,7 +55,7 @@
 					}
 					catch (PDOException $e)
 					{
-						echo("<p>ERRO: {$e->getMessage()}</p>");
+						echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 					}
 				?>
 			</div>

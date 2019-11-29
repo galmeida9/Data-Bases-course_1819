@@ -32,39 +32,40 @@
             $username = $_REQUEST['uname'];
             $psw = $_REQUEST['psw'];
 
-            //DB Init
-            $db = new DB();
-            $db->debug_to_console("Connect");
-            $db->connect();
+            try {
+                //DB Init
+                $db = new DB();
+                $db->connect();
 
-            //SELECT Query
-            $db->debug_to_console("Query");
-            $sql = "SELECT psw FROM utilizador WHERE email = '$username';";
-            $result = $db->query($sql);
+                $sql = "SELECT psw FROM utilizador WHERE email = :username;";
+                $params = [':username' => $username];
+                $result = $db->query($sql, $params);
 
-            // If returns False is error
-            if (!$result) return;
-
-            $isEmpty = 1;
-            foreach($result as $row) {
-                $realPsw = $row['psw'];
-                if ($realPsw == $psw) {
-                    $_SESSION['email'] = $username;
-                    header("Location: ../index.php");
+                $isEmpty = 1;
+                foreach($result as $row) {
+                    $realPsw = $row['psw'];
+                    if ($realPsw == $psw) {
+                        $_SESSION['email'] = $username;
+                        header("Location: ../index.php");
+                    }
+                    else {
+                        echo("<center class='error'>Wrong password.</center>");
+                    }
+                    $isEmpty = 0;
+                    break;
                 }
-                else {
-                    echo("<center class='error'>Wrong password.</center>");
+                if ($isEmpty && $username != "") {
+                    echo("<center class='error'>Wrong email.</center>");
                 }
-                $isEmpty = 0;
-                break;
+                
+                //Cleaning up
+                unset($db);
+                $result = null;
             }
-            if ($isEmpty && $username != "") {
-                echo("<center class='error'>Wrong email.</center>");
+            catch (PDOException $e)
+            {
+                echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
             }
-            
-            //Cleaning up
-            unset($db);
-            $result = null;
         ?>
     </body>
 </html>
