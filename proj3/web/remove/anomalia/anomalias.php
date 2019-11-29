@@ -38,12 +38,14 @@
 						$db = new DB();
 						$db->connect();
 
+						$db->beginTransaction();
+
 						$sql = "SELECT * FROM anomalia;";
 						$result = $db->query($sql);
 
 						echo("<table border=\"1\" cellspacing=\"5\">\n");
-						echo("<tr><td><b>ID</b></td><td><b>Tipo</b></td><td><b>Zona</b></td><td><b>Imagem</b></td>");
-						echo("<td><b>Língua</b></td><td><b>Data/Hora</b></td><td><b>Descrição</b></td></tr>\n");
+						echo("<tr><td><b>ID</b></td><td><b>Tipo</b></td><td><b>Zona</b></td><td><b>Zona 2</b></td><td><b>Imagem</b></td>");
+						echo("<td><b>Língua</b></td><td><b>Língua 2</b></td><td><b>Data/Hora</b></td><td><b>Descrição</b></td></tr>\n");
 						foreach($result as $row) {
 							echo("<tr>\n");
 							echo("<td>{$row['id']}</td>\n");
@@ -55,14 +57,35 @@
 							}
 
 							echo("<td>{$row['zona']}</td>\n");
+
+							$sql = "SELECT zona2, lingua2 FROM anomalia_traducao WHERE id=:id;";
+							$params = [':id' => $row['id']];
+							$result2 = $db->query($sql, $params);
+
+							$row2 = $result2->fetch();
+							if ($row2['zona2'] == null) {
+								echo("<td>-</td>\n");
+							} else {
+								echo("<td>{$row2['zona2']}</td>\n");
+							}
+
 							echo("<td><a onclick='showImg(\"{$row['imagem']}\")'>Ver</a></td>\n");
 							echo("<td>{$row['lingua']}</td>\n");
+
+							if ($row2['lingua2'] == null) {
+								echo("<td>-</td>\n");
+							} else {
+								echo("<td>{$row2['lingua2']}</td>\n");
+							}
+
 							echo("<td>{$row['ts']}</td>\n");
 							echo("<td>{$row['descricao']}</td>\n");						
 							echo("<td><a href=\"update.php?id={$row['id']}\">Remover</a></td>\n");
 							echo("</tr>\n");
 						}
 						echo("</table>\n");
+
+						$db->commit();
 						
 						// Cleaning Up
 						$result = null;
@@ -71,6 +94,7 @@
 					}
 					catch (PDOException $e)
 					{
+						$db->rollBack();
 						echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 					}
 				?>

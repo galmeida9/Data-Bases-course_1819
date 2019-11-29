@@ -84,8 +84,8 @@
                         }
 
                         echo("<table border=\"1\" cellspacing=\"5\">\n");
-                        echo("<tr><td><b>ID</b></td><td><b>Tipo</b></td><td><b>Zona</b></td><td><b>Imagem</b></td>");
-                        echo("<td><b>Língua</b></td><td><b>Data/Hora</b></td><td><b>Descrição</b></td></tr>\n");
+                        echo("<tr><td><b>ID</b></td><td><b>Tipo</b></td><td><b>Zona</b></td><td><b>Zona 2</b></td><td><b>Imagem</b></td>");
+                        echo("<td><b>Língua</b></td><td><b>Língua 2</b></td><td><b>Data/Hora</b></td><td><b>Descrição</b></td></tr>\n");
                         foreach($result as $id) {
                             $sql = "SELECT * FROM anomalia WHERE id=:id;";
                             $params = [':id' => $id];
@@ -102,8 +102,27 @@
                             }
 
                             echo("<td>{$anomalia['zona']}</td>\n");
+
+                            $sql = "SELECT zona2, lingua2 FROM anomalia_traducao WHERE id=:id;";
+                            $params = [':id' => $anomalia['id']];
+                            $result2 = $db->query($sql, $params);
+
+                            $row2 = $result2->fetch();
+                            if ($row2['zona2'] == null) {
+                                echo("<td>-</td>\n");
+                            } else {
+                                echo("<td>{$row2['zona2']}</td>\n");
+                            }
+
                             echo("<td><a onclick='showImg(\"{$anomalia['imagem']}\")'>Ver</a></td>\n");
                             echo("<td>{$anomalia['lingua']}</td>\n");
+
+                            if ($row2['lingua2'] == null) {
+                                echo("<td>-</td>\n");
+                            } else {
+                                echo("<td>{$row2['lingua2']}</td>\n");
+                            }
+
                             echo("<td>{$anomalia['ts']}</td>\n");
                             echo("<td>{$anomalia['descricao']}</td>\n");                     
                             echo("</tr>\n");
