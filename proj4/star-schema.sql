@@ -78,3 +78,20 @@ INSERT INTO d_lingua(lingua)
     FROM anomalia;
 
 --Carregar dados na tabela de factos TODO
+
+INSERT INTO f_anomalia
+    SELECT id_utilizador, id_tempo, id_local, id_lingua, NULL,
+	(CASE WHEN Cor.nro IS NOT NULL 
+	THEN true
+	ELSE false
+	END) AS com_proposta
+    -- Get data
+    FROM incidencia AS Inc
+    JOIN anomalia AS An ON An.id = Inc.anomalia_id
+    JOIN item AS It ON It.id = Inc.item_id
+    LEFT JOIN correcao AS Cor ON Cor.anomalia_id = Inc.anomalia_id
+    -- Join with dimensions
+    JOIN d_lingua AS dLi ON An.lingua = dLi.lingua
+    JOIN d_local AS dLo ON (dLo.latitude = It.latitude and dLo.longitude = It.longitude)
+    JOIN d_tempo AS dT ON (EXTRACT(day FROM An.ts), EXTRACT(month FROM An.ts), EXTRACT(year FROM An.ts)) = (dT.dia, dT.mes, dT.ano)
+    JOIN d_utilizador AS dU ON dU.email = Inc.email;
