@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS d_local CASCADE;
 DROP TABLE IF EXISTS d_lingua CASCADE;
 DROP TABLE IF EXISTS f_anomalia CASCADE;
 
--- Dimensiões
+-- Dimensões
 
 create table d_utilizador(
     id_utilizador serial not null,
@@ -21,6 +21,7 @@ create table d_tempo(
     mes integer not null,
     trimestre integer not null,
     ano integer not null,
+    UNIQUE (dia, mes, ano),
     constraint pk_tempo primary key(id_tempo)
 );
 
@@ -54,7 +55,7 @@ create table f_anomalia(
     constraint fk_f_lingua foreign key(id_lingua) references d_lingua(id_lingua) on delete cascade on update cascade
 );
 
---Carregar dados nas tabelas
+--Carregar dados nas tabelas de dimensões
 
 INSERT INTO d_utilizador(email, tipo)
     SELECT email, 
@@ -64,3 +65,16 @@ INSERT INTO d_utilizador(email, tipo)
         END
     FROM utilizador AS u;
 
+INSERT INTO d_tempo(dia, dia_da_semana, semana, mes, trimestre, ano)
+    SELECT DISTINCT EXTRACT(day FROM ts), EXTRACT(isodow FROM ts), EXTRACT(week FROM ts), EXTRACT(month FROM ts), EXTRACT(QUARTER FROM ts), EXTRACT(year FROM ts)
+    FROM anomalia;
+
+INSERT INTO d_local(latitude, longitude, nome)
+    SELECT DISTINCT latitude, longitude, nome
+    FROM local_publico;
+
+INSERT INTO d_lingua(lingua)
+    SELECT DISTINCT lingua
+    FROM anomalia;
+
+--Carregar dados na tabela de factos TODO
