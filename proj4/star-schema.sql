@@ -48,7 +48,7 @@ create table f_anomalia(
     id_lingua serial,
     tipo_anomalia varchar(40),
     com_proposta boolean,
-    primary key(id_utilizador, id_tempo, id_local, id_lingua),
+    primary key(id_utilizador, id_tempo, id_local, id_lingua), --TODO: Verificar se é chave primária ou não
     constraint fk_f_utilizador foreign key(id_utilizador) references d_utilizador(id_utilizador) on delete cascade on update cascade,
     constraint fk_f_tempo foreign key(id_tempo) references d_tempo(id_tempo) on delete cascade on update cascade,
     constraint fk_f_local foreign key(id_local) references d_local(id_local) on delete cascade on update cascade,
@@ -77,10 +77,14 @@ INSERT INTO d_lingua(lingua)
     SELECT DISTINCT lingua
     FROM anomalia;
 
---Carregar dados na tabela de factos TODO
+--Carregar dados na tabela de factos
 
 INSERT INTO f_anomalia
-    SELECT id_utilizador, id_tempo, id_local, id_lingua, NULL,
+    SELECT id_utilizador, id_tempo, id_local, id_lingua, 
+    (CASE WHEN An.tem_anomalia_redacao --TODO: Verificar se pode ser assim
+	THEN 'Redacao'
+	ELSE 'Traducao'
+	END),
 	(CASE WHEN Cor.nro IS NOT NULL 
 	THEN true
 	ELSE false
