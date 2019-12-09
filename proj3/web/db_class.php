@@ -78,6 +78,9 @@ class DB {
                 else if (strpos($line, 'insert') !== false) {
                     $this->query($line);
                 }
+                else if (strpos($line, 'DROP') !== false) {
+                    $this->query($line);
+                }
                 else {
                     if (is_null($query)) {
                         $query = $line;

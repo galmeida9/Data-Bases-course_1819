@@ -171,3 +171,4 @@ BEFORE INSERT ON utilizador_regular
 FOR EACH ROW
 EXECUTE PROCEDURE reg_user_trigger_proc();
 
+
