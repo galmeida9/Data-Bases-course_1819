@@ -102,3 +102,72 @@ create table correcao (
     constraint pk_correcao_anomalia_id foreign key(anomalia_id) references incidencia(anomalia_id) on delete cascade
 );
 
+-- Triggers and Procedures
+-- RI-1
+DROP TRIGGER IF EXISTS overlap_trigger ON anomalia_traducao;
+DROP FUNCTION IF EXISTS overlap_trigger_proc();
+
+CREATE FUNCTION overlap_trigger_proc()
+RETURNS trigger AS $trigger_proc$
+DECLARE
+	zona box;
+BEGIN
+	SELECT anomalia.zona INTO zona FROM anomalia WHERE id=NEW.id;
+    IF (zona && NEW.zona2) THEN
+        RAISE EXCEPTION 'A segunda zona não se pode sobrepor à primeira.';
+    END IF;
+    RETURN NEW;
+END;
+$trigger_proc$ LANGUAGE plpgsql;
+
+CREATE TRIGGER overlap_trigger
+BEFORE INSERT ON anomalia_traducao
+FOR EACH ROW
+EXECUTE PROCEDURE overlap_trigger_proc();
+
+-- RI-5
+DROP TRIGGER IF EXISTS qualif_user_trigger ON utilizador_qualificado;
+DROP FUNCTION IF EXISTS qualif_user_trigger_proc();
+
+CREATE FUNCTION qualif_user_trigger_proc() RETURNS trigger
+AS $$
+BEGIN
+    IF EXISTS (
+        SELECT email
+        FROM utilizador_regular
+        WHERE email=NEW.email
+    ) THEN
+        RAISE EXCEPTION 'email não pode figurar em utilizador_regular.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER qualif_user_trigger
+BEFORE INSERT ON utilizador_qualificado
+FOR EACH ROW
+EXECUTE PROCEDURE qualif_user_trigger_proc();
+
+--RI-6
+DROP TRIGGER IF EXISTS reg_user_trigger ON utilizador_regular;
+DROP FUNCTION IF EXISTS reg_user_trigger_proc();
+
+CREATE FUNCTION reg_user_trigger_proc() RETURNS trigger
+AS $$
+BEGIN
+    IF EXISTS (
+        SELECT email
+        FROM utilizador_qualificado
+        WHERE email=NEW.email
+    ) THEN
+        RAISE EXCEPTION 'email não pode figurar em utilizador_qualificado.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER reg_user_trigger
+BEFORE INSERT ON utilizador_regular
+FOR EACH ROW
+EXECUTE PROCEDURE reg_user_trigger_proc();
+
