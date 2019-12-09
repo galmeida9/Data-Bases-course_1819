@@ -68,12 +68,6 @@
 				}
 
 				if ($tem_anomalia_redacao == 'false') {
-
-					// RI-1
-					if (overlap($zona, $zona2)) {
-						echo("<p><font color='red'>ERRO</font>: A segunda zona não se pode sobrepor à primeira.</p>");
-						exit();
-					} 
 				        
 					// RI-2
 					if ($lingua == $lingua2) {
@@ -124,7 +118,7 @@
 					if ($tem_anomalia_redacao == 'false') {
 						$db->rollBack();
 					}
-					echo("<p><font color='red'>ERRO</font> :Zona deve ser da forma (x1,y1,x2,y2) e caso existam duas zonas, elas não se podem intersectar.</p>");
+					echo("<p><font color='red'>ERRO</font>: {$e->getMessage()}</p>");
 				}
 			?>
 		</div>
