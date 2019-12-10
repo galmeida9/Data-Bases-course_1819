@@ -2,7 +2,7 @@ DROP TRIGGER IF EXISTS qualif_user_trigger ON utilizador_qualificado;
 DROP FUNCTION IF EXISTS qualif_user_trigger_proc();
 
 CREATE FUNCTION qualif_user_trigger_proc() RETURNS trigger 
-AS $$
+AS $qualif_user_trigger_proc$
 BEGIN
     IF EXISTS (
         SELECT email
@@ -13,7 +13,7 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$qualif_user_trigger_proc$ LANGUAGE plpgsql;
 
 CREATE TRIGGER qualif_user_trigger
 BEFORE INSERT ON utilizador_qualificado

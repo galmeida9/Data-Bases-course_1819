@@ -2,7 +2,7 @@ DROP TRIGGER IF EXISTS reg_user_trigger ON utilizador_regular;
 DROP FUNCTION IF EXISTS reg_user_trigger_proc();
 
 CREATE FUNCTION reg_user_trigger_proc() RETURNS trigger 
-AS $$
+AS $reg_user_trigger_proc$
 BEGIN
     IF EXISTS (
         SELECT email
@@ -13,7 +13,7 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$reg_user_trigger_proc$ LANGUAGE plpgsql;
 
 CREATE TRIGGER reg_user_trigger
 BEFORE INSERT ON utilizador_regular

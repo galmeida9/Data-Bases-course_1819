@@ -1,8 +1,8 @@
 DROP TRIGGER IF EXISTS overlap_trigger ON anomalia_traducao;
 DROP FUNCTION IF EXISTS overlap_trigger_proc();
 
-CREATE FUNCTION overlap_trigger_proc()
-RETURNS trigger AS $trigger_proc$
+CREATE FUNCTION overlap_trigger_proc() RETURNS trigger
+AS $overlap_trigger_proc$
 DECLARE
 	zona box;
 BEGIN
@@ -12,7 +12,7 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-$trigger_proc$ LANGUAGE plpgsql;
+$overlap_trigger_proc$ LANGUAGE plpgsql;
 
 CREATE TRIGGER overlap_trigger
 BEFORE INSERT ON anomalia_traducao
