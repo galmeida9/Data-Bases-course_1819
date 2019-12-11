@@ -1,7 +1,5 @@
 --1.1)
-drop index proposta_de_correcao_data_hora_idx;
-create index proposta_de_correcao_data_hora_idx 
-on proposta_de_correcao using btree (data_hora);
+-- Não fazer index
 
 --1.2)
 drop index proposta_de_correcao_data_hora_idx;
@@ -14,9 +12,7 @@ create index incidencia_anomalia_id_idx
 on incidencia using hash (anomalia_id);
 
 --3.1) CHECK
-drop index correcao_anomalia_id_idx;
-create index correcao_anomalia_id_idx 
-on correcao using btree (anomalia_id);
+-- Não fazer index
 
 --3.2) CHECK
 drop index correcao_anomalia_id_idx;
