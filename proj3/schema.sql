@@ -107,68 +107,96 @@ create table correcao (
 DROP TRIGGER IF EXISTS overlap_trigger ON anomalia_traducao;
 DROP FUNCTION IF EXISTS overlap_trigger_proc();
 
-CREATE FUNCTION overlap_trigger_proc()
-RETURNS trigger AS $trigger_proc$
+CREATE FUNCTION overlap_trigger_proc() RETURNS trigger
+AS $overlap_trigger_proc$
 DECLARE
-	zona box;
+        zona box;
 BEGIN
-	SELECT anomalia.zona INTO zona FROM anomalia WHERE id=NEW.id;
+        SELECT anomalia.zona INTO zona FROM anomalia WHERE id=NEW.id;
     IF (zona && NEW.zona2) THEN
         RAISE EXCEPTION 'A segunda zona não se pode sobrepor à primeira.';
     END IF;
     RETURN NEW;
 END;
-$trigger_proc$ LANGUAGE plpgsql;
+$overlap_trigger_proc$ LANGUAGE plpgsql;
 
 CREATE TRIGGER overlap_trigger
 BEFORE INSERT ON anomalia_traducao
-FOR EACH ROW
+FOR EACH ROW 
 EXECUTE PROCEDURE overlap_trigger_proc();
+
+-- RI-4
+DROP TRIGGER IF EXISTS email_utilizador_trigger ON utilizador;
+DROP FUNCTION IF EXISTS email_utilizador_trigger_proc();
+
+CREATE FUNCTION email_utilizador_trigger_proc() RETURNS trigger 
+AS $email_utilizador_trigger_proc$
+BEGIN
+    IF NOT EXISTS (
+        SELECT email
+        FROM utilizador_qualificado 
+        WHERE email=NEW.email
+    ) AND NOT EXISTS (
+        SELECT email
+        FROM utilizador_regular           
+        WHERE email=NEW.email
+    ) THEN
+        DELETE FROM utilizador
+        WHERE email=NEW.email
+        RAISE EXCEPTION 'email de utilizador tem de figurar em utilizador_qualificado ou utilizador_regular.';
+    END IF;
+    RETURN NEW;
+END;
+$email_utilizador_trigger_proc$ LANGUAGE plpgsql;
+
+CREATE TRIGGER email_utilizador_trigger
+AFTER INSERT ON utilizador
+FOR EACH ROW 
+EXECUTE PROCEDURE email_utilizador_trigger_proc();
 
 -- RI-5
 DROP TRIGGER IF EXISTS qualif_user_trigger ON utilizador_qualificado;
 DROP FUNCTION IF EXISTS qualif_user_trigger_proc();
 
-CREATE FUNCTION qualif_user_trigger_proc() RETURNS trigger
-AS $$
+CREATE FUNCTION qualif_user_trigger_proc() RETURNS trigger 
+AS $qualif_user_trigger_proc$
 BEGIN
     IF EXISTS (
         SELECT email
-        FROM utilizador_regular
+        FROM utilizador_regular 
         WHERE email=NEW.email
     ) THEN
         RAISE EXCEPTION 'email não pode figurar em utilizador_regular.';
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$qualif_user_trigger_proc$ LANGUAGE plpgsql;
 
 CREATE TRIGGER qualif_user_trigger
 BEFORE INSERT ON utilizador_qualificado
-FOR EACH ROW
+FOR EACH ROW 
 EXECUTE PROCEDURE qualif_user_trigger_proc();
 
---RI-6
+-- RI-6
 DROP TRIGGER IF EXISTS reg_user_trigger ON utilizador_regular;
 DROP FUNCTION IF EXISTS reg_user_trigger_proc();
 
-CREATE FUNCTION reg_user_trigger_proc() RETURNS trigger
-AS $$
+CREATE FUNCTION reg_user_trigger_proc() RETURNS trigger 
+AS $reg_user_trigger_proc$
 BEGIN
     IF EXISTS (
         SELECT email
-        FROM utilizador_qualificado
+        FROM utilizador_qualificado 
         WHERE email=NEW.email
     ) THEN
         RAISE EXCEPTION 'email não pode figurar em utilizador_qualificado.';
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$reg_user_trigger_proc$ LANGUAGE plpgsql;
 
 CREATE TRIGGER reg_user_trigger
 BEFORE INSERT ON utilizador_regular
-FOR EACH ROW
+FOR EACH ROW 
 EXECUTE PROCEDURE reg_user_trigger_proc();
-
 

@@ -13,7 +13,9 @@ BEGIN
         FROM utilizador_regular           
         WHERE email=NEW.email
     ) THEN
-        RETURN NULL;
+        DELETE FROM utilizador
+	WHERE email=NEW.email
+    	RAISE EXCEPTION 'email de utilizador tem de figurar em utilizador_qualificado ou utilizador_regular.';
     END IF;
     RETURN NEW;
 END;
