@@ -51,20 +51,26 @@ insert into anomalia_traducao values (17, '((10,10), (20,20))', 'ingles');
 insert into duplicado values (2, 3);
 
 -- Utilizador
+START TRANSACTION;
 insert into utilizador values ('gabriel.almeida@tecnico.ulisboa.pt', '12345');
-insert into utilizador values ('marcelo.rebelo.sousa@gmail.com', 'fdksjhfj');
-insert into utilizador values ('pgalhardo@me.com', '123');
-insert into utilizador values ('daniel@me.com', '123');
-insert into utilizador values ('admin', 'admin');
-
--- Utilizador Qualificado
-insert into utilizador_qualificado values ('marcelo.rebelo.sousa@gmail.com');
-insert into utilizador_qualificado values ('daniel@me.com');
-insert into utilizador_qualificado values ('pgalhardo@me.com');
-insert into utilizador_qualificado values ('admin');
-
--- Utilizador Regular
 insert into utilizador_regular values ('gabriel.almeida@tecnico.ulisboa.pt');
+COMMIT;
+START TRANSACTION;
+insert into utilizador values ('marcelo.rebelo.sousa@gmail.com', 'fdksjhfj');
+insert into utilizador_qualificado values ('marcelo.rebelo.sousa@gmail.com');
+COMMIT;
+START TRANSACTION;
+insert into utilizador values ('pgalhardo@me.com', '123');
+insert into utilizador_qualificado values ('pgalhardo@me.com');
+COMMIT;
+START TRANSACTION;
+insert into utilizador values ('daniel@me.com', '123');
+insert into utilizador_qualificado values ('daniel@me.com');
+COMMIT;
+START TRANSACTION;
+insert into utilizador values ('admin', 'admin');
+insert into utilizador_qualificado values ('admin');
+COMMIT;
 
 -- Incidencia
 insert into incidencia values (1, 2, 'gabriel.almeida@tecnico.ulisboa.pt');
