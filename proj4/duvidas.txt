@@ -1,5 +1,0 @@
-d_linguas contém lingua2 da anomalia de tradução?
-neste caso as anomalias são obrigatoriamente ou redação ou tradução?
-chaves substitutas????? -> dados que tinhamos
-percentagem do total de registos -> como altera?
-OLAP -> como é suposto ser visto (cube ou grouping sets)
