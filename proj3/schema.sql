@@ -142,7 +142,7 @@ BEGIN
         WHERE email=NEW.email
     ) THEN
         DELETE FROM utilizador
-        WHERE email=NEW.email
+        WHERE email=NEW.email;
         RAISE EXCEPTION 'email de utilizador tem de figurar em utilizador_qualificado ou utilizador_regular.';
     END IF;
     RETURN NEW;
