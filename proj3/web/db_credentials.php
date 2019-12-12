@@ -1,7 +1,7 @@
 <?php
 define("HOST", "ec2-54-246-98-119.eu-west-1.compute.amazonaws.com");
 define("DATABASE", "d4f2uther4d3uk");
-define("USER", "gurfrjwmuedfot");
+define("USER", "soybhiwlcvgfsc");
 define("PORT", "5432");
-define("PASSWORD", "06e304a9e8b6c7b590df483952c65689eb12d16e4ea7443c44c688b8496f0639");
+define("PASSWORD", "ef4cbc0aaa6e534b9e0d519378e8b3f9a4bf70e1e52f973c5f04fea30a039a60");
 ?>
